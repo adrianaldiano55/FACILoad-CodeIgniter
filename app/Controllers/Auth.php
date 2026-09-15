@@ -16,40 +16,38 @@ class Auth extends BaseController
     }
     public function attemptLogin()
     {
-        $email = $this->request->getPost('email');
+        $id = trim((string) $this->request->getPost('id'));
         $password = $this->request->getPost('password');
+        $email = trim((string) $this->request->getPost('email'));
         $userModel = new UserModel();
-        $user = $userModel
+        $users = $userModel
+            ->where('login_id', $id)
             ->where('email', $email)
             ->first();
-        if (!$user) {
+        if (!$users || !password_verify($password, $users['hash_password'])) {
             return redirect()
                 ->back()
-                ->with('error', 'Invalid email or password.');
-        }
-        if (!password_verify($password, $user['hash_password'])) {
-            return redirect()
-                ->back()
-                ->with('error', 'Invalid email or password.');
+                ->with('error', 'No User Available.');
         }
         session()->set([
-            'user_id' => $user['user_id'],
-            'username'    => $user['username'],
-            'email'   => $user['email'],
-            'hash_password' => $user['hash_password'],
-            'role'    => $user['role'],
-            'logged_at' => date('Y-m-d H:i:s'),
+            'id' => $users['id'],
+            'username'    => $users['username'],
+            'email'   => $users['email'],
+            'hash_password' => $users['hash_password'],
+            'role'    => $users['role'],
+            'login_at' => date('Y-m-d H:i:s'),
             'isLoggedIn' => true
         ]);
-        return $this->redirectBasedOnRole($user['role']);
+        return $this->redirectBasedOnRole($users['role']);
     }
     public function attemptRegister()
     {
         $name = trim($this->request->getPost('name'));
         $email = trim($this->request->getPost('email'));
+        $id = trim($this->request->getPost('id'));
         $password = $this->request->getPost('password');
 
-        if (empty($name) || empty($email) || empty($password)) {
+        if (empty($name) || empty($id) || empty($email) || empty($password)) {
             return redirect()
                 ->back()
                 ->withInput()
@@ -85,7 +83,9 @@ class Auth extends BaseController
             'username'      => $name,
             'email'         => $email,
             'hash_password' => $hashedPassword,
-            'role'          => 'staff'
+            'role'          => 'faculty',
+            'login_id'      => $id,
+            'logout_at'     => date('Y-m-d H:i:s'),
         ]);
         return redirect()
             ->to('/login')
@@ -94,11 +94,10 @@ class Auth extends BaseController
     private function redirectBasedOnRole($role)
     {
         switch ($role) {
-
             case 'admin':
                 return redirect()->to('/admin_dashboard');
-            case 'staff':
-                return redirect()->to('/staff_dashboard');
+            case 'faculty':
+                return redirect()->to('/faculty_dashboard');
             default:
                 session()->destroy();
                 return redirect()
@@ -109,6 +108,12 @@ class Auth extends BaseController
 
     public function logout()
     {
+        $userId = session()->get('id');
+        if ($userId) {
+            (new UserModel())->update($userId, [
+                'logout_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
         session()->destroy();
 
         return redirect()->to('/login');

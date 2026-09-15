@@ -1,0 +1,1 @@
+__ci_last_regenerate|i:1788938910;_ci_previous_url|s:40:"http://localhost:8080/index.php/register";_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:1:{s:14:"csrf_test_name";s:32:"baa88a6a61156c04694d54ce3af76c5a";}}__ci_vars|a:2:{s:13:"_ci_old_input";s:3:"old";s:5:"error";s:3:"old";}error|s:24:"All fields are required.";
