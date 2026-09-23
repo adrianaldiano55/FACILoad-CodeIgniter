@@ -12,9 +12,11 @@ class SessionsModel extends Model
 
     protected $allowedFields = [
         'faculty_id',
-        'load_id',
+        'subject_id',
+        'section_id',
         'room_id',
-        'sec_units',
+        'ses_type',
+        'ses_units',
         'ses_day',
         'ses_start',
         'ses_end',

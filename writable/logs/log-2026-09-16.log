@@ -1,0 +1,1050 @@
+DEBUG - 2026-09-16 08:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-16 08:48:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-16 08:48:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-16 09:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-16 09:32:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-09-16 09:32:34 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:34 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+ERROR - 2026-09-16 09:32:40 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:40 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:40 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+ERROR - 2026-09-16 09:32:57 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:32:57 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+DEBUG - 2026-09-16 09:34:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-09-16 09:34:34 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:34:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:34:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:34:34 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+ERROR - 2026-09-16 09:35:28 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:35:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:35:28 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:35:28 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+ERROR - 2026-09-16 09:35:50 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:35:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:35:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:35:50 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+ERROR - 2026-09-16 09:36:24 --> Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:36:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+[Method: GET, Route: show_room_schedule/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:36:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+CRITICAL - 2026-09-16 09:36:24 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.ses_units' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = \'1\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `loads`.`id` AS `load_id`, `loads`.`faculty_id`, `loads`.`sub_id`, `loads`.`section_id`, `sessions`.`id` AS `session_id`, `sessions`.`room_id`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `loads`
+INNER JOIN `sessions` ON `sessions`.`load_id` = `loads`.`id`
+INNER JOIN `users` ON `users`.`id` = `loads`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `loads`.`sub_id`
+INNER JOIN `sections` ON `sections`.`id` = `loads`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`room_id` = :sessions.room_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(170): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_room_schedule('1')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Downloads\\FWMS\\FWMS\\public\\index.php')
+DEBUG - 2026-09-16 09:38:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

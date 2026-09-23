@@ -156,15 +156,13 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="login-wrapper row g-0">
         
         <!-- Left Side: Form -->
         <div class="col-lg-6 col-md-7 login-form-side">
-            <a href="#" class="back-arrow"><i class="bi bi-arrow-left"></i></a>
-            
+            <a href="#" class="back-arrow"><i class="bi bi-arrow-left"></i></a>          
             <h2 class="login-title mb-2">Register</h2>
             <?php if (session()->getFlashdata('error')): ?>
                 <div class="alert alert-danger">
@@ -172,33 +170,55 @@
                 </div>
             <?php endif; ?>
             <p class="login-subtitle mb-4">Please enter your registration information or <a href="<?= site_url('login') ?>">click here</a> to login</p>
-
                 <form action="<?= site_url('register') ?>" method="post">
                     <?= csrf_field() ?>
                 <div class="mb-4">
                     <input type="text" id="username" name="name" class="form-control custom-input" placeholder="Username" required>
                 </div>
                 <div class="mb-4">
-                    <input type="number" id="id" name="id" class="form-control custom-input" placeholder="Login ID" required>
+                    <input type="number" id="id" name="id" class="form-control custom-input" placeholder="Faculty ID" required>
                 </div>
+                <!-- New and to be Added -->
+                <div class="mb-4">
+                    <select id="academic_rank" name="academic_rank" class="form-control custom-input" required>
+                        <option value="" selected disabled>Faculty Position</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select id="college" name="college" class="form-control custom-input" required>
+                        <option value="" selected disabled>College</option>
+                        <option value="COTE">College of Technology and Engineering</option>
+                        <option value="CTE">College of Teacher Education</option>
+                        <option value="CAS">College of Arts and Sciences</option>
+                        <!-- Add your other colleges here -->
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select id="department" name="department" class="form-control custom-input" required>
+                        <option value="" selected disabled>Department</option>
+                        <option value="BSIT">Information Technology</option>
+                        <option value="BSInT">Industrial Technology</option>
+                        <!-- Add your other departments here -->
+                    </select>
+                </div>
+                <!-- -->
                 <div class="mb-4">
                     <input type="email" id="email" name="email" class="form-control custom-input" placeholder="Email" required>
                 </div>
                 <div class="mb-4">
                     <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Password" required>
                 </div>
-
                 <div class="d-flex align-items-center gap-3">
                     <button type="submit" class="btn btn-gradient">Register</button>
                 </div>
             </form>
         </div>
-
         <!-- Right Side: Image -->
         <div class="col-lg-6 col-md-5 d-none d-md-block image-side">
             <img src="https://picsum.photos/600/800" alt="Login Banner">
         </div>
-
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

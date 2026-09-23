@@ -239,38 +239,64 @@
                                         <label for="sessionFaculty" class="form-label">
                                             Faculty
                                         </label>
-                                        <select id="sessionFaculty" class="form-select" required onchange="filterLoadsByFaculty()">
+                                        <select
+                                            id="sessionFaculty"
+                                            class="form-select"
+                                            required>
                                             <option value="">
                                                 Select Faculty
                                             </option>
                                         </select>
                                     </div>
-                                    <!-- LOAD -->
+                                    <!-- SUBJECT -->
                                     <div class="mb-3">
-                                        <label for="sessionLoad" class="form-label">
-                                            Load
+                                        <label for="sessionSubject" class="form-label">
+                                            Subject
                                         </label>
-                                        <select id="sessionLoad" class="form-select" required onchange="updateLoadInformation()">
+                                        <select
+                                            id="sessionSubject"
+                                            class="form-select"
+                                            required
+                                            onchange="updateSubjectInformation()">
                                             <option value="">
-                                                Select Load
+                                                Select Subject
                                             </option>
                                         </select>
                                         <div
-                                            id="loadInformation"
+                                            id="subjectInformation"
                                             class="form-text">
                                         </div>
+                                    </div>
+                                    <!-- SECTION -->
+                                    <div class="mb-3">
+                                        <label for="sessionSection" class="form-label">
+                                            Section
+                                        </label>
+                                        <select
+                                            id="sessionSection"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Section
+                                            </option>
+                                        </select>
                                     </div>
                                     <!-- ROOM -->
                                     <div class="mb-3">
                                         <label for="sessionRoom" class="form-label">
                                             Room
                                         </label>
-                                        <select id="sessionRoom" class="form-select" required>
+                                        <select
+                                            id="sessionRoom"
+                                            class="form-select"
+                                            required>
                                             <option value="">
                                                 Select Room
                                             </option>
                                         </select>
-                                        <div id="roomInformation" class="form-text">
+                                        <div
+                                            id="roomInformation"
+                                            class="form-text">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -349,15 +375,15 @@
                                             <div class="row text-center">
                                                 <div class="col-md-4">
                                                     <small class="text-muted">
-                                                        Load Units
+                                                        Subject Hours
                                                     </small>
-                                                    <h5 id="loadUnits">
+                                                    <h5 id="subjectHours">
                                                         0
                                                     </h5>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <small class="text-muted">
-                                                        Session Units
+                                                        Session Hours
                                                     </small>
                                                     <h5 id="sessionUnits">
                                                         0
@@ -365,7 +391,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <small class="text-muted">
-                                                        Remaining Units
+                                                        Remaining Hours
                                                     </small>
                                                     <h5 id="remainingUnits">
                                                         0
@@ -430,7 +456,6 @@
                 </div>
             </div>
         </main>
-
         <!-- Footer -->
         <footer class="bg-white border-top p-3 text-center text-muted small">
             &copy; Hello.
@@ -443,8 +468,9 @@
     let facultyList = [];
     let roomList = [];
     let sectionList = [];
-    let loadList = [];
-    let selectedLoad = null;
+    let subjectlist = [];
+
+    let selectedSubject = null;
     let SessionModal = null;
 
     let searchResult = null;
@@ -468,7 +494,6 @@
         });
 
 // Management Filter
-
     function changeManagementFilter() {
         searchResult = null;
         hideSessionButton();
@@ -560,9 +585,8 @@
         changeManagementFilter();
     }
 
-        
-// Load Management Data
 
+// Load Management Data
     function loadFacultyList() {
         console.log('Loading faculty list...');
         const url = '<?= base_url('show_faculty') ?>';
@@ -654,7 +678,6 @@
     }
 
 // Search Functions
-
     function searchSchedule() {
         hideSessionButton();
         const searchInput = document.getElementById('searchInput');
@@ -732,7 +755,6 @@
     }
 
 // Schedule Functions
-
     function loadSchedule(id) {
         const filter = document.getElementById('managementFilter').value;
         let url = '';
@@ -900,7 +922,6 @@
     }
 
 // Minutes / Time Functions
-
     function timeToMinutes(time) {
         time = String(time).trim().toUpperCase();
         const match = time.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/);
@@ -933,82 +954,139 @@
     }
 
 // Add Session Modal
-
     function openSessionModal() {
         if (!searchResult) {
-            alert('Please search for a Faculty, Room or Section');
+            alert(
+                'Please search for a Faculty, Room or Section first.'
+            );
             return;
         }
         const modalElement =
-            document.getElementById('addSessionModal');
+            document.getElementById(
+                'addSessionModal'
+            );
+        if (!modalElement) {
+            console.error(
+                'Add Session modal was not found.'
+            );
+            return;
+        }
         SessionModal =
-            bootstrap.Modal.getOrCreateInstance(modalElement);
-        loadSessionFormData().then(() => {
-            prepareSessionForm();
-            SessionModal.show();
-        });
+            bootstrap.Modal.getOrCreateInstance(
+                modalElement
+            );
+        loadSessionFormData()
+            .then(() => {
+                prepareSessionForm();
+                SessionModal.show();
+            })
+            .catch(error => {
+                console.error(error);
+                alert(
+                    'Unable to prepare the Add Session form.'
+                );
+            });
     }
 
-    async function loadSessionFormData() {
-        try {
-            const [
-                facultyResponse,
-                roomResponse,
-                loadResponse
-            ] = await Promise.all([
-                fetch('<?= base_url('show_faculty') ?>'),
-                fetch('<?= base_url('show_room') ?>'),
-                fetch('<?= base_url('show_load') ?>')
-            ]);
-            if (!facultyResponse.ok ||!roomResponse.ok ||!loadResponse.ok) {
-                throw new Error('Unable to load session data.');
-            }
-            facultyList = await facultyResponse.json();
-            roomList = await roomResponse.json();
-            loadList = await loadResponse.json();
-            populateFacultySelect();
-            populateRoomSelect();
-        } catch (error) {
-            console.error(error);
-            alert('Unable to load faculty, load, or room information.');
+async function loadSessionFormData() {
+    try {
+        const [
+            facultyResponse,
+            subjectResponse,
+            sectionResponse,
+            roomResponse
+        ] = await Promise.all([
+            fetch('<?= base_url('show_faculty') ?>'),
+            fetch('<?= base_url('show_subject') ?>'),
+            fetch('<?= base_url('show_section') ?>'),
+            fetch('<?= base_url('show_room') ?>')
+        ]);
+        if (
+            !facultyResponse.ok ||
+            !subjectResponse.ok ||
+            !sectionResponse.ok ||
+            !roomResponse.ok
+        ) {
+            throw new Error(
+                'Unable to load session data.'
+            );
         }
+        facultyList =
+            await facultyResponse.json();
+        subjectList =
+            await subjectResponse.json();
+        sectionList =
+            await sectionResponse.json();
+        roomList =
+            await roomResponse.json();
+        populateFacultySelect();
+        populateSubjectSelect();
+        populateSectionSelect();
+        populateRoomSelect();
+    } catch (error) {
+        console.error(
+            'Session form loading error:',
+            error
+        );
+        alert(
+            'Unable to load faculty, subject, section, or room information.'
+        );
     }
+}
 
     function prepareSessionForm() {
         const facultySelect =
-            document.getElementById('sessionFaculty');
-        const loadSelect =
-            document.getElementById('sessionLoad');
+            document.getElementById(
+                'sessionFaculty'
+            );
+        const subjectSelect =
+            document.getElementById(
+                'sessionSubject'
+            );
+        const sectionSelect =
+            document.getElementById(
+                'sessionSection'
+            );
         const roomSelect =
-            document.getElementById('sessionRoom');
+            document.getElementById(
+                'sessionRoom'
+            );
         facultySelect.disabled = false;
-        loadSelect.disabled = false;
+        subjectSelect.disabled = false;
+        sectionSelect.disabled = false;
         roomSelect.disabled = false;
-        loadSelect.innerHTML ='<option value="">Select Load</option>';
         if (searchFilter === 'faculty') {
             facultySelect.value =
                 searchResult.id;
             facultySelect.disabled = true;
-            loadSelect.disabled = false;
-            filterLoadsByFaculty();
         }
         else if (searchFilter === 'room') {
             roomSelect.value =
                 searchResult.id;
             roomSelect.disabled = true;
-            facultySelect.disabled = false;
-            loadSelect.disabled = false;
         }
         else if (searchFilter === 'section') {
-            facultySelect.disabled = false;
-            roomSelect.disabled = false;
-            loadSelect.disabled = false;
-            filterLoadsBySection();
+            sectionSelect.value =
+                searchResult.id;
+            sectionSelect.disabled = true;
         }
+        selectedSubject = null;
+        document.getElementById(
+            'subjectHours'
+        ).textContent = '0';
+        document.getElementById(
+            'sessionUnits'
+        ).textContent = '0';
+        document.getElementById(
+            'remainingUnits'
+        ).textContent = '0';
+        document.getElementById(
+            'subjectInformation'
+        ).textContent = '';
+        clearSessionError();
     }
 
     // Faculty / Load / Room Form Data
-
     function populateFacultySelect() {
         const select = document.getElementById('sessionFaculty');
         select.innerHTML = '<option value="">Select Faculty</option>';
@@ -1035,6 +1113,42 @@
             select.appendChild(option);
         });
     }
+
+    function populateSubjectSelect() {
+        const select =
+            document.getElementById(
+                'sessionSubject'
+            );
+        select.innerHTML =
+            '<option value="">Select Subject</option>';
+        subjectList.forEach(subject => {
+            const option =
+                document.createElement('option');
+            option.value =
+                subject.id;
+            option.textContent =
+                `${subject.sub_code} - ${subject.sub_name}`;
+            select.appendChild(option);
+        });
+    }
+
+    function populateSectionSelect() {
+    const select =
+        document.getElementById(
+            'sessionSection'
+        );
+    select.innerHTML =
+        '<option value="">Select Section</option>';
+    sectionList.forEach(section => {
+        const option =
+            document.createElement('option');
+        option.value =
+            section.id;
+        option.textContent =
+            `${section.sec_code} - ${section.sec_name}`;
+        select.appendChild(option);
+    });
+}
 
     function filterLoadsByFaculty() {
         const facultyId =
@@ -1116,106 +1230,179 @@
         calculateSessionUnits();
     }
 
-    function getLoadUnits(load) {
-        const type =
-            document.getElementById('sessionType').value;
-        if (type === 'Lab') {
-            return Number(
-                load.lab_units ??
-                load.sub_lab_units ??
-                0
-            );
-        }
+    function updateSubjectInformation() {
+    const subjectId =
+        document.getElementById(
+            'sessionSubject'
+        ).value;
+    selectedSubject =
+        subjectList.find(subject =>
+            String(subject.id) ===
+            String(subjectId)
+        );
+    const information =
+        document.getElementById(
+            'subjectInformation'
+        );
+    if (!selectedSubject) {
+        information.textContent = '';
+        document.getElementById(
+            'subjectHours'
+        ).textContent = '0';
+        document.getElementById(
+            'remainingUnits'
+        ).textContent = '0';
+        return;
+    }
+    information.textContent =
+        `Lecture: ${selectedSubject.sub_lec_hours ?? 0} hours | ` +
+        `Laboratory: ${selectedSubject.sub_lab_hours ?? 0} hours | ` +
+        `Total: ${selectedSubject.sub_total_hours ?? 0} hours`;
+    updateSessionHours();
+}
+
+function getSubjectHours(subject) {
+    if (!subject) {
+        return 0;
+    }
+    const type =
+        document.getElementById(
+            'sessionType'
+        ).value;
+    if (type === 'Lab') {
         return Number(
-            load.lec_units ??
-            load.sub_lec_units ??
-            0
+            subject.sub_lab_hours ?? 0
         );
     }
+    return Number(
+        subject.sub_lec_hours ?? 0
+    );
+}
 
     // Add Session Validation
-
-    function calculateSessionUnits() {
-        const start =
-            document.getElementById('sessionStart').value;
-        const end =
-            document.getElementById('sessionEnd').value;
-        const sessionUnitsElement =
-            document.getElementById('sessionUnits');
-        const remainingUnitsElement =
-            document.getElementById('remainingUnits');
-        if (!start || !end) {
-            sessionUnitsElement.textContent = '0';
-            remainingUnitsElement.textContent = '0';
-            return;
-        }
-        const startMinutes =
-            timeToMinutes(start);
-        const endMinutes =
-            timeToMinutes(end);
-        if (endMinutes <= startMinutes) {
-            sessionUnitsElement.textContent = '0';
-            remainingUnitsElement.textContent = '0';
-            showSessionError(
-                'End time must be later than start time.'
-            );
-            return;
-        }
-        const durationMinutes =
-            endMinutes - startMinutes;
-        const units =
-            durationMinutes / 60;
-        sessionUnitsElement.textContent =
-            Number.isInteger(units)
-                ? units
-                : units.toFixed(2);
-        if (selectedLoad) {
-            const loadUnits =
-                getLoadUnits(selectedLoad);
-            const remaining =
-                loadUnits - units;
-            remainingUnitsElement.textContent =
-                remaining >= 0
-                    ? remaining
-                    : '0';
-            if (units > loadUnits) {
-                showSessionError(
-                    `Session is ${units} units, but this load only has ${loadUnits} units.`
-                );
-            } else {
-                clearSessionError();
-            }
-        }
+function updateSessionHours() {
+    const start =
+        document.getElementById(
+            'sessionStart'
+        ).value;
+    const end =
+        document.getElementById(
+            'sessionEnd'
+        ).value;
+    const sessionUnitsElement =
+        document.getElementById(
+            'sessionUnits'
+        );
+    const remainingUnitsElement =
+        document.getElementById(
+            'remainingUnits'
+        );
+    const subjectHoursElement =
+        document.getElementById(
+            'subjectHours'
+        );
+    if (!selectedSubject) {
+        subjectHoursElement.textContent = '0';
+        sessionUnitsElement.textContent = '0';
+        remainingUnitsElement.textContent = '0';
+        return;
     }
+    const subjectHours =
+        getSubjectHours(selectedSubject);
+    subjectHoursElement.textContent =
+        subjectHours;
+    if (!start || !end) {
+        sessionUnitsElement.textContent = '0';
+        remainingUnitsElement.textContent =
+            subjectHours;
+        return;
+    }
+    const startMinutes =
+        timeToMinutes(start);
+    const endMinutes =
+        timeToMinutes(end);
+    if (
+        startMinutes === null ||
+        endMinutes === null ||
+        endMinutes <= startMinutes
+    ) {
+        sessionUnitsElement.textContent =
+            '0';
+        remainingUnitsElement.textContent =
+            subjectHours;
+        showSessionError(
+            'End time must be later than start time.'
+        );
+        return;
+    }
+    const durationMinutes =
+        endMinutes - startMinutes;
+    const sessionHours =
+        durationMinutes / 60;
+    sessionUnitsElement.textContent =
+        Number.isInteger(sessionHours)
+            ? sessionHours
+            : sessionHours.toFixed(2);
+    const remaining =
+        subjectHours - sessionHours;
+    remainingUnitsElement.textContent =
+        remaining >= 0
+            ? (
+                Number.isInteger(remaining)
+                    ? remaining
+                    : remaining.toFixed(2)
+            )
+            : '0';
+    if (sessionHours > subjectHours) {
+        showSessionError(
+            `Session is ${sessionHours} hours, but this subject only has ${subjectHours} available hours for this session type.`
+        );
+    } else {
+        clearSessionError();
+    }
+}
 
     function validateSessionUnits() {
-        if (!selectedLoad) {
+        if (!selectedSubject) {
             showSessionError(
-                'Please select a load.'
+                'Please select a subject.'
             );
             return false;
         }
         const start =
-            document.getElementById('sessionStart').value;
+            document.getElementById(
+                'sessionStart'
+            ).value;
         const end =
-            document.getElementById('sessionEnd').value;
+            document.getElementById(
+                'sessionEnd'
+            ).value;
         const startMinutes =
             timeToMinutes(start);
         const endMinutes =
             timeToMinutes(end);
+        if (
+            startMinutes === null ||
+            endMinutes === null
+        ) {
+            showSessionError(
+                'Please enter a valid start and end time.'
+            );
+            return false;
+        }
         if (endMinutes <= startMinutes) {
             showSessionError(
                 'End time must be later than start time.'
             );
             return false;
         }
-        const sessionUnits =
+        const sessionHours =
             (endMinutes - startMinutes) / 60;
-        const loadUnits =
-            getLoadUnits(selectedLoad);
-        if (sessionUnits > loadUnits) {
+        const subjectHours =
+            getSubjectHours(selectedSubject);
+        if (sessionHours > subjectHours) {
             showSessionError(
-                `Cannot create session. ${sessionUnits} units exceeds the load limit of ${loadUnits} units.`
+                `Session requires ${sessionHours} hours, but only ${subjectHours} hours are available.`
             );
             return false;
         }
@@ -1269,101 +1456,140 @@
     }
 
 // Create Session
-
-    document.getElementById('addSessionForm').addEventListener('submit', async function (event) {
-        event.preventDefault();
-        if (!validateSessionUnits()) {
-            return;
-        }
-        const roomAvailable =
-            await checkRoomAvailability();
-        if (!roomAvailable) {
-            return;
-        }
-        const start =
-            document.getElementById('sessionStart').value;
-        const end =
-            document.getElementById('sessionEnd').value;
-        const sessionUnits =
-            (
-                timeToMinutes(end) -
-                timeToMinutes(start)
-            ) / 60;
-        const data = {
-            faculty_id:
-                document.getElementById('sessionFaculty').value,
-            load_id:
-                document.getElementById('sessionLoad').value,
-            room_id:
-                document.getElementById('sessionRoom').value,
-            ses_type:
-                document.getElementById('sessionType').value,
-            ses_units:
-                sessionUnits,
-            ses_day:
-                document.getElementById('sessionDay').value,
-            ses_start: start,
-            ses_end: end
-        };
-        try {
-            const response =
-                await fetch(
-                    '<?= base_url('create_session') ?>',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type':
-                                'application/json',
-                            'Accept':
-                                'application/json'
-                        },
-                        body:
-                            JSON.stringify(data)
-                    }
-                );
-            const result =
-                await response.json();
-            if (!response.ok || !result.success) {
-                alert(
-                    result.message ||
-                    'Unable to create session.'
-                );
+    document
+    .getElementById('addSessionForm')
+    .addEventListener(
+        'submit',
+        async function(event) {
+            event.preventDefault();
+            if (!validateSessionUnits()) {
                 return;
             }
-            alert(
-                'Session successfully created.'
-            );
-            document
-                .getElementById('addSessionForm')
-                .reset();
-            document.getElementById('loadUnits')
-                .textContent = '0';
-            document.getElementById('sessionUnits')
-                .textContent = '0';
-            document.getElementById('remainingUnits')
-                .textContent = '0';
-            SessionModal.hide();
-            const filter =
+            const roomAvailable =
+                await checkRoomAvailability();
+            if (!roomAvailable) {
+                return;
+            }
+            const facultyId =
                 document.getElementById(
-                    'managementFilter'
+                    'sessionFaculty'
                 ).value;
-            console.log(
-                'Session created:',
-                result
-            );
-        } catch (error) {
-            console.error(
-                'Create session error:',
-                error
-            );
-            alert(
-                'A server error occurred while creating the session.'
-            );
+            const subjectId =
+                document.getElementById(
+                    'sessionSubject'
+                ).value;
+            const sectionId =
+                document.getElementById(
+                    'sessionSection'
+                ).value;
+            const roomId =
+                document.getElementById(
+                    'sessionRoom'
+                ).value;
+            const sessionType =
+                document.getElementById(
+                    'sessionType'
+                ).value;
+            const day =
+                document.getElementById(
+                    'sessionDay'
+                ).value;
+            const start =
+                document.getElementById(
+                    'sessionStart'
+                ).value;
+            const end =
+                document.getElementById(
+                    'sessionEnd'
+                ).value;
+            const sessionUnits =
+                (
+                    timeToMinutes(end) -
+                    timeToMinutes(start)
+                ) / 60;
+            const data = {
+                faculty_id: facultyId,
+                subject_id: subjectId,
+                section_id: sectionId,
+                room_id: roomId,
+                ses_type: sessionType,
+                ses_units: sessionUnits,
+                ses_day: day,
+                ses_start: start,
+                ses_end: end
+            };
+            try {
+                const response =
+                    await fetch(
+                        '<?= base_url('create_session') ?>',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type':
+                                    'application/json',
+                                'Accept':
+                                    'application/json'
+                            },
+                            body:
+                                JSON.stringify(data)
+                        }
+                    );
+                const result =
+                    await response.json();
+                if (
+                    !response.ok ||
+                    !result.success
+                ) {
+                    alert(
+                        result.message ||
+                        'Unable to create session.'
+                    );
+                    return;
+                }
+                alert(
+                    'Session successfully created.'
+                );
+                document
+                    .getElementById(
+                        'addSessionForm'
+                    )
+                    .reset();
+                selectedSubject = null;
+                document.getElementById(
+                    'subjectHours'
+                ).textContent = '0';
+                document.getElementById(
+                    'sessionUnits'
+                ).textContent = '0';
+                document.getElementById(
+                    'remainingUnits'
+                ).textContent = '0';
+                document.getElementById(
+                    'subjectInformation'
+                ).textContent = '';
+                clearSessionError();
+                if (SessionModal) {
+                    SessionModal.hide();
+                }
+                // Reload the current schedule
+                if (searchResult) {
+                    loadSchedule(
+                        searchResult.id
+                    );
+                }
+            } catch (error) {
+                console.error(
+                    'Create session error:',
+                    error
+                );
+                alert(
+                    'A server error occurred while creating the session.'
+                );
+            }
         }
-    });
+    );
 
 // General Helpers
-
     function escapeHtml(value) {
         if (
             value === null ||

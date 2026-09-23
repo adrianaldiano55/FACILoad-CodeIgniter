@@ -46,8 +46,11 @@ class Auth extends BaseController
         $email = trim($this->request->getPost('email'));
         $id = trim($this->request->getPost('id'));
         $password = $this->request->getPost('password');
+        $academic_rank = trim($this->request->getPost('academic_rank'));
+        $college = trim($this->request->getPost('college'));
+        $department = trim($this->request->getPost('department'));
 
-        if (empty($name) || empty($id) || empty($email) || empty($password)) {
+        if (empty($name) || empty($id) || empty($email) || empty($password)|| empty($academic_rank) || empty($college) || empty($department)) {
             return redirect()
                 ->back()
                 ->withInput()
@@ -86,6 +89,9 @@ class Auth extends BaseController
             'role'          => 'faculty',
             'login_id'      => $id,
             'logout_at'     => date('Y-m-d H:i:s'),
+            'academic_rank' => $academic_rank,
+            'college'       => $college,
+            'department'    => $department
         ]);
         return redirect()
             ->to('/login')

@@ -15,6 +15,7 @@ class SectionsModel extends Model
         'sec_name',
         'sec_prog',
         'sec_size',
+        'sec_year'
     ];
 
     protected $returnType = 'array';

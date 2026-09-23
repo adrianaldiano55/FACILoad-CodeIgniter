@@ -16,10 +16,14 @@ class UserModel extends Model
         'email',
         'hash_password',
         'role',
+        'department',
+        'college',
+        'academic_rank',
+        'total_lab_units',
+        'total_lec_units',
+        'total_extra_units',
         'login_at',
         'logout_at',
-        'sec_id',
-        'total_units',
     ];
 
     protected $returnType = 'array';
