@@ -107,15 +107,15 @@
                         Room Management
                     </a>
                 </li>
-                                <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" onclick="showSections(); return false;" class="nav-link">
                         <i class="bi bi-folder me-2"></i>
                         Section Management
                     </a>
                 </li>
-                            <li class="nav-item">
-                    <a href="#" onclick="showSubjects(); return false;" class="nav-link">
-                        <i class="bi bi-folder me-2"></i>
+                <li class="nav-item">
+                    <a href="#" onclick="showSubjects()">
+                        <i class="bi bi-book"></i>
                         Subject Management
                     </a>
                 </li>
@@ -454,6 +454,321 @@
                         </div>
                     </div>
                 </div>
+                <!-- SUBJECT MANAGEMENT -->
+                <div id="subjectManagement" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>Subject Management</h3>
+                        <button class="btn btn-primary" onclick="openSubjectModal()">
+                            <i class="bi bi-plus-lg"></i>
+                            Add Subject
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Subject Code</th>
+                                    <th>Subject Name</th>
+                                    <th>Program</th>
+                                    <th>Year</th>
+                                    <th>Semester</th>
+                                    <th>Lecture Hours</th>
+                                    <th>Laboratory Hours</th>
+                                    <th>Total Hours</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subjectTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ADD SUBJECT MODAL -->
+                <div class="modal fade" id="subjectModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="subjectModalTitle">
+                                    Add Subject
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input
+                                    type="hidden"
+                                    id="subjectId">
+                                <!-- SUBJECT CODE -->
+                                <div class="mb-3">
+                                    <label for="subjectCode" class="form-label">
+                                        Subject Code
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="subjectCode"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- SUBJECT NAME -->
+                                <div class="mb-3">
+                                    <label for="subjectName" class="form-label">
+                                        Subject Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="subjectName"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- PROGRAM -->
+                                <div class="mb-3">
+                                    <label for="subjectProgram" class="form-label">
+                                        Program
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="subjectProgram"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- YEAR AND SEMESTER -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="subjectYear" class="form-label">
+                                            Year
+                                        </label>
+                                        <select
+                                            id="subjectYear"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Year
+                                            </option>
+                                            <option value="1">
+                                                1st Year
+                                            </option>
+                                            <option value="2">
+                                                2nd Year
+                                            </option>
+                                            <option value="3">
+                                                3rd Year
+                                            </option>
+                                            <option value="4">
+                                                4th Year
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="subjectSem" class="form-label">
+                                            Semester
+                                        </label>
+                                        <select
+                                            id="subjectSem"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Semester
+                                            </option>
+                                            <option value="1">
+                                                1st Semester
+                                            </option>
+                                            <option value="2">
+                                                2nd Semester
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- HOURS -->
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="subjectLecHours" class="form-label">
+                                            Lecture Hours
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="subjectLecHours"
+                                            class="form-control"
+                                            min="0"
+                                            step="0.5"
+                                            value="0"
+                                            required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="subjectLabHours" class="form-label">
+                                            Laboratory Hours
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="subjectLabHours"
+                                            class="form-control"
+                                            min="0"
+                                            step="0.5"
+                                            value="0"
+                                            required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="subjectTotalHours" class="form-label">
+                                            Total Hours
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="subjectTotalHours"
+                                            class="form-control"
+                                            min="0"
+                                            step="0.5"
+                                            value="0"
+                                            readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onclick="saveSubject()">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Save Subject
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SECTION MANAGEMENT -->
+                <div id="sectionManagement" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>
+                            <i class="bi bi-diagram-3 me-2"></i>
+                            Section Management
+                        </h3>
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="openSectionModal()">
+                            <i class="bi bi-plus-lg me-1"></i>
+                            Add Section
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Section Code</th>
+                                    <th>Section Name</th>
+                                    <th>Program</th>
+                                    <th>Section Size</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sectionTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ADD SECTION MODAL -->
+                <div
+                    class="modal fade"
+                    id="sectionModal"
+                    tabindex="-1"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5
+                                    class="modal-title"
+                                    id="sectionModalTitle">
+                                    Add Section
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input
+                                    type="hidden"
+                                    id="sectionId">
+                                <!-- SECTION CODE -->
+                                <div class="mb-3">
+                                    <label
+                                        for="sectionCode"
+                                        class="form-label">
+                                        Section Code
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="sectionCode"
+                                        class="form-control"
+                                        placeholder="Enter section code">
+                                </div>
+                                <!-- SECTION NAME -->
+                                <div class="mb-3">
+                                    <label
+                                        for="sectionName"
+                                        class="form-label">
+                                        Section Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="sectionName"
+                                        class="form-control"
+                                        placeholder="Enter section name">
+                                </div>
+                                <!-- PROGRAM -->
+                                <div class="mb-3">
+                                    <label
+                                        for="sectionProgram"
+                                        class="form-label">
+                                        Program
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="sectionProgram"
+                                        class="form-control"
+                                        placeholder="Enter program">
+                                </div>
+                                <!-- SECTION SIZE -->
+                                <div class="mb-3">
+                                    <label
+                                        for="sectionSize"
+                                        class="form-label">
+                                        Section Size
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="sectionSize"
+                                        class="form-control"
+                                        min="1"
+                                        placeholder="Enter number of students">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onclick="saveSection()">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Save Section
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <!-- Footer -->
@@ -468,7 +783,7 @@
     let facultyList = [];
     let roomList = [];
     let sectionList = [];
-    let subjectlist = [];
+    let subjectList = [];
 
     let selectedSubject = null;
     let SessionModal = null;
@@ -532,20 +847,23 @@
         }
     }
 
-    function hideAllManagementAreas() {
-        const areas = [
-            'searchArea',
-            'searchButton',
-            'sessionButton',
-            'scheduleTable',
-        ];
-        areas.forEach(id => {
-            const element = document.getElementById(id);
-            if (element) {
-                element.style.display = 'none';
-            }
-        });
-    }
+function hideAllManagementAreas() {
+    const areas = [
+        'searchArea',
+        'searchButton',
+        'sessionButton',
+        'scheduleTable',
+        'subjectManagement',
+        'sectionManagement'
+    ];
+    areas.forEach(id => {
+        const element =
+            document.getElementById(id);
+        if (element) {
+            element.style.display = 'none';
+        }
+    });
+}
 
     function showSessionButton() {
         const button =
@@ -585,6 +903,19 @@
         changeManagementFilter();
     }
 
+    function showSubjects() {
+        // Hide other management sections
+        hideAllManagementAreas()
+        // Show subject management
+        document.getElementById('subjectManagement').style.display = 'block';
+        loadSubjectList();
+    }
+
+    function showSections() {
+        hideAllManagementAreas();
+        document.getElementById('sectionManagement').style.display = 'block';
+        loadSectionManagementList();
+    }
 
 // Load Management Data
     function loadFacultyList() {
@@ -677,7 +1008,159 @@
         });
     }
 
-// Search Functions
+    function loadSubjectList() {
+        fetch('<?= base_url('show_subjects') ?>')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(
+                        'Failed to load subjects.'
+                    );
+                }
+                return response.json();
+            })
+            .then(subjects => {
+                const tbody =
+                    document.getElementById(
+                        'subjectTableBody'
+                    );
+                tbody.innerHTML = '';
+                if (!Array.isArray(subjects)) {
+                    console.error(
+                        'Invalid subject data:',
+                        subjects
+                    );
+                    return;
+                }
+                subjects.forEach(subject => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>
+                                ${escapeHtml(subject.sub_code)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_name)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_program)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_year)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_sem)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_lec_hours)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_lab_hours)}
+                            </td>
+                            <td>
+                                ${escapeHtml(subject.sub_total_hours)}
+                            </td>
+                            <td>
+                                <button
+                                    class="btn btn-warning btn-sm me-1"
+                                    onclick="editSubject(${subject.id})">
+                                    <i class="bi bi-pencil"></i>
+                                    Edit
+                                </button>
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    onclick="deleteSubject(${subject.id})">
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            })
+            .catch(error => {
+                console.error(
+                    'Error loading subjects:',
+                    error
+                );
+            });
+    }
+
+    function loadSectionManagementList() {
+        fetch('<?= base_url('show_sections') ?>', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(
+                    'Failed to load sections. HTTP status: ' +
+                    response.status
+                );
+            }
+            return response.json();
+        })
+        .then(sections => {
+            console.log('Sections received:', sections);
+            sectionList = sections;
+            const tbody =
+                document.getElementById('sectionTableBody');
+            tbody.innerHTML = '';
+            if (!Array.isArray(sections) || sections.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            No sections found.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            sections.forEach(section => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>
+                            ${escapeHtml(section.sec_code)}
+                        </td>
+                        <td>
+                            ${escapeHtml(section.sec_name)}
+                        </td>
+                        <td>
+                            ${escapeHtml(section.sec_prog)}
+                        </td>
+                        <td>
+                            ${escapeHtml(section.sec_size)}
+                        </td>
+                        <td>
+                            <button
+                                type="button"
+                                class="btn btn-warning btn-sm me-1"
+                                onclick="editSection(${section.id})">
+                                <i class="bi bi-pencil"></i>
+                                Edit
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm"
+                                onclick="deleteSection(${section.id})">
+                                <i class="bi bi-trash"></i>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error(
+                'Error loading sections:',
+                error
+            );
+            alert('Unable to load sections.');
+        });
+    }
+
+    // Search Functions
     function searchSchedule() {
         hideSessionButton();
         const searchInput = document.getElementById('searchInput');
@@ -953,7 +1436,7 @@
         return (displayHour + ':' + String(minute).padStart(2, '0') +' ' +period);
     }
 
-// Add Session Modal
+// Add Modals
     function openSessionModal() {
         if (!searchResult) {
             alert(
@@ -988,51 +1471,51 @@
             });
     }
 
-async function loadSessionFormData() {
-    try {
-        const [
-            facultyResponse,
-            subjectResponse,
-            sectionResponse,
-            roomResponse
-        ] = await Promise.all([
-            fetch('<?= base_url('show_faculty') ?>'),
-            fetch('<?= base_url('show_subject') ?>'),
-            fetch('<?= base_url('show_section') ?>'),
-            fetch('<?= base_url('show_room') ?>')
-        ]);
-        if (
-            !facultyResponse.ok ||
-            !subjectResponse.ok ||
-            !sectionResponse.ok ||
-            !roomResponse.ok
-        ) {
-            throw new Error(
-                'Unable to load session data.'
+    async function loadSessionFormData() {
+        try {
+            const [
+                facultyResponse,
+                subjectResponse,
+                sectionResponse,
+                roomResponse
+            ] = await Promise.all([
+                fetch('<?= base_url('show_faculty') ?>'),
+                fetch('<?= base_url('show_subject') ?>'),
+                fetch('<?= base_url('show_section') ?>'),
+                fetch('<?= base_url('show_room') ?>')
+            ]);
+            if (
+                !facultyResponse.ok ||
+                !subjectResponse.ok ||
+                !sectionResponse.ok ||
+                !roomResponse.ok
+            ) {
+                throw new Error(
+                    'Unable to load session data.'
+                );
+            }
+            facultyList =
+                await facultyResponse.json();
+            subjectList =
+                await subjectResponse.json();
+            sectionList =
+                await sectionResponse.json();
+            roomList =
+                await roomResponse.json();
+            populateFacultySelect();
+            populateSubjectSelect();
+            populateSectionSelect();
+            populateRoomSelect();
+        } catch (error) {
+            console.error(
+                'Session form loading error:',
+                error
+            );
+            alert(
+                'Unable to load faculty, subject, section, or room information.'
             );
         }
-        facultyList =
-            await facultyResponse.json();
-        subjectList =
-            await subjectResponse.json();
-        sectionList =
-            await sectionResponse.json();
-        roomList =
-            await roomResponse.json();
-        populateFacultySelect();
-        populateSubjectSelect();
-        populateSectionSelect();
-        populateRoomSelect();
-    } catch (error) {
-        console.error(
-            'Session form loading error:',
-            error
-        );
-        alert(
-            'Unable to load faculty, subject, section, or room information.'
-        );
     }
-}
 
     function prepareSessionForm() {
         const facultySelect =
@@ -1084,6 +1567,306 @@ async function loadSessionFormData() {
             'subjectInformation'
         ).textContent = '';
         clearSessionError();
+    }
+
+    function openSubjectModal() {
+        document.getElementById('subjectModalTitle').textContent =
+            'Add Subject';
+        document.getElementById('subjectId').value = '';
+        document.getElementById('subjectCode').value = '';
+        document.getElementById('subjectName').value = '';
+        document.getElementById('subjectProgram').value = '';
+        document.getElementById('subjectYear').value = '';
+        document.getElementById('subjectSem').value = '';
+        document.getElementById('subjectLecHours').value = '';
+        document.getElementById('subjectLabHours').value = '';
+        document.getElementById('subjectTotalHours').value = '';
+        const modal = new bootstrap.Modal(
+            document.getElementById('subjectModal')
+        );
+        modal.show();
+    }
+
+    function editSubject(id) {
+        fetch(`<?= base_url('get_subject') ?>/${id}`)
+            .then(response => response.json())
+            .then(subject => {
+                document.getElementById('subjectModalTitle').textContent =
+                    'Edit Subject';
+                document.getElementById('subjectId').value =
+                    subject.id;
+                document.getElementById('subjectCode').value =
+                    subject.sub_code;
+                document.getElementById('subjectName').value =
+                    subject.sub_name;
+                document.getElementById('subjectProgram').value =
+                    subject.sub_program;
+                document.getElementById('subjectYear').value =
+                    subject.sub_year;
+                document.getElementById('subjectSem').value =
+                    subject.sub_sem;
+                document.getElementById('subjectLecHours').value =
+                    subject.sub_lec_hours;
+                document.getElementById('subjectLabHours').value =
+                    subject.sub_lab_hours;
+                document.getElementById('subjectTotalHours').value =
+                    subject.sub_total_hours;
+                const modal = new bootstrap.Modal(
+                    document.getElementById('subjectModal')
+                );
+                modal.show();
+            });
+    }
+
+    function saveSubject() {
+        const id =
+            document.getElementById('subjectId').value;
+        const formData = new FormData();
+        formData.append(
+            'sub_code',
+            document.getElementById('subjectCode').value
+        );
+        formData.append(
+            'sub_name',
+            document.getElementById('subjectName').value
+        );
+        formData.append(
+            'sub_program',
+            document.getElementById('subjectProgram').value
+        );
+        formData.append(
+            'sub_year',
+            document.getElementById('subjectYear').value
+        );
+        formData.append(
+            'sub_sem',
+            document.getElementById('subjectSem').value
+        );
+        formData.append(
+            'sub_lec_hours',
+            document.getElementById('subjectLecHours').value
+        );
+        formData.append(
+            'sub_lab_hours',
+            document.getElementById('subjectLabHours').value
+        );
+        formData.append(
+            'sub_total_hours',
+            document.getElementById('subjectTotalHours').value
+        )
+        document
+            .getElementById('subjectLecHours')
+            .addEventListener('input', calculateSubjectTotalHours);
+        document
+            .getElementById('subjectLabHours')
+            .addEventListener('input', calculateSubjectTotalHours);
+        let url;
+        if (id) {
+            url = `<?= base_url('update_subject') ?>/${id}`;
+        } else {
+            url = `<?= base_url('create_subject') ?>`;
+        }
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert(result.message);
+                bootstrap.Modal
+                    .getInstance(
+                        document.getElementById('subjectModal')
+                    )
+                    .hide();
+                loadSubjectList();
+            } else {
+                alert(
+                    result.message ||
+                    'Unable to save subject.'
+                );
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert('An error occurred while saving the subject.');
+        });
+    }
+
+    function deleteSubject(id) {
+        if (!confirm('Are you sure you want to delete this subject?')) {
+            return;
+        }
+        fetch(`<?= base_url('delete_subject') ?>/${id}`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert(result.message);
+                loadSubjectList();
+            } else {
+                alert(
+                    result.message ||
+                    'Unable to delete subject.'
+                );
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert('An error occurred while deleting the subject.');
+        });
+    }
+    
+    function openSectionModal() {
+        document.getElementById(
+            'sectionModalTitle'
+        ).textContent = 'Add Section';
+        document.getElementById(
+            'sectionId'
+        ).value = '';
+        document.getElementById(
+            'sectionCode'
+        ).value = '';
+        document.getElementById(
+            'sectionName'
+        ).value = '';
+        document.getElementById(
+            'sectionProgram'
+        ).value = '';
+        document.getElementById(
+            'sectionSize'
+        ).value = '';
+        const modal =
+            bootstrap.Modal.getOrCreateInstance(
+                document.getElementById('sectionModal')
+            );
+        modal.show();
+    }
+
+    function saveSection() {
+        const id =
+            document.getElementById('sectionId').value;
+        const formData = new FormData();
+        formData.append(
+            'sec_code',
+            document.getElementById('sectionCode').value.trim()
+        );
+        formData.append(
+            'sec_name',
+            document.getElementById('sectionName').value.trim()
+        );
+        formData.append(
+            'sec_prog',
+            document.getElementById('sectionProgram').value.trim()
+        );
+        formData.append(
+            'sec_size',
+            document.getElementById('sectionSize').value
+        );
+        let url;
+        if (id) {
+            url =
+                `<?= base_url('update_section') ?>/${id}`;
+        } else {
+            url =
+                `<?= base_url('create_section') ?>`;
+        }
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(
+                'Save section result:',
+                result
+            );
+            if (result.success) {
+                alert(
+                    result.message ||
+                    'Section saved successfully.'
+                );
+                const modal =
+                    bootstrap.Modal.getInstance(
+                        document.getElementById('sectionModal')
+                    );
+                if (modal) {
+                    modal.hide();
+                }
+                loadSectionManagementList();
+                // Also refresh the section list
+                // used by Schedule Management.
+                loadSectionList();
+            } else {
+                alert(
+                    result.message ||
+                    'Unable to save section.'
+                );
+            }
+        })
+        .catch(error => {
+            console.error(
+                'Error saving section:',
+                error
+            );
+            alert(
+                'An error occurred while saving the section.'
+            );
+        });
+    }
+
+    function deleteSection(id) {
+        if (
+            !confirm(
+                'Are you sure you want to delete this section?'
+            )
+        ) {
+            return;
+        }
+        fetch(
+            `<?= base_url('delete_section') ?>/${id}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        )
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(
+                    'Delete request failed. HTTP status: ' +
+                    response.status
+                );
+            }
+            return response.json();
+        })
+        .then(result => {
+            if (result.success) {
+                alert(
+                    result.message ||
+                    'Section deleted successfully.'
+                );
+                loadSectionManagementList();
+                // Refresh schedule-management section data
+                loadSectionList();
+            } else {
+                alert(
+                    result.message ||
+                    'Unable to delete section.'
+                );
+            }
+        })
+        .catch(error => {
+            console.error(
+                'Error deleting section:',
+                error
+            );
+            alert(
+                'An error occurred while deleting the section.'
+            );
+        });
     }
 
     // Faculty / Load / Room Form Data
@@ -1261,7 +2044,7 @@ async function loadSessionFormData() {
     updateSessionHours();
 }
 
-function getSubjectHours(subject) {
+    function getSubjectHours(subject) {
     if (!subject) {
         return 0;
     }
@@ -1279,8 +2062,27 @@ function getSubjectHours(subject) {
     );
 }
 
+    function calculateSubjectTotalHours() {
+        const lectureHours =
+            Number(
+                document.getElementById(
+                    'subjectLecHours'
+                ).value
+            ) || 0;
+        const laboratoryHours =
+            Number(
+                document.getElementById(
+                    'subjectLabHours'
+                ).value
+            ) || 0;
+        document.getElementById(
+            'subjectTotalHours'
+        ).value =
+            lectureHours + laboratoryHours;
+    }
+
     // Add Session Validation
-function updateSessionHours() {
+    function updateSessionHours() {
     const start =
         document.getElementById(
             'sessionStart'

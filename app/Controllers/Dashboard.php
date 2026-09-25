@@ -5,8 +5,7 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\SectionsModel;
 use App\Models\RoomsModel;
-use App\Models\LoadsModel;
-use App\Models\SessionsModel;
+use App\Models\SubjectsModel;
 
 class Dashboard extends BaseController
 {
@@ -18,6 +17,8 @@ class Dashboard extends BaseController
     {
         return view('faculty_dashboard');
     }
+
+// GENERAL FUNCTIONS
 public function show_faculty()
 {
     $facultyModel = new UserModel();
@@ -45,12 +46,24 @@ public function show_faculty()
     $rooms = $roomModel->findAll();
     return $this->response->setJSON($rooms);
 }
-    public function show_section()
+public function show_sections()
 {
-    $sectionModel = new SectionsModel();
-    $sections = $sectionModel->findAll();
-    return $this->response->setJSON($sections);
+    $sectionsModel = new SectionsModel();
+    $sections = $sectionsModel
+        ->orderBy('sec_code', 'ASC')
+        ->findAll();
+    return $this->response
+        ->setJSON($sections);
 }
+
+public function show_subjects()
+{
+    $subjectsModel = new SubjectsModel();
+    return $this->response->setJSON(
+        $subjectsModel->findAll()
+    );
+}
+// SCHEDULE MANAGEMENT
 public function show_faculty_schedule($faculty_id = null)
 {
     if (!$faculty_id) {
@@ -275,7 +288,7 @@ public function show_section_schedule($section_id = null)
     return $this->response->setJSON($schedule);
 }
 
-    public function create_session()
+public function create_session()
     {
         $data = $this->request->getJSON(true);
         if (!$data) {
@@ -628,4 +641,261 @@ public function show_section_schedule($section_id = null)
                     'Session created successfully.'
             ]);
     }
+
+// SUBJECT MANAGEMENT
+
+public function create_subject()
+{
+    $subjectsModel = new SubjectsModel();
+    $labHours = (float) $this->request->getPost('sub_lab_hours');
+    $lecHours = (float) $this->request->getPost('sub_lec_hours');
+    $data = [
+        'sub_code'        => $this->request->getPost('sub_code'),
+        'sub_name'        => $this->request->getPost('sub_name'),
+        'sub_program'     => $this->request->getPost('sub_program'),
+        'sub_year'        => $this->request->getPost('sub_year'),
+        'sub_sem'         => $this->request->getPost('sub_sem'),
+        'sub_lab_hours'   => $labHours,
+        'sub_lec_hours'   => $lecHours,
+        'sub_total_hours' => $labHours + $lecHours
+    ];
+    if (!$subjectsModel->insert($data)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'errors' => $subjectsModel->errors()
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Subject added successfully.'
+    ]);
+}
+
+public function get_subject($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Subject ID is required.'
+            ]);
+    }
+
+    $subjectsModel = new SubjectsModel();
+
+    $subject = $subjectsModel->find($id);
+
+    if (!$subject) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Subject not found.'
+            ]);
+    }
+
+    return $this->response->setJSON($subject);
+}
+
+public function update_subject($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Subject ID is required.'
+            ]);
+    }
+    $subjectsModel = new SubjectsModel();
+    $labHours = (float) $this->request->getPost('sub_lab_hours');
+    $lecHours = (float) $this->request->getPost('sub_lec_hours');
+    $data = [
+        'sub_code'        => $this->request->getPost('sub_code'),
+        'sub_name'        => $this->request->getPost('sub_name'),
+        'sub_program'     => $this->request->getPost('sub_program'),
+        'sub_year'        => $this->request->getPost('sub_year'),
+        'sub_sem'         => $this->request->getPost('sub_sem'),
+        'sub_lab_hours'   => $labHours,
+        'sub_lec_hours'   => $lecHours,
+        'sub_total_hours' => $labHours + $lecHours
+    ];
+    if (!$subjectsModel->update($id, $data)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'errors' => $subjectsModel->errors()
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Subject updated successfully.'
+    ]);
+}
+
+public function delete_subject($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Subject ID is required.'
+            ]);
+    }
+    $subjectsModel = new SubjectsModel();
+    if (!$subjectsModel->find($id)) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Subject not found.'
+            ]);
+    }
+
+    $subjectsModel->delete($id);
+
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Subject deleted successfully.'
+    ]);
+}
+
+// SECTION MANAGEMENT
+
+public function create_section()
+{
+    $sectionsModel = new SectionsModel();
+    $data = [
+        'sec_code' => trim($this->request->getPost('sec_code')),
+        'sec_name' => trim($this->request->getPost('sec_name')),
+        'sec_prog' => trim($this->request->getPost('sec_prog')),
+        'sec_size' => $this->request->getPost('sec_size')
+    ];
+    if (
+        empty($data['sec_code']) ||
+        empty($data['sec_name']) ||
+        empty($data['sec_prog']) ||
+        $data['sec_size'] === null ||
+        $data['sec_size'] === ''
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Please complete all section fields.'
+            ]);
+    }
+    if (!$sectionsModel->insert($data)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to create section.',
+                'errors' => $sectionsModel->errors()
+            ]);
+    }
+    return $this->response
+        ->setJSON([
+            'success' => true,
+            'message' => 'Section created successfully.'
+        ]);
+}
+
+public function get_section($id)
+{
+    $sectionsModel = new SectionsModel();
+    $section = $sectionsModel->find($id);
+    if (!$section) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Section not found.'
+            ]);
+    }
+    return $this->response
+        ->setJSON($section);
+}
+
+public function update_section($id)
+{
+    $sectionsModel = new SectionsModel();
+    $section = $sectionsModel->find($id);
+    if (!$section) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Section not found.'
+            ]);
+    }
+    $data = [
+        'sec_code' => trim($this->request->getPost('sec_code')),
+        'sec_name' => trim($this->request->getPost('sec_name')),
+        'sec_prog' => trim($this->request->getPost('sec_prog')),
+        'sec_size' => $this->request->getPost('sec_size')
+    ];
+    if (
+        empty($data['sec_code']) ||
+        empty($data['sec_name']) ||
+        empty($data['sec_prog']) ||
+        $data['sec_size'] === null ||
+        $data['sec_size'] === ''
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Please complete all section fields.'
+            ]);
+    }
+    if (!$sectionsModel->update($id, $data)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to update section.',
+                'errors' => $sectionsModel->errors()
+            ]);
+    }
+    return $this->response
+        ->setJSON([
+            'success' => true,
+            'message' => 'Section updated successfully.'
+        ]);
+}
+
+public function delete_section($id)
+{
+    $sectionsModel = new SectionsModel();
+    $section = $sectionsModel->find($id);
+    if (!$section) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Section not found.'
+            ]);
+    }
+    if (!$sectionsModel->delete($id)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to delete section.'
+            ]);
+    }
+    return $this->response
+        ->setJSON([
+            'success' => true,
+            'message' => 'Section deleted successfully.'
+        ]);
+}
+
+
 }

@@ -29,8 +29,6 @@ $routes->get(
     'Dashboard::faculty',
     ['filter' => 'auth:faculty']
 );
-
-$routes->get('show_faculty', 'Dashboard::show_faculty');
 $routes->get('show_room', 'Dashboard::show_room');
 $routes->get('show_section','Dashboard::show_section');
 
@@ -54,4 +52,50 @@ $routes->get(
 $routes->post(
     'create_session',
     'Dashboard::create_session'
+);
+
+// FACULTY MANAGEMENT
+// SUBJECT MANAGEMENT
+
+$routes->get(
+    'show_subjects',
+    'Dashboard::show_subjects'
+);
+$routes->get(
+    'get_subject/(:num)',
+    'Dashboard::get_subject/$1'
+);
+$routes->post(
+    'create_subject',
+    'Dashboard::create_subject'
+);
+$routes->post(
+    'update_subject/(:num)',
+    'Dashboard::update_subject/$1'
+);
+$routes->post(
+    'delete_subject/(:num)',
+    'Dashboard::delete_subject/$1'
+);
+
+// SECTION MANAGEMENT
+$routes->get(
+    '/show_sections',
+    'Dashboard::show_sections'
+);
+$routes->get(
+    '/get_section/(:num)',
+    'Dashboard::get_section/$1'
+);
+$routes->post(
+    '/create_section',
+    'Dashboard::create_section'
+);
+$routes->post(
+    '/update_section/(:num)',
+    'Dashboard::update_section/$1'
+);
+$routes->post(
+    '/delete_section/(:num)',
+    'Dashboard::delete_section/$1'
 );
