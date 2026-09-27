@@ -96,19 +96,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" onclick="showFaculty(); return false;" class="nav-link">
+                    <a href="#" onclick="showFaculty(); " class="nav-link">
                         <i class="bi bi-folder me-2"></i>
                         Faculty Management
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" onclick="showRooms(); return false;" class="nav-link">
+                    <a href="#" onclick="showRooms(); " class="nav-link">
                         <i class="bi bi-folder me-2"></i>
                         Room Management
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" onclick="showSections(); return false;" class="nav-link">
+                    <a href="#" onclick="showSections(); " class="nav-link">
                         <i class="bi bi-folder me-2"></i>
                         Section Management
                     </a>
@@ -450,6 +450,417 @@
                                     <tbody id="scheduleBody">
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FACULTY MANAGEMENT-->
+                <div id="facultyManagement" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>Faculty Management</h3>
+                        <button class="btn btn-primary" onclick="openFacultyModal()">
+                            <i class="bi bi-plus-lg me-1"></i>
+                            Add Faculty
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>Login ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>College</th>
+                                    <th>Academic Rank</th>
+                                    <th>Lab</th>
+                                    <th>Lec</th>
+                                    <th>Extra</th>
+                                    <th>Total</th>
+                                    <th style="width:180px;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="facultyTableBody">
+                                <tr><td colspan="11" class="text-center text-muted py-4">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ADD FACULTY MODAL-->
+                <div class="modal fade" id="facultyModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="facultyModalTitle">
+                                    Add Faculty
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input
+                                    type="hidden"
+                                    id="facultyId">
+                                <!-- LOGIN ID -->
+                                <div class="mb-3">
+                                    <label for="loginId" class="form-label">
+                                        Login ID
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="loginId"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- USERNAME -->
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">
+                                        UserName
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="username"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- EMAIL -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">
+                                        Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- PASSWORD -->
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">
+                                        Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        class="form-control"
+                                        required>
+                                </div>
+                                <!-- COLLEGE & DEPARTMENT-->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="college" class="form-label">
+                                            College
+                                        </label>
+                                        <select
+                                            id="college"
+                                            class="form-select"
+                                            required>
+                                            <option value="COTE">
+                                                COTE
+                                            </option>
+                                            <option value="CAS">
+                                                CAS
+                                            </option>
+                                            <option value="CTE">
+                                                CTE
+                                            </option>
+                                            <option value="COMED">
+                                                COMED
+                                            </option>
+                                            <option value="CGS">
+                                                CGS
+                                            </option>
+                                        </select>
+                                </div>
+                                <div class ="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="department" class="form-label">
+                                            Department
+                                        </label>
+                                        <select
+                                            id="department"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Department
+                                            </option>
+                                            <option value="IT">
+                                                IT
+                                            </option>
+                                            <option value="InT">
+                                                InT
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- ACADEMIC RANK -->
+                                <div class ="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="academicRank" class="form-label">
+                                            Academic Rank
+                                        </label>
+                                        <select
+                                            id="academicRank"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Position
+                                            </option>
+                                            <option value="fullTime">
+                                                Full time
+                                            </option>
+                                            <option value="partTime">
+                                                Part time
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- LAB, LEC AND EXTRA UNITS -->
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="labUnits" class="form-label">
+                                            Lab Units
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="labUnits"
+                                            class="form-control"
+                                            min="0"
+                                            step="0.5"
+                                            value="0"
+                                            readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="lecUnits" class="form-label">
+                                            Lec Units 
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="lecUnits"
+                                            class="form-control"
+                                            min="0"
+                                            step="0.5"
+                                            value="0"
+                                            readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="extraUnits" class="form-label">
+                                            Extra Units
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="extraUnits"
+                                            class="form-control"
+                                            min="0"
+                                            step="0.5"
+                                            value="0"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onclick="saveFaculty()">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Save Faculty
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ROOM MANAGEMENT-->
+                <div id="roomManagement" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>Room Management</h3>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            onclick="openRoomModal()">
+                            <i class="bi bi-plus-lg me-1"></i>
+                            Add Room
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>Room Code</th>
+                                    <th>Room Name</th>
+                                    <th>Room Type</th>
+                                    <th>Status</th>
+                                    <th>Availability</th>
+                                    <th>Room Size</th>
+                                    <th style="width:180px;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roomTableBody">
+                                <tr>
+                                    <td
+                                        colspan="7"
+                                        class="text-center text-muted py-4">
+                                        Loading...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ADD ROOM MODAL-->
+                <div
+                    class="modal fade"
+                    id="roomModal"
+                    tabindex="-1"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5
+                                    class="modal-title"
+                                    id="roomModalTitle">
+                                    Add Room
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input
+                                    type="hidden"
+                                    id="roomId">
+                                <div class="row">
+                                    <!-- Room Code -->
+                                    <div class="col-md-6 mb-3">
+                                        <label
+                                            for="roomCode"
+                                            class="form-label">
+                                            Room Code
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="roomCode"
+                                            class="form-control"
+                                            maxlength="45"
+                                            required>
+                                    </div>
+                                    <!-- Room Name -->
+                                    <div class="col-md-6 mb-3">
+                                        <label
+                                            for="roomName"
+                                            class="form-label">
+                                            Room Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="roomName"
+                                            class="form-control"
+                                            maxlength="45"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Room Type -->
+                                    <div class="col-md-6 mb-3">
+                                        <label
+                                            for="roomType"
+                                            class="form-label">
+                                            Room Type
+                                        </label>
+                                        <select
+                                            id="roomType"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Room Type
+                                            </option>
+                                            <option value="Lecture">
+                                                Lecture Room
+                                            </option>
+                                            <option value="Laboratory">
+                                                Laboratory
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- Room Status -->
+                                    <div class="col-md-6 mb-3">
+                                        <label
+                                            for="roomStatus"
+                                            class="form-label">
+                                            Room Status
+                                        </label>
+                                        <select
+                                            id="roomStatus"
+                                            class="form-select"
+                                            required>
+                                            <option value="">
+                                                Select Status
+                                            </option>
+                                            <option value="Available">
+                                                Available
+                                            </option>
+                                            <option value="Unavailable">
+                                                Unavailable
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Room Availability -->
+                                    <div class="col-md-6 mb-3">
+                                        <label
+                                            for="roomTime"
+                                            class="form-label">
+                                            Room Availability
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="roomTime"
+                                            class="form-control"
+                                            placeholder="e.g. 7:00 AM - 8:30 PM"
+                                            maxlength="45"
+                                            required>
+                                    </div>
+                                    <!-- Room Size -->
+                                    <div class="col-md-6 mb-3">
+                                        <label
+                                            for="roomSize"
+                                            class="form-label">
+                                            Room Size
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="roomSize"
+                                            class="form-control"
+                                            min="1"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onclick="saveRoom()">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Save Room
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -847,14 +1258,16 @@
         }
     }
 
-function hideAllManagementAreas() {
+    function hideAllManagementAreas() {
     const areas = [
         'searchArea',
         'searchButton',
         'sessionButton',
         'scheduleTable',
         'subjectManagement',
-        'sectionManagement'
+        'sectionManagement',
+        'facultyManagement',
+        'roomManagement',
     ];
     areas.forEach(id => {
         const element =
@@ -882,6 +1295,7 @@ function hideAllManagementAreas() {
     }
 
     function showSchedule() {
+        hideAllManagementAreas();
         const scheduleCard =
             document.getElementById('scheduleManagement');
         if (scheduleCard) {
@@ -894,7 +1308,6 @@ function hideAllManagementAreas() {
         }
         searchResult = null;
         searchFilter = null;
-        hideSessionButton();
         const managementFilter =
             document.getElementById('managementFilter');
         if (managementFilter) {
@@ -903,9 +1316,26 @@ function hideAllManagementAreas() {
         changeManagementFilter();
     }
 
+    function showFaculty() {
+        hideAllManagementAreas();
+        const scheduleCard =
+            document.getElementById('scheduleManagement');
+        if (scheduleCard) {
+            scheduleCard.style.display = 'none';
+        }
+        document.getElementById('facultyManagement').style.display = 'block';
+        loadFacultyManagementList();
+        hideSessionButton();
+    }
+
     function showSubjects() {
         // Hide other management sections
         hideAllManagementAreas()
+        const scheduleCard =
+            document.getElementById('scheduleManagement');
+        if (scheduleCard) {
+            scheduleCard.style.display = 'none';
+        }
         // Show subject management
         document.getElementById('subjectManagement').style.display = 'block';
         loadSubjectList();
@@ -913,9 +1343,26 @@ function hideAllManagementAreas() {
 
     function showSections() {
         hideAllManagementAreas();
+        const scheduleCard =
+            document.getElementById('scheduleManagement');
+        if (scheduleCard) {
+            scheduleCard.style.display = 'none';
+        }
         document.getElementById('sectionManagement').style.display = 'block';
         loadSectionManagementList();
     }
+
+    function showRooms() {
+        hideAllManagementAreas();
+        const scheduleCard =
+            document.getElementById('scheduleManagement');
+        if (scheduleCard) {
+            scheduleCard.style.display = 'none';
+        }
+        document.getElementById('roomManagement').style.display = 'block';
+        loadRoomManagementList();
+    }
+
 
 // Load Management Data
     function loadFacultyList() {
@@ -1160,6 +1607,201 @@ function hideAllManagementAreas() {
         });
     }
 
+    function loadFacultyManagementList() {
+        fetch('<?= base_url('show_faculty') ?>', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load faculty.');
+            }
+            return response.json();
+        })
+        .then(faculty => {
+            const tbody = document.getElementById('facultyTableBody');
+            tbody.innerHTML = '';
+            if (!Array.isArray(faculty) || faculty.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="11"
+                            class="text-center text-muted py-4">
+                            No faculty found.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            faculty.forEach(user => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${escapeHtml(user.login_id ?? '')}</td>
+                        <td>${escapeHtml(user.username ?? '')}</td>
+                        <td>${escapeHtml(user.email ?? '')}</td>
+                        <td>${escapeHtml(user.department ?? '')}</td>
+                        <td>${escapeHtml(user.college ?? '')}</td>
+                        <td>${escapeHtml(user.academic_rank ?? '')}</td>
+                        <td>${escapeHtml(user.lab_units ?? '0')}</td>
+                        <td>${escapeHtml(user.lec_units ?? '0')}</td>
+                        <td>${escapeHtml(user.extra_units ?? '0')}</td>
+                        <td>${escapeHtml(user.total_units ?? '0')}</td>
+                        <td>
+                            <button
+                                type="button"
+                                class="btn btn-warning btn-sm me-1"
+                                onclick="editFaculty(${user.id})">
+                                <i class="bi bi-pencil"></i>
+                                Edit
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm"
+                                onclick="deleteFaculty(${user.id})">
+                                <i class="bi bi-trash"></i>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error('Error loading faculty:', error);
+            document.getElementById('facultyTableBody').innerHTML = `
+                <tr>
+                    <td colspan="11"
+                        class="text-center text-danger py-4">
+                        Unable to load faculty.
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function loadRoomManagementList() {
+        fetch('<?= base_url('show_room') ?>', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error('Failed to load rooms.');
+            }
+
+            return response.json();
+
+        })
+
+        .then(rooms => {
+
+            const tbody =
+                document.getElementById('roomTableBody');
+
+            tbody.innerHTML = '';
+
+            if (!Array.isArray(rooms) || rooms.length === 0) {
+
+                tbody.innerHTML = `
+                    <tr>
+                        <td
+                            colspan="7"
+                            class="text-center text-muted py-4">
+
+                            No rooms found.
+
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+            rooms.forEach(room => {
+
+                tbody.innerHTML += `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHtml(room.room_code ?? '')}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(room.room_name ?? '')}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(room.room_type ?? '')}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(room.room_status ?? '')}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(room.room_time ?? '')}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(room.room_size ?? '')}
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="btn btn-warning btn-sm me-1"
+                                onclick="editRoom(${room.id})">
+
+                                <i class="bi bi-pencil"></i>
+                                Edit
+
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm"
+                                onclick="deleteRoom(${room.id})">
+
+                                <i class="bi bi-trash"></i>
+                                Delete
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `;
+            });
+
+        })
+
+        .catch(error => {
+
+            console.error('Error loading rooms:', error);
+
+            document.getElementById('roomTableBody').innerHTML = `
+
+                <tr>
+                    <td
+                        colspan="7"
+                        class="text-center text-danger py-4">
+
+                        Unable to load rooms.
+
+                    </td>
+                </tr>
+
+            `;
+        });
+    }
     // Search Functions
     function searchSchedule() {
         hideSessionButton();
@@ -1869,6 +2511,509 @@ function hideAllManagementAreas() {
         });
     }
 
+    function openFacultyModal() {
+        clearFacultyForm();
+        document.getElementById('facultyModalTitle').textContent =
+            'Add Faculty';
+        const modal = bootstrap.Modal.getOrCreateInstance(
+            document.getElementById('facultyModal')
+        );
+        modal.show();
+    }
+
+    function clearFacultyForm() {
+        document.getElementById('facultyId').value = '';
+        document.getElementById('loginId').value = '';
+        document.getElementById('username').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('college').value = '';
+        document.getElementById('department').value = '';
+        document.getElementById('academicRank').value = '';
+        document.getElementById('labUnits').value = '0';
+        document.getElementById('lecUnits').value = '0';
+        document.getElementById('extraUnits').value = '0';
+    }
+
+    function saveFaculty() {
+        const facultyId = document.getElementById('facultyId').value.trim();
+        const formData = new FormData();
+        formData.append(
+            'login_id',
+            document.getElementById('loginId').value.trim()
+        );
+        formData.append(
+            'username',
+            document.getElementById('username').value.trim()
+        );
+        formData.append(
+            'email',
+            document.getElementById('email').value.trim()
+        );
+        formData.append(
+            'college',
+            document.getElementById('college').value
+        );
+        formData.append(
+            'department',
+            document.getElementById('department').value
+        );
+        formData.append(
+            'academic_rank',
+            document.getElementById('academicRank').value
+        );
+        formData.append(
+            'total_lab_units',
+            document.getElementById('labUnits').value || '0'
+        );
+        formData.append(
+            'total_lec_units',
+            document.getElementById('lecUnits').value || '0'
+        );
+        formData.append(
+            'total_extra_units',
+            document.getElementById('extraUnits').value || '0'
+        );
+        const password = document.getElementById('password').value;
+        if (password !== '') {
+            formData.append('password', password);
+        }
+        let url;
+        if (facultyId !== '') {
+            url = '<?= base_url('update_faculty') ?>/' + facultyId;
+        } else {
+            url = '<?= base_url('create_faculty') ?>';
+        }
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: formData
+        })
+        .then(async response => {
+            const result = await response.json();
+            console.log('Server response:', result);
+            if (!response.ok) {
+                throw new Error(
+                    result.message || 'Server returned an error.'
+                );
+            }
+            return result;
+        })
+        .then(result => {
+            if (result.success) {
+                alert(
+                    facultyId !== ''
+                        ? 'Faculty updated successfully.'
+                        : 'Faculty added successfully.'
+                );
+                const modalElement =
+                    document.getElementById('facultyModal');
+                const modal =
+                    bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+                loadFacultyManagementList();
+            } else {
+                alert(
+                    result.message ||
+                    'Unable to save faculty.'
+                );
+                console.error('Save faculty errors:', result.errors);
+            }
+        })
+        .catch(error => {
+            console.error('Error saving faculty:', error);
+            alert(error.message || 'An error occurred while saving faculty.');
+        });
+    }
+
+    function editFaculty(id) {
+        fetch(
+            '<?= base_url('get_faculty') ?>/' + encodeURIComponent(id),
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        )
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to retrieve faculty.');
+            }
+            return response.json();
+        })
+        .then(faculty => {
+            document.getElementById('facultyId').value =
+                faculty.id ?? '';
+            document.getElementById('loginId').value =
+                faculty.login_id ?? '';
+            document.getElementById('username').value =
+                faculty.username ?? '';
+            document.getElementById('email').value =
+                faculty.email ?? '';
+            // Password is intentionally blank when editing
+            document.getElementById('password').value = '';
+            document.getElementById('college').value =
+                faculty.college ?? '';
+            document.getElementById('department').value =
+                faculty.department ?? '';
+            document.getElementById('academicRank').value =
+                faculty.academic_rank ?? '';
+            document.getElementById('labUnits').value =
+                faculty.total_lab_units ?? 0;
+            document.getElementById('lecUnits').value =
+                faculty.total_lec_units ?? 0;
+            document.getElementById('extraUnits').value =
+                faculty.total_extra_units ?? 0;
+            document.getElementById('facultyModalTitle').textContent =
+                'Edit Faculty';
+            bootstrap.Modal.getOrCreateInstance(
+                document.getElementById('facultyModal')
+            ).show();
+        })
+        .catch(error => {
+            console.error('Error loading faculty:', error);
+            alert('Unable to load faculty information.');
+        });
+    }
+
+    function deleteFaculty(id) {
+        if (!confirm(
+            'Are you sure you want to delete this faculty member?'
+        )) {
+            return;
+        }
+        fetch(
+            '<?= base_url('delete_faculty') ?>/' +
+            encodeURIComponent(id),
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        )
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert('Faculty deleted successfully.');
+                loadFacultyManagementList();
+            } else {
+                alert(
+                    result.message ||
+                    'Unable to delete faculty.'
+                );
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting faculty:', error);
+            alert('An error occurred while deleting faculty.');
+        });
+    }
+
+    function openRoomModal() {
+        clearRoomForm();
+        document.getElementById('roomModalTitle').textContent =
+            'Add Room';
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById('roomModal')
+        ).show();
+    }
+
+    function clearRoomForm() {
+
+        document.getElementById('roomId').value = '';
+
+        document.getElementById('roomCode').value = '';
+
+        document.getElementById('roomName').value = '';
+
+        document.getElementById('roomType').value = '';
+
+        document.getElementById('roomStatus').value = '';
+
+        document.getElementById('roomTime').value = '';
+
+        document.getElementById('roomSize').value = '';
+    }
+
+    function saveRoom() {
+
+        const roomId =
+            document.getElementById('roomId').value.trim();
+
+        const roomCode =
+            document.getElementById('roomCode').value.trim();
+
+        const roomName =
+            document.getElementById('roomName').value.trim();
+
+        const roomType =
+            document.getElementById('roomType').value;
+
+        const roomStatus =
+            document.getElementById('roomStatus').value;
+
+        const roomTime =
+            document.getElementById('roomTime').value.trim();
+
+        const roomSize =
+            document.getElementById('roomSize').value;
+
+        /*
+        * Client-side validation
+        */
+
+        if (
+            roomCode === '' ||
+            roomName === '' ||
+            roomType === '' ||
+            roomStatus === '' ||
+            roomTime === '' ||
+            roomSize === ''
+        ) {
+
+            alert('Please complete all required room fields.');
+
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append('room_code', roomCode);
+
+        formData.append('room_name', roomName);
+
+        formData.append('room_type', roomType);
+
+        formData.append('room_status', roomStatus);
+
+        formData.append('room_time', roomTime);
+
+        formData.append('room_size', roomSize);
+
+        let url;
+
+        if (roomId !== '') {
+
+            url =
+                '<?= base_url('update_room') ?>/' +
+                encodeURIComponent(roomId);
+
+        } else {
+
+            url =
+                '<?= base_url('create_room') ?>';
+        }
+
+        fetch(url, {
+
+            method: 'POST',
+
+            headers: {
+                'Accept': 'application/json'
+            },
+
+            body: formData
+
+        })
+
+        .then(async response => {
+
+            const result = await response.json();
+
+            console.log('Room save result:', result);
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message ||
+                    'Unable to save room.'
+                );
+            }
+
+            return result;
+
+        })
+
+        .then(result => {
+
+            if (result.success) {
+
+                alert(
+                    roomId !== ''
+                        ? 'Room updated successfully.'
+                        : 'Room added successfully.'
+                );
+
+                const modalElement =
+                    document.getElementById('roomModal');
+
+                const modal =
+                    bootstrap.Modal.getInstance(modalElement);
+
+                if (modal) {
+                    modal.hide();
+                }
+
+                loadRoomManagementList();
+
+            } else {
+
+                alert(
+                    result.message ||
+                    'Unable to save room.'
+                );
+
+                console.error(result.errors);
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error('Error saving room:', error);
+
+            alert(error.message);
+        });
+    }
+
+    function editRoom(id) {
+
+        fetch(
+            '<?= base_url('get_room') ?>/' +
+            encodeURIComponent(id),
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        )
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error('Failed to retrieve room.');
+            }
+
+            return response.json();
+
+        })
+
+        .then(room => {
+
+            document.getElementById('roomId').value =
+                room.id ?? '';
+
+            document.getElementById('roomCode').value =
+                room.room_code ?? '';
+
+            document.getElementById('roomName').value =
+                room.room_name ?? '';
+
+            document.getElementById('roomType').value =
+                room.room_type ?? '';
+
+            document.getElementById('roomStatus').value =
+                room.room_status ?? '';
+
+            document.getElementById('roomTime').value =
+                room.room_time ?? '';
+
+            document.getElementById('roomSize').value =
+                room.room_size ?? '';
+
+            document.getElementById('roomModalTitle').textContent =
+                'Edit Room';
+
+            bootstrap.Modal.getOrCreateInstance(
+                document.getElementById('roomModal')
+            ).show();
+
+        })
+
+        .catch(error => {
+
+            console.error('Error loading room:', error);
+
+            alert('Unable to load room information.');
+
+        });
+    }
+
+    function deleteRoom(id) {
+        if (!id) {
+
+            alert('Invalid room ID.');
+
+            return;
+        }
+
+        if (!confirm(
+            'Are you sure you want to delete this room?'
+        )) {
+
+            return;
+        }
+
+        fetch(
+            '<?= base_url('delete_room') ?>/' +
+            encodeURIComponent(id),
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        )
+
+        .then(async response => {
+
+            const result = await response.json();
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message ||
+                    'Unable to delete room.'
+                );
+            }
+
+            return result;
+
+        })
+
+        .then(result => {
+
+            if (result.success) {
+
+                alert('Room deleted successfully.');
+
+                loadRoomManagementList();
+
+            } else {
+
+                alert(
+                    result.message ||
+                    'Unable to delete room.'
+                );
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error('Error deleting room:', error);
+
+            alert(error.message);
+        });
+    }
+    
     // Faculty / Load / Room Form Data
     function populateFacultySelect() {
         const select = document.getElementById('sessionFaculty');

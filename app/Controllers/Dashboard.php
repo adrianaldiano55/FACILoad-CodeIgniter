@@ -897,5 +897,364 @@ public function delete_section($id)
         ]);
 }
 
+// FACULTY MANAGEMENT
+public function get_faculty($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Faculty ID is required.'
+            ]);
+    }
+    $facultyModel = new UserModel();
+    $faculty = $facultyModel
+        ->where('id', $id)
+        ->where('role', 'faculty')
+        ->first();
+    if (!$faculty) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Faculty member not found.'
+            ]);
+    }
+    return $this->response->setJSON($faculty);
+}
 
+public function create_faculty()
+{
+    $facultyModel = new UserModel();
+    $data = [
+        'login_id'          => trim($this->request->getPost('login_id')),
+        'username'          => trim($this->request->getPost('username')),
+        'email'             => trim($this->request->getPost('email')),
+        'academic_rank'     => trim($this->request->getPost('academic_rank')),
+        'college'           => trim($this->request->getPost('college')),
+        'department'        => trim($this->request->getPost('department')),
+        'total_lab_units'   => (float) $this->request->getPost('total_lab_units'),
+        'total_lec_units'   => (float) $this->request->getPost('total_lec_units'),
+        'total_extra_units' => (float) $this->request->getPost('total_extra_units'),
+        'role'              => 'faculty'
+    ];
+    $password = $this->request->getPost('password');
+    if (!empty($password)) {
+        $data['hash_password'] = password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        );
+    }
+    // Required fields
+    if (
+        empty($data['login_id']) ||
+        empty($data['username']) ||
+        empty($data['email']) ||
+        empty($data['academic_rank']) ||
+        empty($data['college']) ||
+        empty($data['department'])
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Please complete all required faculty fields.'
+            ]);
+    }
+    if (!$facultyModel->insert($data)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to create faculty.',
+                'errors' => $facultyModel->errors()
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Faculty added successfully.'
+    ]);
+}
+
+public function update_faculty($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Faculty ID is required.'
+            ]);
+    }
+    $facultyModel = new UserModel();
+    $faculty = $facultyModel
+        ->where('id', $id)
+        ->where('role', 'faculty')
+        ->first();
+    if (!$faculty) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Faculty member not found.'
+            ]);
+    }
+    $data = [
+        'login_id'          => trim($this->request->getPost('login_id')),
+        'username'          => trim($this->request->getPost('username')),
+        'email'             => trim($this->request->getPost('email')),
+        'academic_rank'     => trim($this->request->getPost('academic_rank')),
+        'college'           => trim($this->request->getPost('college')),
+        'department'        => trim($this->request->getPost('department')),
+        'total_lab_units'   => (float) $this->request->getPost('total_lab_units'),
+        'total_lec_units'   => (float) $this->request->getPost('total_lec_units'),
+        'total_extra_units' => (float) $this->request->getPost('total_extra_units')
+    ];
+    // Only change password if a new one was provided
+    $password = $this->request->getPost('password');
+    if (!empty($password)) {
+        $data['hash_password'] = password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        );
+    }
+    if (!$facultyModel->update($id, $data)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to update faculty.',
+                'errors' => $facultyModel->errors()
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Faculty updated successfully.'
+    ]);
+}
+
+public function delete_faculty($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Faculty ID is required.'
+            ]);
+    }
+    $facultyModel = new UserModel();
+    $faculty = $facultyModel
+        ->where('id', $id)
+        ->where('role', 'faculty')
+        ->first();
+    if (!$faculty) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Faculty member not found.'
+            ]);
+    }
+    if (!$facultyModel->delete($id)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to delete faculty.'
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Faculty deleted successfully.'
+    ]);
+}
+
+// ROOM MANAGEMENT
+
+public function get_room($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Room ID is required.'
+            ]);
+    }
+
+    $roomModel = new RoomsModel();
+
+    $room = $roomModel->find($id);
+
+    if (!$room) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Room not found.'
+            ]);
+    }
+
+    return $this->response->setJSON($room);
+}
+
+public function create_room()
+{
+    $roomModel = new RoomsModel();
+
+    $data = [
+        'room_code'   => trim($this->request->getPost('room_code')),
+        'room_name'   => trim($this->request->getPost('room_name')),
+        'room_type'   => trim($this->request->getPost('room_type')),
+        'room_status' => trim($this->request->getPost('room_status')),
+        'room_time'   => trim($this->request->getPost('room_time')),
+        'room_size'   => $this->request->getPost('room_size')
+    ];
+
+    if (
+        $data['room_code'] === '' ||
+        $data['room_name'] === '' ||
+        $data['room_type'] === '' ||
+        $data['room_status'] === '' ||
+        $data['room_time'] === '' ||
+        $data['room_size'] === '' ||
+        $data['room_size'] === null
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Please complete all required room fields.'
+            ]);
+    }
+
+    $data['room_size'] = (int) $data['room_size'];
+
+    if (!$roomModel->insert($data)) {
+
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to create room.',
+                'errors' => $roomModel->errors()
+            ]);
+    }
+
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Room added successfully.'
+    ]);
+}
+
+public function update_room($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Room ID is required.'
+            ]);
+    }
+
+    $roomModel = new RoomsModel();
+
+    $room = $roomModel->find($id);
+
+    if (!$room) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Room not found.'
+            ]);
+    }
+
+    $data = [
+        'room_code'   => trim($this->request->getPost('room_code')),
+        'room_name'   => trim($this->request->getPost('room_name')),
+        'room_type'   => trim($this->request->getPost('room_type')),
+        'room_status' => trim($this->request->getPost('room_status')),
+        'room_time'   => trim($this->request->getPost('room_time')),
+        'room_size'   => $this->request->getPost('room_size')
+    ];
+
+    if (
+        $data['room_code'] === '' ||
+        $data['room_name'] === '' ||
+        $data['room_type'] === '' ||
+        $data['room_status'] === '' ||
+        $data['room_time'] === '' ||
+        $data['room_size'] === '' ||
+        $data['room_size'] === null
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Please complete all required room fields.'
+            ]);
+    }
+
+    $data['room_size'] = (int) $data['room_size'];
+
+    if (!$roomModel->update($id, $data)) {
+
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to update room.',
+                'errors' => $roomModel->errors()
+            ]);
+    }
+
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Room updated successfully.'
+    ]);
+}
+
+public function delete_room($id = null)
+{
+    if (!$id) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Room ID is required.'
+            ]);
+    }
+
+    $roomModel = new RoomsModel();
+
+    $room = $roomModel->find($id);
+
+    if (!$room) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Room not found.'
+            ]);
+    }
+
+    if (!$roomModel->delete($id)) {
+
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to delete room.'
+            ]);
+    }
+
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Room deleted successfully.'
+    ]);
+}
 }

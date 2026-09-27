@@ -99,3 +99,29 @@ $routes->post(
     '/delete_section/(:num)',
     'Dashboard::delete_section/$1'
 );
+
+// FACULTY MANAGEMENT 
+$routes->get('show_faculty', 'Dashboard::show_faculty');
+$routes->get(
+    'get_faculty/(:num)',
+    'Dashboard::get_faculty/$1'
+);
+$routes->post(
+    'create_faculty',
+    'Dashboard::create_faculty'
+);
+$routes->post(
+    'update_faculty/(:num)',
+    'Dashboard::update_faculty/$1'
+);
+$routes->post(
+    'delete_faculty/(:num)',
+    'Dashboard::delete_faculty/$1'
+);
+
+// ROOM MANAGEMENT
+$routes->get('show_room', 'Dashboard::show_room');
+$routes->get('get_room/(:num)', 'Dashboard::get_room/$1');
+$routes->post('create_room', 'Dashboard::create_room');
+$routes->post('update_room/(:num)', 'Dashboard::update_room/$1');
+$routes->post('delete_room/(:num)', 'Dashboard::delete_room/$1');

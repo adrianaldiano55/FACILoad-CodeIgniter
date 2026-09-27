@@ -1,0 +1,856 @@
+DEBUG - 2026-09-27 11:46:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 11:46:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 11:46:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 11:53:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-27 11:54:24 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:24 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:24 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:24 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:24 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:24 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:37 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:37 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:37 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:37 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:37 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:37 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:42 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:42 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:42 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:42 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:42 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:42 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:53 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:53 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:53 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:53 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:53 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:53 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:59 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:59 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:59 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:59 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:59 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:54:59 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:55:13 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:55:13 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:55:13 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:55:13 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:55:13 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 11:55:13 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:28 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:28 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:28 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:28 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:28 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:28 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:30 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:30 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:30 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:30 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:30 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:00:30 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:01:57 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:01:57 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:01:57 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:01:57 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:01:57 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:01:57 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:09 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:09 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:09 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:09 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:09 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:09 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:36 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:36 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:36 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:36 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:36 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:02:36 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:10 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:10 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:10 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:10 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:10 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:10 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:12 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 931.
+ 1 APPPATH\Controllers\Dashboard.php(931): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:12 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 932.
+ 1 APPPATH\Controllers\Dashboard.php(932): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:12 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 933.
+ 1 APPPATH\Controllers\Dashboard.php(933): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:12 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 934.
+ 1 APPPATH\Controllers\Dashboard.php(934): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:12 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 935.
+ 1 APPPATH\Controllers\Dashboard.php(935): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+WARNING - 2026-09-27 12:05:12 --> [DEPRECATED] trim(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\Dashboard.php on line 936.
+ 1 APPPATH\Controllers\Dashboard.php(936): trim(null)
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->create_faculty()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-09-27 12:05:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-09-27 12:07:16 --> Unknown column 'sessions.subject_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = :sessions.faculty_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_faculty_schedule('2')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-09-27 12:07:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.subject_id' in 'field list'
+[Method: GET, Route: show_faculty_schedule/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = :sessions.faculty_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 2 APPPATH\Controllers\Dashboard.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_faculty_schedule('2')
+ 4 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 5 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-09-27 12:07:16 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sessions.subject_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = :sessions.faculty_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 4 APPPATH\Controllers\Dashboard.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_faculty_schedule('2')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-09-27 12:07:16 --> [Caused by] mysqli_sql_exception: Unknown column 'sessions.subject_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = \'2\'
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT `sessions`.`id` AS `session_id`, `sessions`.`faculty_id`, `sessions`.`subject_id`, `sessions`.`section_id`, `sessions`.`room_id`, `sessions`.`ses_type`, `sessions`.`ses_units`, `sessions`.`ses_day`, `sessions`.`ses_start`, `sessions`.`ses_end`, `users`.`username`, `users`.`login_id`, `users`.`academic_rank`, `users`.`college`, `users`.`department`, `subjects`.`sub_code`, `subjects`.`sub_name`, `sections`.`sec_code`, `sections`.`sec_name`, `rooms`.`room_code`, `rooms`.`room_name`
+FROM `sessions`
+INNER JOIN `users` ON `users`.`id` = `sessions`.`faculty_id`
+INNER JOIN `subjects` ON `subjects`.`id` = `sessions`.`subject_id`
+INNER JOIN `sections` ON `sections`.`id` = `sessions`.`section_id`
+INNER JOIN `rooms` ON `rooms`.`id` = `sessions`.`room_id`
+WHERE `sessions`.`faculty_id` = :sessions.faculty_id:
+ORDER BY `sessions`.`ses_day` ASC, `sessions`.`ses_start` ASC', [...], false)
+ 5 APPPATH\Controllers\Dashboard.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->show_faculty_schedule('2')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-09-27 12:16:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:16:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:16:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:17:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:18:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:19:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:21:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:25:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:27:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-27 12:30:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
