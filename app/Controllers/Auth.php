@@ -16,12 +16,15 @@ class Auth extends BaseController
     }
     public function attemptLogin()
     {
-        $id = trim((string) $this->request->getPost('id'));
+        $login = trim((string) $this->request->getPost('login'));
         $password = $this->request->getPost('password');
         $email = trim((string) $this->request->getPost('email'));
         $userModel = new UserModel();
         $users = $userModel
-            ->where('login_id', $id)
+            ->groupStart()
+                ->where('login_id', $login)
+                ->orWhere('username', $login)
+            ->groupEnd()
             ->where('email', $email)
             ->first();
         if (!$users || !password_verify($password, $users['hash_password'])) {

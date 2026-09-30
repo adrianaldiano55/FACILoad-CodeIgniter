@@ -114,8 +114,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" onclick="showSubjects()">
-                        <i class="bi bi-book"></i>
+                    <a href="#" onclick="showSubjects()" class="nav-link">
+                        <i class="bi bi-folder me-2"></i>
                         Subject Management
                     </a>
                 </li>
@@ -128,18 +128,14 @@
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle fs-4 me-2"></i>
-                    <span>Bai User</span>
+                    <span>Admin User</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="userMenu">
-                    <li><a class="dropdown-item" href="<?php echo base_url('profile'); ?>">Profile</a></li>
-                    <li><a class="dropdown-item" href="<?php echo base_url('settings'); ?>">Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="<?php echo base_url('logout'); ?>">Sign out</a></li>
                 </ul>
             </div>
         </div>
     </aside>
-
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
         
@@ -151,19 +147,11 @@
                     <i class="bi bi-list"></i>
                 </button>
                 <span class="navbar-brand mb-0 h1 fs-5">Admin Dashboard</span>            
-                <div class="ms-auto d-flex align-items-center">
-                    <!-- Right Navbar Actions Placeholder -->
-                    <button class="btn btn-light rounded-circle me-2">
-                        <i class="bi bi-bell"></i>
-                    </button>
-                </div>
             </div>
         </header>
-
         <!-- Main Workspace Area -->
         <main class="content-area">
             <div class="container-fluid">
-
                 <!-- SCHEDULE MANAGEMENT -->
                 <div class="card border-0 shadow-sm mb-4" id="scheduleManagement"style="display: none;">
                     <div class="card-body">
@@ -257,7 +245,7 @@
                                             id="sessionSubject"
                                             class="form-select"
                                             required
-                                            onchange="updateSubjectInformation()">
+                                            onchange="updateSubjectInformation(); filterSectionsBySubject();">
                                             <option value="">
                                                 Select Subject
                                             </option>
@@ -275,7 +263,8 @@
                                         <select
                                             id="sessionSection"
                                             class="form-select"
-                                            required>
+                                            required
+                                            onchange="filterSubjectsBySection();">
                                             <option value="">
                                                 Select Section
                                             </option>
@@ -1076,6 +1065,7 @@
                                     <th>Section Name</th>
                                     <th>Program</th>
                                     <th>Section Size</th>
+                                    <th>Section Year</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -1160,6 +1150,18 @@
                                         class="form-control"
                                         min="1"
                                         placeholder="Enter number of students">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="sectionYear" class="form-label">
+                                        Year
+                                    </label>
+                                    <select id="sectionYear" class="form-select" required>
+                                        <option value="">Select Year</option>
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -1325,18 +1327,15 @@
         }
         document.getElementById('facultyManagement').style.display = 'block';
         loadFacultyManagementList();
-        hideSessionButton();
     }
 
     function showSubjects() {
-        // Hide other management sections
         hideAllManagementAreas()
         const scheduleCard =
             document.getElementById('scheduleManagement');
         if (scheduleCard) {
             scheduleCard.style.display = 'none';
         }
-        // Show subject management
         document.getElementById('subjectManagement').style.display = 'block';
         loadSubjectList();
     }
@@ -1577,6 +1576,9 @@
                         </td>
                         <td>
                             ${escapeHtml(section.sec_size)}
+                        </td>
+                        <td>
+                            ${escapeHtml(section.sec_year)}
                         </td>
                         <td>
                             <button
@@ -2379,12 +2381,66 @@
         document.getElementById(
             'sectionSize'
         ).value = '';
+        document.getElementById(
+            'sectionYear'
+        ).value = '';
         const modal =
             bootstrap.Modal.getOrCreateInstance(
                 document.getElementById('sectionModal')
             );
         modal.show();
     }
+
+
+    function editSection(id) {
+        fetch(
+            '<?= base_url('get_section') ?>/' +
+            encodeURIComponent(id),
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        )
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(
+                    'Failed to retrieve section.'
+                );
+            }
+            return response.json();
+        })
+        .then(section => {
+            document.getElementById('sectionId').value =
+                section.id ?? '';
+            document.getElementById('sectionCode').value =
+                section.sec_code ?? '';
+            document.getElementById('sectionName').value =
+                section.sec_name ?? '';
+            document.getElementById('sectionProgram').value =
+                section.sec_prog ?? '';
+            document.getElementById('sectionYear').value =
+                section.sec_year ?? '';
+            document.getElementById('sectionSize').value =
+                section.sec_size ?? '';
+            document.getElementById('sectionModalTitle').textContent =
+                'Edit Section';
+            bootstrap.Modal.getOrCreateInstance(
+                document.getElementById('sectionModal')
+            ).show();
+        })
+        .catch(error => {
+            console.error(
+                'Error loading section:',
+                error
+            );
+            alert(
+                'Unable to load section information.'
+            );
+        });
+    }
+
 
     function saveSection() {
         const id =
@@ -2405,6 +2461,10 @@
         formData.append(
             'sec_size',
             document.getElementById('sectionSize').value
+        );
+        formData.append(
+            'sec_year',
+            document.getElementById('sectionYear').value
         );
         let url;
         if (id) {
@@ -3042,120 +3102,126 @@
         });
     }
 
-    function populateSubjectSelect() {
-        const select =
-            document.getElementById(
-                'sessionSubject'
-            );
-        select.innerHTML =
-            '<option value="">Select Subject</option>';
-        subjectList.forEach(subject => {
-            const option =
-                document.createElement('option');
-            option.value =
-                subject.id;
-            option.textContent =
-                `${subject.sub_code} - ${subject.sub_name}`;
-            select.appendChild(option);
-        });
-    }
-
-    function populateSectionSelect() {
-    const select =
-        document.getElementById(
-            'sessionSection'
-        );
+function populateSubjectSelect(subjects = subjectList) {
+    const select = document.getElementById('sessionSubject');
     select.innerHTML =
-        '<option value="">Select Section</option>';
-    sectionList.forEach(section => {
-        const option =
-            document.createElement('option');
-        option.value =
-            section.id;
+        '<option value="">Select Subject</option>';
+    subjects.forEach(subject => {
+        const option = document.createElement('option');
+        option.value = subject.id;
         option.textContent =
-            `${section.sec_code} - ${section.sec_name}`;
+            `${subject.sub_code} - ${subject.sub_name}`;
+        // Store program and year for filtering
+        option.dataset.program =
+            subject.sub_program;
+        option.dataset.year =
+            subject.sub_year;
         select.appendChild(option);
     });
 }
 
-    function filterLoadsByFaculty() {
-        const facultyId =
-            document.getElementById('sessionFaculty').value;
-        const loadSelect =
-            document.getElementById('sessionLoad');
-        loadSelect.innerHTML =
-            '<option value="">Select Load</option>';
-        selectedLoad = null;
-        document.getElementById('loadUnits').textContent = '0';
-        document.getElementById('sessionUnits').textContent = '0';
-        document.getElementById('remainingUnits').textContent = '0';
-        if (!facultyId) {
-            return;
-        }
-        const facultyLoads =
-            loadList.filter(load =>
-                String(load.user_id) === String(facultyId)
-            );
-        facultyLoads.forEach(load => {
-            const option =
-                document.createElement('option');
-            option.value = load.id;
-            option.textContent =
-                `${load.sub_code} - ${load.sub_name} (${load.sec_code})`;
-            option.dataset.units =
-                getLoadUnits(load);
-            loadSelect.appendChild(option);
-        });
-    }
-
-    function filterLoadsBySection() {
-        const loadSelect =
-            document.getElementById('sessionLoad');
-        loadSelect.innerHTML =
-            '<option value="">Select Load</option>';
-        if (
-            searchFilter !== 'section' ||
-            !searchResult
-        ) {
-            return;
-        }
-        const sectionId = searchResult.id;
-        const sectionLoads =
-            loadList.filter(load => {
-                return String(load.section_id) ===
-                    String(sectionId);
-            });
-        sectionLoads.forEach(load => {
+    function populateSectionSelect(sections = sectionList) {
+        const select =
+            document.getElementById('sessionSection');
+        select.innerHTML =
+            '<option value="">Select Section</option>';
+        sections.forEach(section => {
             const option =
                 document.createElement('option');
             option.value =
-                load.id;
+                section.id;
             option.textContent =
-                `${load.sub_code} - ${load.sub_name}`;
-            loadSelect.appendChild(option);
+                `${section.sec_code} - ${section.sec_name}`;
+            // Store program and year for filtering
+            option.dataset.program =
+                section.sec_prog;
+            option.dataset.year =
+                section.sec_year;
+            select.appendChild(option);
         });
     }
 
-    function updateLoadInformation() {
-        const loadId =
-            document.getElementById('sessionLoad').value;
-        selectedLoad =
-            loadList.find(load =>
-                String(load.id) === String(loadId)
-            );
-        if (!selectedLoad) {
-            document.getElementById('loadUnits').textContent = '0';
-            document.getElementById('loadInformation').textContent = '';
-            calculateSessionUnits();
+    function filterSectionsBySubject() {
+        const subjectId =
+            document.getElementById('sessionSubject').value;
+        const sectionSelect =
+            document.getElementById('sessionSection');
+        // Nothing selected
+        if (!subjectId) {
+            populateSectionSelect();
             return;
         }
-        const units =
-            getLoadUnits(selectedLoad);
-        document.getElementById('loadUnits').textContent =
-            units;
-        document.getElementById('loadInformation').textContent =
-            `Available units for this session type: ${units}`;
-        calculateSessionUnits();
+        const selectedSubject =
+            subjectList.find(subject =>
+                String(subject.id) ===
+                String(subjectId)
+            );
+        if (!selectedSubject) {
+            populateSectionSelect();
+            return;
+        }
+        const subjectProgram =
+            String(selectedSubject.sub_program)
+                .trim()
+                .toLowerCase();
+        const subjectYear =
+            String(selectedSubject.sub_year)
+                .trim();
+        const matchingSections =
+            sectionList.filter(section => {
+                const sectionProgram =
+                    String(section.sec_prog)
+                        .trim()
+                        .toLowerCase();
+                const sectionYear =
+                    String(section.sec_year)
+                        .trim();
+                return (
+                    sectionProgram === subjectProgram &&
+                    sectionYear === subjectYear
+                );
+            });
+        populateSectionSelect(matchingSections);
+    }
+
+    function filterSubjectsBySection() {
+        const sectionId =
+            document.getElementById('sessionSection').value;
+        if (!sectionId) {
+            populateSubjectSelect();
+            return;
+        }
+        const selectedSection =
+            sectionList.find(section =>
+                String(section.id) ===
+                String(sectionId)
+            );
+        if (!selectedSection) {
+            populateSubjectSelect();
+            return;
+        }
+        const sectionProgram =
+            String(selectedSection.sec_prog)
+                .trim()
+                .toLowerCase();
+        const sectionYear =
+            String(selectedSection.sec_year)
+                .trim();
+        const matchingSubjects =
+            subjectList.filter(subject => {
+                const subjectProgram =
+                    String(subject.sub_program)
+                        .trim()
+                        .toLowerCase();
+                const subjectYear =
+                    String(subject.sub_year)
+                        .trim();
+                return (
+                    subjectProgram === sectionProgram &&
+                    subjectYear === sectionYear
+                );
+            });
+        populateSubjectSelect(matchingSubjects);
     }
 
     function updateSubjectInformation() {
@@ -3550,13 +3616,6 @@
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
-    }
-
-    function hideAllTables() {
-        const scheduleTable = document.getElementById('scheduleTable');
-        if (scheduleTable) {
-            scheduleTable.style.display = 'none';
-        }
     }
 
     function showSessionError(message) {

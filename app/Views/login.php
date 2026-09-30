@@ -176,19 +176,13 @@
                 <form action="<?= site_url('login') ?>" method="post">
                     <?= csrf_field() ?>
                 <div class="mb-4">
-                    <input type="number" id="id" name="id" class="form-control custom-input" placeholder="Login ID" required>
+                    <input type="text" id="login" name="login" class="form-control custom-input" placeholder="Login ID or Username" required>
                 </div>
                 <div class="mb-4">
                     <input type="email" id="email" name="email" class="form-control custom-input" placeholder="Email" required>
                 </div>
                 <div class="mb-4">
                     <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Password" required>
-                </div>
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">
-                        Remember me
-                    </label>
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <button type="submit" class="btn btn-gradient">Log In</button>
