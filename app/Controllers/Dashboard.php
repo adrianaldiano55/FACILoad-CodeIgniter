@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\SectionsModel;
 use App\Models\RoomsModel;
 use App\Models\SubjectsModel;
+use App\Models\SessionsModel;
 
 class Dashboard extends BaseController
 {
@@ -77,7 +78,7 @@ public function show_faculty_schedule($faculty_id = null)
     $db = \Config\Database::connect();
     $builder = $db->table('sessions');
     $builder->select('
-        sessions.id AS session_id,
+        sessions.id AS id,
         sessions.faculty_id,
         sessions.subject_id,
         sessions.section_id,
@@ -154,7 +155,7 @@ public function show_room_schedule($room_id = null)
     $db = \Config\Database::connect();
     $builder = $db->table('sessions');
     $builder->select('
-        sessions.id AS session_id,
+        sessions.id AS id,
         sessions.faculty_id,
         sessions.subject_id,
         sessions.section_id,
@@ -227,7 +228,7 @@ public function show_section_schedule($section_id = null)
     $db = \Config\Database::connect();
     $builder = $db->table('sessions');
     $builder->select('
-        sessions.id AS session_id,
+        sessions.id AS id,
         sessions.faculty_id,
         sessions.subject_id,
         sessions.section_id,
@@ -642,6 +643,404 @@ public function create_session()
             ]);
     }
 
+public function get_session($id = null)
+{
+    if (!$id) {
+        return $this->response->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Session ID is required.'
+            ]);
+    }
+    $sessionsModel = new SessionsModel();
+    $session = $sessionsModel->find($id);
+    if (!$session) {
+        return $this->response->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Session not found.'
+            ]);
+    }
+    return $this->response->setJSON($session);
+}
+
+public function update_session($id = null)
+{
+    if (!$id) {
+        return $this->response->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Session ID is required.'
+            ]);
+    }
+    $data = $this->request->getJSON(true);
+    if (!$data) {
+        return $this->response->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Invalid session data.'
+            ]);
+    }
+    $sessionsModel = new SessionsModel();
+    $session = $sessionsModel->find($id);
+    if (!$session) {
+        return $this->response->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Session not found.'
+            ]);
+    }
+    $required = [
+        'faculty_id',
+        'subject_id',
+        'section_id',
+        'room_id',
+        'ses_type',
+        'ses_day',
+        'ses_start',
+        'ses_end'
+    ];
+    foreach ($required as $field) {
+        if (!isset($data[$field]) || $data[$field] === '') {
+            return $this->response->setStatusCode(400)
+                ->setJSON([
+                    'success' => false,
+                    'message' => "Missing field: {$field}"
+                ]);
+        }
+    }
+    /*
+    * Validate session type
+    */
+    if (
+        !in_array(
+            $data['ses_type'],
+            ['Lecture', 'Lab'],
+            true
+        )
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Invalid session type.'
+            ]);
+    }
+    /*
+    * Validate time
+    */
+    $start = strtotime(
+        $data['ses_start']
+    );
+    $end = strtotime(
+        $data['ses_end']
+    );
+    if (
+        $start === false ||
+        $end === false
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Invalid session time.'
+            ]);
+    }
+    if ($end <= $start) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'End time must be later than start time.'
+            ]);
+    }
+    /*
+    * Restrict schedule to 7:00 AM - 8:30 PM
+    */
+    $startMinutes =
+        ((int)date('H', $start) * 60) +
+        (int)date('i', $start);
+    $endMinutes =
+        ((int)date('H', $end) * 60) +
+        (int)date('i', $end);
+    if (
+        $startMinutes < 420 ||
+        $endMinutes > 1230
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Sessions must be scheduled between 7:00 AM and 8:30 PM.'
+            ]);
+    }
+    /*
+    * Calculate session hours
+    */
+    $durationMinutes =
+        ($end - $start) / 60;
+    $sessionHours =
+        $durationMinutes / 60;
+    /*
+    * Validate Faculty
+    */
+    $userModel =
+        new \App\Models\UserModel();
+    $faculty =
+        $userModel
+            ->where('id', $data['faculty_id'])
+            ->where('role', 'faculty')
+            ->first();
+    if (!$faculty) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Faculty member not found.'
+            ]);
+    }
+    /*
+    * Validate Subject
+    */
+    $subjectModel =
+        new \App\Models\SubjectsModel();
+    $subject =
+        $subjectModel->find(
+            $data['subject_id']
+        );
+    if (!$subject) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Subject not found.'
+            ]);
+    }
+    /*
+    * Validate Section
+    */
+    $sectionModel =
+        new \App\Models\SectionsModel();
+    $section =
+        $sectionModel->find(
+            $data['section_id']
+        );
+    if (!$section) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Section not found.'
+            ]);
+    }
+    /*
+    * Validate Room
+    */
+    $roomModel =
+        new \App\Models\RoomsModel();
+    $room =
+        $roomModel->find(
+            $data['room_id']
+        );
+    if (!$room) {
+        return $this->response
+            ->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Room not found.'
+            ]);
+    }
+    /*
+    * Determine available subject hours
+    */
+    if ($data['ses_type'] === 'Lab') {
+        $subjectHours =
+            (float)(
+                $subject['sub_lab_hours'] ?? 0
+            );
+    } else {
+        $subjectHours =
+            (float)(
+                $subject['sub_lec_hours'] ?? 0
+            );
+    }
+    /*
+    * Validate session duration
+    */
+    if ($sessionHours > $subjectHours) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    "Session requires {$sessionHours} hours, but only {$subjectHours} hours are available for this session type."
+            ]);
+    }
+    /*
+    * Check room availability
+    */
+    $db =
+        \Config\Database::connect();
+    $roomConflict =
+        $db->table('sessions')
+            ->where(
+                'room_id',
+                $data['room_id']
+            )
+            ->where('id !=', $id)
+            ->where(
+                'ses_day',
+                $data['ses_day']
+            )
+            ->where(
+                'ses_start <',
+                $data['ses_end']
+            )
+            ->where(
+                'ses_end >',
+                $data['ses_start']
+            )
+            ->get()
+            ->getRowArray();
+    if ($roomConflict) {
+        return $this->response
+            ->setStatusCode(409)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'The selected room is already occupied during this time.'
+            ]);
+    }
+    /*
+    * Check faculty availability
+    */
+    $facultyConflict =
+        $db->table('sessions')
+            ->where(
+                'faculty_id',
+                $data['faculty_id']
+            )
+            ->where('id !=', $id)
+            ->where(
+                'ses_day',
+                $data['ses_day']
+            )
+            ->where(
+                'ses_start <',
+                $data['ses_end']
+            )
+            ->where(
+                'ses_end >',
+                $data['ses_start']
+            )
+            ->get()
+            ->getRowArray();
+    if ($facultyConflict) {
+        return $this->response
+            ->setStatusCode(409)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'The selected faculty member already has a session during this time.'
+            ]);
+    }
+    /*
+    * Check section availability
+    */
+    $sectionConflict =
+        $db->table('sessions')
+            ->where(
+                'section_id',
+                $data['section_id']
+            )
+            ->where('id !=', $id)
+            ->where(
+                'ses_day',
+                $data['ses_day']
+            )
+            ->where(
+                'ses_start <',
+                $data['ses_end']
+            )
+            ->where(
+                'ses_end >',
+                $data['ses_start']
+            )
+            ->get()
+            ->getRowArray();
+    if ($sectionConflict) {
+        return $this->response
+            ->setStatusCode(409)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'The selected section already has a session during this time.'
+            ]);
+    }
+    $updateData = [
+        'faculty_id' => $data['faculty_id'],
+        'subject_id' => $data['subject_id'],
+        'section_id' => $data['section_id'],
+        'room_id'    => $data['room_id'],
+        'ses_type'   => $data['ses_type'],
+        'ses_units'  => $sessionHours,
+        'ses_day'    => $data['ses_day'],
+        'ses_start'  => $data['ses_start'],
+        'ses_end'    => $data['ses_end']
+    ];
+    $sessionsModel = new SessionsModel();
+    if (!$sessionsModel->update($id, $updateData)) {
+        return $this->response->setStatusCode(500)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to update session.',
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Session updated successfully.'
+    ]);
+}
+
+public function delete_session($id = null)
+{
+    if (!$id) {
+        return $this->response->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Session ID is required.'
+            ]);
+    }
+    $sessionsModel = new SessionsModel();
+    $session = $sessionsModel->find($id);
+    if (!$session) {
+        return $this->response->setStatusCode(404)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Session not found.'
+            ]);
+    }
+    if (!$sessionsModel->delete($id)) {
+        return $this->response->setStatusCode(500)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Unable to delete session.'
+            ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'message' => 'Session deleted successfully.'
+    ]);
+}
+
 // SUBJECT MANAGEMENT
 
 public function create_subject()
@@ -774,12 +1173,14 @@ public function create_section()
         'sec_code' => trim($this->request->getPost('sec_code')),
         'sec_name' => trim($this->request->getPost('sec_name')),
         'sec_prog' => trim($this->request->getPost('sec_prog')),
-        'sec_size' => $this->request->getPost('sec_size')
+        'sec_size' => $this->request->getPost('sec_size'),
+        'sec_year' => trim($this->request->getPost('sec_year'))
     ];
     if (
         empty($data['sec_code']) ||
         empty($data['sec_name']) ||
         empty($data['sec_prog']) ||
+        empty($data['sec_year']) ||
         $data['sec_size'] === null ||
         $data['sec_size'] === ''
     ) {
@@ -838,12 +1239,14 @@ public function update_section($id)
         'sec_code' => trim($this->request->getPost('sec_code')),
         'sec_name' => trim($this->request->getPost('sec_name')),
         'sec_prog' => trim($this->request->getPost('sec_prog')),
-        'sec_size' => $this->request->getPost('sec_size')
+        'sec_size' => $this->request->getPost('sec_size'),
+        'sec_year' => trim($this->request->getPost('sec_year'))
     ];
     if (
         empty($data['sec_code']) ||
         empty($data['sec_name']) ||
         empty($data['sec_prog']) ||
+        empty($data['sec_year']) ||
         $data['sec_size'] === null ||
         $data['sec_size'] === ''
     ) {
@@ -1108,7 +1511,6 @@ public function create_room()
         'room_code'   => trim($this->request->getPost('room_code')),
         'room_name'   => trim($this->request->getPost('room_name')),
         'room_type'   => trim($this->request->getPost('room_type')),
-        'room_status' => trim($this->request->getPost('room_status')),
         'room_time'   => trim($this->request->getPost('room_time')),
         'room_size'   => $this->request->getPost('room_size')
     ];
@@ -1117,7 +1519,6 @@ public function create_room()
         $data['room_code'] === '' ||
         $data['room_name'] === '' ||
         $data['room_type'] === '' ||
-        $data['room_status'] === '' ||
         $data['room_time'] === '' ||
         $data['room_size'] === '' ||
         $data['room_size'] === null
@@ -1177,7 +1578,6 @@ public function update_room($id = null)
         'room_code'   => trim($this->request->getPost('room_code')),
         'room_name'   => trim($this->request->getPost('room_name')),
         'room_type'   => trim($this->request->getPost('room_type')),
-        'room_status' => trim($this->request->getPost('room_status')),
         'room_time'   => trim($this->request->getPost('room_time')),
         'room_size'   => $this->request->getPost('room_size')
     ];
@@ -1186,7 +1586,6 @@ public function update_room($id = null)
         $data['room_code'] === '' ||
         $data['room_name'] === '' ||
         $data['room_type'] === '' ||
-        $data['room_status'] === '' ||
         $data['room_time'] === '' ||
         $data['room_size'] === '' ||
         $data['room_size'] === null

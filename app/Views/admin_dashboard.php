@@ -151,6 +151,7 @@
         </header>
         <!-- Main Workspace Area -->
         <main class="content-area">
+            
             <div class="container-fluid">
                 <!-- SCHEDULE MANAGEMENT -->
                 <div class="card border-0 shadow-sm mb-4" id="scheduleManagement"style="display: none;">
@@ -213,7 +214,7 @@
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">
+                                <h5 class="modal-title" id="sessionModalTitle">
                                     <i class="bi bi-calendar-plus me-2"></i>
                                     Add Session
                                 </h5>
@@ -298,7 +299,7 @@
                                                 id="sessionType"
                                                 class="form-select"
                                                 required
-                                                onchange="updateLoadInformation()">
+                                                onchange="updateSessionHours()">
                                                 <option value="">
                                                     Select Type
                                                 </option>
@@ -395,6 +396,15 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        id="deleteSessionButton"
+                                        class="btn btn-danger me-auto"
+                                        style="display:none;"
+                                        onclick="deleteSession()">
+                                        <i class="bi bi-trash me-1"></i>
+                                        Delete Session
+                                    </button>
                                     <button
                                         type="button"
                                         class="btn btn-secondary"
@@ -686,7 +696,6 @@
                                     <th>Room Code</th>
                                     <th>Room Name</th>
                                     <th>Room Type</th>
-                                    <th>Status</th>
                                     <th>Availability</th>
                                     <th>Room Size</th>
                                     <th style="width:180px;">Actions</th>
@@ -695,7 +704,7 @@
                             <tbody id="roomTableBody">
                                 <tr>
                                     <td
-                                        colspan="7"
+                                        colspan="6"
                                         class="text-center text-muted py-4">
                                         Loading...
                                     </td>
@@ -778,28 +787,6 @@
                                             </option>
                                             <option value="Laboratory">
                                                 Laboratory
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <!-- Room Status -->
-                                    <div class="col-md-6 mb-3">
-                                        <label
-                                            for="roomStatus"
-                                            class="form-label">
-                                            Room Status
-                                        </label>
-                                        <select
-                                            id="roomStatus"
-                                            class="form-select"
-                                            required>
-                                            <option value="">
-                                                Select Status
-                                            </option>
-                                            <option value="Available">
-                                                Available
-                                            </option>
-                                            <option value="Unavailable">
-                                                Unavailable
                                             </option>
                                         </select>
                                     </div>
@@ -1200,25 +1187,52 @@
 
     let selectedSubject = null;
     let SessionModal = null;
+    let editingSessionId = null;
 
     let searchResult = null;
     let searchFilter = null;
+
+    const csrfToken = <?= json_encode(service('security')->getHash()) ?>;
+    const csrfHeaderName = <?= json_encode(service('security')->getHeaderName()) ?>;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (resource, options = {}) => {
+        const method = String(options.method || 'GET').toUpperCase();
+        if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)) {
+            const headers = new Headers(options.headers || {});
+            headers.set(csrfHeaderName, csrfToken);
+            options = { ...options, headers };
+        }
+        return nativeFetch(resource, options);
+    };
 
 // Initialization 
     document.addEventListener('DOMContentLoaded', function () {
         changeManagementFilter();
         document
+            .getElementById('sidebarToggle')
+            .addEventListener('click', function () {
+                document
+                    .getElementById('sidebar')
+                    .classList.toggle('show');
+            });
+        document
             .getElementById('sessionStart')
             .addEventListener(
                 'change',
-                calculateSessionUnits
+                updateSessionHours
             );
         document
             .getElementById('sessionEnd')
             .addEventListener(
                 'change',
-                calculateSessionUnits
+                updateSessionHours
             );
+        document
+            .getElementById('subjectLecHours')
+            .addEventListener('input', calculateSubjectTotalHours);
+        document
+            .getElementById('subjectLabHours')
+            .addEventListener('input', calculateSubjectTotalHours);
         });
 
 // Management Filter
@@ -1426,7 +1440,7 @@
 
     function loadSectionList() {
         console.log('Loading section list...');
-        const url = '<?= base_url('show_section') ?>';
+        const url = '<?= base_url('show_sections') ?>';
         fetch(url, {method: 'GET',headers: {'Accept': 'application/json'}
         })
         .then(response => {
@@ -1555,7 +1569,7 @@
             if (!Array.isArray(sections) || sections.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="5" class="text-center text-muted">
+                        <td colspan="6" class="text-center text-muted">
                             No sections found.
                         </td>
                     </tr>
@@ -1645,10 +1659,14 @@
                         <td>${escapeHtml(user.department ?? '')}</td>
                         <td>${escapeHtml(user.college ?? '')}</td>
                         <td>${escapeHtml(user.academic_rank ?? '')}</td>
-                        <td>${escapeHtml(user.lab_units ?? '0')}</td>
-                        <td>${escapeHtml(user.lec_units ?? '0')}</td>
-                        <td>${escapeHtml(user.extra_units ?? '0')}</td>
-                        <td>${escapeHtml(user.total_units ?? '0')}</td>
+                        <td>${escapeHtml(user.total_lab_units ?? '0')}</td>
+                        <td>${escapeHtml(user.total_lec_units ?? '0')}</td>
+                        <td>${escapeHtml(user.total_extra_units ?? '0')}</td>
+                        <td>${escapeHtml(
+                            (Number(user.total_lab_units) || 0) +
+                            (Number(user.total_lec_units) || 0) +
+                            (Number(user.total_extra_units) || 0)
+                        )}</td>
                         <td>
                             <button
                                 type="button"
@@ -1712,7 +1730,7 @@
                 tbody.innerHTML = `
                     <tr>
                         <td
-                            colspan="7"
+                            colspan="6"
                             class="text-center text-muted py-4">
 
                             No rooms found.
@@ -1740,10 +1758,6 @@
 
                         <td>
                             ${escapeHtml(room.room_type ?? '')}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(room.room_status ?? '')}
                         </td>
 
                         <td>
@@ -1793,7 +1807,7 @@
 
                 <tr>
                     <td
-                        colspan="7"
+                        colspan="6"
                         class="text-center text-danger py-4">
 
                         Unable to load rooms.
@@ -1995,37 +2009,36 @@
             const availableRows = totalRows - startRowIndex;
             const safeRowSpan = Math.min(rowSpan,availableRows);
             targetCell.rowSpan =safeRowSpan;
-            targetCell.className ='schedule-cell';
+            targetCell.className = 'schedule-cell';
             targetCell.innerHTML = `
                 <div class="schedule-subject">
                     <strong>Subject:</strong>
-                    ${escapeHtml(
-                        session.sub_name
-                    )}
+                    ${escapeHtml(session.sub_name)}
                 </div>
                 <div class="schedule-section">
                     <strong>Section:</strong>
-                    ${escapeHtml(
-                        session.sec_name
-                    )}
+                    ${escapeHtml(session.sec_name)}
                 </div>
                 <div class="schedule-room">
                     <strong>Room:</strong>
-                    ${escapeHtml(
-                        session.room_name
-                    )}
+                    ${escapeHtml(session.room_name)}
                 </div>
                 <div class="small mt-1">
                     <i class="bi bi-clock me-1"></i>
-                    ${escapeHtml(
-                        session.ses_start
-                    )}
+                    ${escapeHtml(session.ses_start)}
                     -
-                    ${escapeHtml(
-                        session.ses_end
-                    )}
+                    ${escapeHtml(session.ses_end)}
+                </div>
+                <div class="small text-primary mt-2">
+                    <i class="bi bi-pencil-square me-1"></i>
+                    Click to edit
                 </div>
             `;
+            targetCell.style.cursor = 'pointer';
+            targetCell.title = 'Click to edit this session';
+            targetCell.onclick = function () {
+                editSession(session.id);
+            };
             let currentRow =targetRow;
             for (let i = 1; i < safeRowSpan;i++) {
                 const nextRow = currentRow.nextElementSibling;
@@ -2082,6 +2095,13 @@
 
 // Add Modals
     function openSessionModal() {
+        editingSessionId = null;
+        document.getElementById('sessionModalTitle').innerHTML =
+            '<i class="bi bi-calendar-plus me-2"></i>Add Session';
+        document.getElementById('saveSessionButton').innerHTML =
+            '<i class="bi bi-check-circle me-1"></i>Create Session';
+        document.getElementById('deleteSessionButton').style.display =
+            'none';
         if (!searchResult) {
             alert(
                 'Please search for a Faculty, Room or Section first.'
@@ -2115,6 +2135,136 @@
             });
     }
 
+    async function editSession(id) {
+        editingSessionId = id;
+        const modalElement =
+            document.getElementById('addSessionModal');
+        SessionModal =
+            bootstrap.Modal.getOrCreateInstance(modalElement);
+        try {
+            // Load Faculty / Subject / Section / Room dropdowns
+            await loadSessionFormData();
+            // Get the existing session
+            const response = await fetch(
+                '<?= base_url('get_session') ?>/' +
+                encodeURIComponent(id),
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            );
+            if (!response.ok) {
+                throw new Error(
+                    'Unable to retrieve session.'
+                );
+            }
+            const session = await response.json();
+            console.log('Session to edit:', session);
+            // Change modal to EDIT mode
+            document.getElementById('sessionModalTitle').innerHTML =
+                '<i class="bi bi-pencil-square me-2"></i>Edit Session';
+            document.getElementById('saveSessionButton').innerHTML =
+                '<i class="bi bi-save me-1"></i>Save Changes';
+            document.getElementById('deleteSessionButton').style.display =
+                'block';
+            // Enable all fields first
+            document.getElementById('sessionFaculty').disabled = false;
+            document.getElementById('sessionSubject').disabled = false;
+            document.getElementById('sessionSection').disabled = false;
+            document.getElementById('sessionRoom').disabled = false;
+            // Populate values
+            document.getElementById('sessionFaculty').value =
+                session.faculty_id;
+            document.getElementById('sessionSubject').value =
+                session.subject_id;
+            document.getElementById('sessionSection').value =
+                session.section_id;
+            document.getElementById('sessionRoom').value =
+                session.room_id;
+            document.getElementById('sessionType').value =
+                session.ses_type;
+            document.getElementById('sessionDay').value =
+                session.ses_day;
+            document.getElementById('sessionStart').value =
+                session.ses_start.substring(0, 5);
+            document.getElementById('sessionEnd').value =
+                session.ses_end.substring(0, 5);
+            // Set selected subject
+            selectedSubject =
+                subjectList.find(
+                    subject =>
+                        String(subject.id) ===
+                        String(session.subject_id)
+                );
+            // Update displayed hour information
+            updateSubjectInformation();
+            updateSessionHours();
+            clearSessionError();
+            SessionModal.show();
+        } catch (error) {
+            console.error(
+                'Error loading session:',
+                error
+            );
+            alert(
+                'Unable to load session information.'
+            );
+        }
+    }
+    
+    async function deleteSession() {
+        if (!editingSessionId) {
+            return;
+        }
+        const confirmed = confirm(
+            'Are you sure you want to delete this session?'
+        );
+        if (!confirmed) {
+            return;
+        }
+        try {
+            const response = await fetch(
+                '<?= base_url('delete_session') ?>/' +
+                encodeURIComponent(editingSessionId),
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }
+            );
+            const result = await response.json();
+            if (!response.ok || !result.success) {
+                alert(
+                    result.message ||
+                    'Unable to delete session.'
+                );
+                return;
+            }
+            alert(
+                'Session successfully deleted.'
+            );
+            editingSessionId = null;
+            selectedSubject = null;
+            if (SessionModal) {
+                SessionModal.hide();
+            }
+            if (searchResult) {
+                loadSchedule(searchResult.id);
+            }
+        } catch (error) {
+            console.error(
+                'Delete session error:',
+                error
+            );
+            alert(
+                'A server error occurred while deleting the session.'
+            );
+        }
+    }
+
     async function loadSessionFormData() {
         try {
             const [
@@ -2124,8 +2274,8 @@
                 roomResponse
             ] = await Promise.all([
                 fetch('<?= base_url('show_faculty') ?>'),
-                fetch('<?= base_url('show_subject') ?>'),
-                fetch('<?= base_url('show_section') ?>'),
+                fetch('<?= base_url('show_subjects') ?>'),
+                fetch('<?= base_url('show_sections') ?>'),
                 fetch('<?= base_url('show_room') ?>')
             ]);
             if (
@@ -2298,12 +2448,6 @@
             'sub_total_hours',
             document.getElementById('subjectTotalHours').value
         )
-        document
-            .getElementById('subjectLecHours')
-            .addEventListener('input', calculateSubjectTotalHours);
-        document
-            .getElementById('subjectLabHours')
-            .addEventListener('input', calculateSubjectTotalHours);
         let url;
         if (id) {
             url = `<?= base_url('update_subject') ?>/${id}`;
@@ -2440,7 +2584,6 @@
             );
         });
     }
-
 
     function saveSection() {
         const id =
@@ -2794,8 +2937,6 @@
 
         document.getElementById('roomType').value = '';
 
-        document.getElementById('roomStatus').value = '';
-
         document.getElementById('roomTime').value = '';
 
         document.getElementById('roomSize').value = '';
@@ -2815,9 +2956,6 @@
         const roomType =
             document.getElementById('roomType').value;
 
-        const roomStatus =
-            document.getElementById('roomStatus').value;
-
         const roomTime =
             document.getElementById('roomTime').value.trim();
 
@@ -2832,7 +2970,6 @@
             roomCode === '' ||
             roomName === '' ||
             roomType === '' ||
-            roomStatus === '' ||
             roomTime === '' ||
             roomSize === ''
         ) {
@@ -2849,8 +2986,6 @@
         formData.append('room_name', roomName);
 
         formData.append('room_type', roomType);
-
-        formData.append('room_status', roomStatus);
 
         formData.append('room_time', roomTime);
 
@@ -2979,9 +3114,6 @@
             document.getElementById('roomType').value =
                 room.room_type ?? '';
 
-            document.getElementById('roomStatus').value =
-                room.room_status ?? '';
-
             document.getElementById('roomTime').value =
                 room.room_time ?? '';
 
@@ -3095,30 +3227,31 @@
         roomList.forEach(room => {
             const option =
                 document.createElement('option');
-            option.value = room.id;
+            option.value =
+                room.id;
             option.textContent =
-                room.room_name;
+                `${room.room_code} - ${room.room_name}`;
             select.appendChild(option);
         });
     }
 
-function populateSubjectSelect(subjects = subjectList) {
-    const select = document.getElementById('sessionSubject');
-    select.innerHTML =
-        '<option value="">Select Subject</option>';
-    subjects.forEach(subject => {
-        const option = document.createElement('option');
-        option.value = subject.id;
-        option.textContent =
-            `${subject.sub_code} - ${subject.sub_name}`;
-        // Store program and year for filtering
-        option.dataset.program =
-            subject.sub_program;
-        option.dataset.year =
-            subject.sub_year;
-        select.appendChild(option);
-    });
-}
+    function populateSubjectSelect(subjects = subjectList) {
+        const select = document.getElementById('sessionSubject');
+        select.innerHTML =
+            '<option value="">Select Subject</option>';
+        subjects.forEach(subject => {
+            const option = document.createElement('option');
+            option.value = subject.id;
+            option.textContent =
+                `${subject.sub_code} - ${subject.sub_name}`;
+            // Store program and year for filtering
+            option.dataset.program =
+                subject.sub_program;
+            option.dataset.year =
+                subject.sub_year;
+            select.appendChild(option);
+        });
+    }
 
     function populateSectionSelect(sections = sectionList) {
         const select =
@@ -3422,52 +3555,6 @@ function populateSubjectSelect(subjects = subjectList) {
         return true;
     }
 
-    async function checkRoomAvailability() {
-        const roomId =
-            document.getElementById('sessionRoom').value;
-        const day =
-            document.getElementById('sessionDay').value;
-        const start =
-            document.getElementById('sessionStart').value;
-        const end =
-            document.getElementById('sessionEnd').value;
-        if (!roomId || !day || !start || !end) {
-            return false;
-        }
-        const params = new URLSearchParams({
-            room_id: roomId,
-            day: day,
-            start: start,
-            end: end
-        });
-        try {
-            const response =
-                await fetch(
-                    '<?= base_url('check_room_availability') ?>?' +
-                    params.toString()
-                );
-            const result =
-                await response.json();
-            if (!result.available) {
-                showSessionError(
-                    result.message ||
-                    'The selected room is unavailable during this time.'
-                );
-                return false;
-            }
-            return true;
-        } catch (error) {
-            console.error(
-                'Room availability error:',
-                error
-            );
-            showSessionError(
-                'Unable to check room availability.'
-            );
-            return false;
-        }
-    }
-
 // Create Session
     document
     .getElementById('addSessionForm')
@@ -3476,11 +3563,6 @@ function populateSubjectSelect(subjects = subjectList) {
         async function(event) {
             event.preventDefault();
             if (!validateSessionUnits()) {
-                return;
-            }
-            const roomAvailable =
-                await checkRoomAvailability();
-            if (!roomAvailable) {
                 return;
             }
             const facultyId =
@@ -3532,11 +3614,14 @@ function populateSubjectSelect(subjects = subjectList) {
                 ses_end: end
             };
             try {
-                const response =
-                    await fetch(
-                        '<?= base_url('create_session') ?>',
-                        {
-                            method: 'POST',
+                const url = editingSessionId
+                    ? '<?= base_url('update_session') ?>/' +
+                    encodeURIComponent(editingSessionId): 
+                    '<?= base_url('create_session') ?>';
+                const response = await fetch(
+                    url,
+                    {
+                        method: 'POST',
                             headers: {
                                 'Content-Type':
                                     'application/json',
@@ -3560,7 +3645,9 @@ function populateSubjectSelect(subjects = subjectList) {
                     return;
                 }
                 alert(
-                    'Session successfully created.'
+                    editingSessionId
+                        ? 'Session successfully updated.'
+                        : 'Session successfully created.'
                 );
                 document
                     .getElementById(

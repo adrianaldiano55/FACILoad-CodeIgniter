@@ -14,10 +14,6 @@ $routes->post('/register', 'Auth::attemptRegister');
 
 $routes->get('/logout', 'Auth::logout');
 
-$routes->get('show_faculty', 'Dashboard::show_faculty');
-$routes->get('show_sections', 'Dashboard::show_sections');
-$routes->get('show_rooms', 'Dashboard::show_rooms');
-
 $routes->get(
     '/admin_dashboard',
     'Dashboard::admin',
@@ -29,9 +25,12 @@ $routes->get(
     'Dashboard::faculty',
     ['filter' => 'auth:faculty']
 );
-$routes->get('show_room', 'Dashboard::show_room');
-$routes->get('show_section','Dashboard::show_section');
+$routes->group('', ['filter' => 'auth:admin'], static function ($routes): void {
+    $routes->get('show_faculty', 'Dashboard::show_faculty');
+    $routes->get('show_sections', 'Dashboard::show_sections');
+    $routes->get('show_room', 'Dashboard::show_room');
 
+// SESSION MANAGEMENT
 $routes->get(
     'show_faculty_schedule/(:num)',
     'Dashboard::show_faculty_schedule/$1'
@@ -44,17 +43,11 @@ $routes->get(
     'show_section_schedule/(:num)',
     'Dashboard::show_section_schedule/$1'
 );
+    $routes->post('create_session', 'Dashboard::create_session');
+    $routes->get('get_session/(:num)', 'Dashboard::get_session/$1');
+    $routes->post('update_session/(:num)', 'Dashboard::update_session/$1');
+    $routes->post('delete_session/(:num)', 'Dashboard::delete_session/$1');
 
-$routes->get(
-    'check_room_availability',
-    'Dashboard::check_room_availability'
-);
-$routes->post(
-    'create_session',
-    'Dashboard::create_session'
-);
-
-// FACULTY MANAGEMENT
 // SUBJECT MANAGEMENT
 
 $routes->get(
@@ -79,49 +72,20 @@ $routes->post(
 );
 
 // SECTION MANAGEMENT
-$routes->get(
-    '/show_sections',
-    'Dashboard::show_sections'
-);
-$routes->get(
-    '/get_section/(:num)',
-    'Dashboard::get_section/$1'
-);
-$routes->post(
-    '/create_section',
-    'Dashboard::create_section'
-);
-$routes->post(
-    '/update_section/(:num)',
-    'Dashboard::update_section/$1'
-);
-$routes->post(
-    '/delete_section/(:num)',
-    'Dashboard::delete_section/$1'
-);
+    $routes->get('get_section/(:num)', 'Dashboard::get_section/$1');
+    $routes->post('create_section', 'Dashboard::create_section');
+    $routes->post('update_section/(:num)', 'Dashboard::update_section/$1');
+    $routes->post('delete_section/(:num)', 'Dashboard::delete_section/$1');
 
 // FACULTY MANAGEMENT 
-$routes->get('show_faculty', 'Dashboard::show_faculty');
-$routes->get(
-    'get_faculty/(:num)',
-    'Dashboard::get_faculty/$1'
-);
-$routes->post(
-    'create_faculty',
-    'Dashboard::create_faculty'
-);
-$routes->post(
-    'update_faculty/(:num)',
-    'Dashboard::update_faculty/$1'
-);
-$routes->post(
-    'delete_faculty/(:num)',
-    'Dashboard::delete_faculty/$1'
-);
+    $routes->get('get_faculty/(:num)', 'Dashboard::get_faculty/$1');
+    $routes->post('create_faculty', 'Dashboard::create_faculty');
+    $routes->post('update_faculty/(:num)', 'Dashboard::update_faculty/$1');
+    $routes->post('delete_faculty/(:num)', 'Dashboard::delete_faculty/$1');
 
 // ROOM MANAGEMENT
-$routes->get('show_room', 'Dashboard::show_room');
-$routes->get('get_room/(:num)', 'Dashboard::get_room/$1');
-$routes->post('create_room', 'Dashboard::create_room');
-$routes->post('update_room/(:num)', 'Dashboard::update_room/$1');
-$routes->post('delete_room/(:num)', 'Dashboard::delete_room/$1');
+    $routes->get('get_room/(:num)', 'Dashboard::get_room/$1');
+    $routes->post('create_room', 'Dashboard::create_room');
+    $routes->post('update_room/(:num)', 'Dashboard::update_room/$1');
+    $routes->post('delete_room/(:num)', 'Dashboard::delete_room/$1');
+});
