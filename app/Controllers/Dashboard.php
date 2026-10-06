@@ -1656,4 +1656,87 @@ public function delete_room($id = null)
         'message' => 'Room deleted successfully.'
     ]);
 }
+
+public function get_my_schedule()
+{
+    $facultyId = session()->get('id');
+    if (!$facultyId) {
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Not authenticated.'
+        ]);
+    }
+    $db = \Config\Database::connect();
+    $builder = $db->table('sessions');
+    $builder->select('
+        sessions.id,
+        sessions.faculty_id,
+        sessions.ses_type,
+        sessions.ses_units,
+        sessions.ses_day,
+        sessions.ses_start,
+        sessions.ses_end,
+        subjects.sub_code,
+        subjects.sub_name,
+        sections.sec_code,
+        sections.sec_name,
+        rooms.room_name
+    ');
+    $builder->join(
+        'subjects',
+        'subjects.id = sessions.subject_id',
+        'left'
+    );
+    $builder->join(
+        'sections',
+        'sections.id = sessions.section_id',
+        'left'
+    );
+    $builder->join(
+        'rooms',
+        'rooms.id = sessions.room_id',
+        'left'
+    );
+    // VERY IMPORTANT:
+    // Only retrieve the logged-in faculty's sessions.
+    $builder->where(
+        'sessions.faculty_id',
+        $facultyId
+    );
+    $builder->orderBy('sessions.ses_day', 'ASC');
+    $builder->orderBy('sessions.ses_start', 'ASC');
+    $schedule = $builder->get()->getResultArray();
+    return $this->response->setJSON([
+        'success' => true,
+        'data' => $schedule
+    ]);
+}
+
+public function get_my_profile()
+{
+    $facultyId = session()->get('id');
+    if (!$facultyId) {
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Not authenticated.'
+        ]);
+    }
+    $userModel = new \App\Models\UserModel();
+    $faculty = $userModel
+        ->where('id', $facultyId)
+        ->where('role', 'faculty')
+        ->first();
+    if (!$faculty) {
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Faculty account not found.'
+        ]);
+    }
+    return $this->response->setJSON([
+        'success' => true,
+        'data' => $faculty
+    ]);
+}
+
+
 }

@@ -89,3 +89,15 @@ $routes->post(
     $routes->post('update_room/(:num)', 'Dashboard::update_room/$1');
     $routes->post('delete_room/(:num)', 'Dashboard::delete_room/$1');
 });
+
+// FACULTY DASHBOARD
+$routes->get(
+    'get_my_schedule',
+    'Dashboard::get_my_schedule',
+    ['filter' => 'auth:faculty']
+);
+$routes->get(
+    'get_my_profile',
+    'Dashboard::get_my_profile',
+    ['filter' => 'auth:faculty']
+);
