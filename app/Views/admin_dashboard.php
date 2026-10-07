@@ -12,9 +12,11 @@
     <style>
         :root {
             --sidebar-width: 225px;
+            --primary: #3b185f;
         }
         body {
-            background-color: #f8f9fa;
+            background-color: #f5f5f7;
+            font-family: Arial, sans-serif;
         }
         /* Sidebar Styling */
         .sidebar {
@@ -26,17 +28,21 @@
             background-color: #212529;
             z-index: 1000;
             transition: margin-left 0.3s ease;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            overflow: hidden;
         }
         .sidebar .nav-link {
-            color: #adb5bd;
+            color: #ddd;
             padding: 0.75rem 1rem;
             margin-bottom: 0.2rem;
-            border-radius: 0.375rem;
+            border-radius: 8px;
         }
         .sidebar .nav-link:hover, 
         .sidebar .nav-link.active {
             color: #fff;
-            background-color: #0d6efd;
+            background-color: var(--primary);
+            border-radius: 8px;
         }
         /* Main Layout */
         .main-wrapper {
@@ -46,10 +52,16 @@
             flex-direction: column;
             transition: margin-left 0.3s ease;
         }
+        /* Top Navbar */
+        header.navbar {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
         /* Content Area */
         .content-area {
             flex: 1;
-            padding: 1.5rem;
+            padding: 25px;
         }
         /* Responsive Sidebar for Small Screens */
         @media (max-width: 991.98px) {
@@ -63,13 +75,161 @@
                 margin-left: 0;
             }
         }
-            #scheduleTable { min-width: 1000px; } 
-            #scheduleTable th { vertical-align: middle; } 
-            #scheduleTable td { height: 80px; min-width: 140px; vertical-align: middle; } 
-            .schedule-cell { background-color: #e7f1ff; border-radius: 6px; padding: 8px; font-size: 13px; } 
-            .schedule-subject { font-weight: bold; font-size: 14px; } 
-            .schedule-section { font-size: 12px; } 
-            .schedule-room { font-size: 12px; color: #6c757d; }
+        /* Cards & Containers — soft edges */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        .card-header {
+            border-top-left-radius: 12px !important;
+            border-top-right-radius: 12px !important;
+        }
+        .card-body {
+            border-radius: 12px;
+        }
+        /* Tables — soft edges */
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table thead th:first-child {
+            border-top-left-radius: 10px;
+        }
+        .table thead th:last-child {
+            border-top-right-radius: 10px;
+        }
+        .table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+        .table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+        /* All management tables — dark header */
+        .table thead th {
+            background-color: #212529 !important;
+            color: #ffffff !important;
+            border-color: #212529 !important;
+        }
+        /* Thin white divider lines between header columns */
+        .table thead th + th {
+            border-left: 1px solid rgba(255, 255, 255, 0.25) !important;
+        }
+        /* Data tables — grey row background */
+        .data-table tbody tr td,
+        #subjectTableBody tr td,
+        #sectionTableBody tr td,
+        #facultyTableBody tr td,
+        #roomTableBody tr td {
+            background-color: #f0f0f0;
+        }
+        /* Buttons — soft edges */
+        .btn {
+            border-radius: 8px;
+        }
+        /* Form Controls — soft edges */
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+        }
+        /* Modals — soft edges */
+        .modal-content {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        .modal-header {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        .modal-footer {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+        /* Dropdown — soft edges */
+        .dropdown-menu {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        /* Alert — soft edges */
+        .alert {
+            border-radius: 8px;
+        }
+        /* Footer — soft edges */
+        footer {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        #scheduleTable { min-width: 1000px; } 
+        #scheduleTable th { vertical-align: middle; padding: 12px; } 
+        #scheduleTable td { height: 55px; min-width: 140px; vertical-align: middle; } 
+        /* Schedule session card — base style (color is set inline via JS) */
+        .schedule-cell { 
+            border-left: 4px solid #3b185f; 
+            border-radius: 6px; 
+            padding: 6px; 
+            font-size: 12px; 
+        } 
+        .schedule-subject { font-weight: bold; font-size: 14px; } 
+        .schedule-section { font-size: 12px; } 
+        .schedule-room { font-size: 12px; color: #777; }
+        .dashboard-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        .stat-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+            background: white;
+            padding: 20px;
+            height: 100%;
+        }
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: #eee6f8;
+            color: #3b185f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .stat-value {
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .stat-label {
+            color: #777;
+            font-size: 14px;
+        }
+        .schedule-item {
+            background: #eee6f8;
+            color: #3b185f;
+            border-left: 4px solid #3b185f;
+            border-radius: 6px;
+            padding: 6px;
+            margin: 2px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .schedule-item:hover {
+            background: #e1d5ef;
+        }
+        .profile-label {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+        .profile-value {
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
     </style>
 </head>
 <body>
@@ -1198,6 +1358,38 @@
     let searchResult = null;
     let searchFilter = null;
 
+    // Palette of soft colors for schedule sessions
+    const SESSION_COLORS = [
+        '#FFC0CB', // pink
+        '#FFD9A0', // peach
+        '#FFF3A0', // light yellow
+        '#C8F0C8', // light green
+        '#A0E7E5', // aqua
+        '#B4D4FF', // light blue
+        '#D6C6F0', // lavender
+        '#F5B7D0', // rose
+        '#F7C6A3', // apricot
+        '#B5EAD7', // mint
+        '#FFB3BA', // salmon pink
+        '#C7CEEA'  // periwinkle
+    ];
+
+    // Cache so each session ID keeps the same color across re-renders
+    const sessionColorCache = new Map();
+
+    function getSessionColor(sessionId) {
+        const key = String(sessionId);
+        if (sessionColorCache.has(key)) {
+            return sessionColorCache.get(key);
+        }
+        const color =
+            SESSION_COLORS[
+                Math.floor(Math.random() * SESSION_COLORS.length)
+            ];
+        sessionColorCache.set(key, color);
+        return color;
+    }
+
     const csrfToken = <?= json_encode(service('security')->getHash()) ?>;
     const csrfHeaderName = <?= json_encode(service('security')->getHeaderName()) ?>;
     const nativeFetch = window.fetch.bind(window);
@@ -2024,6 +2216,9 @@
             const safeRowSpan = Math.min(rowSpan,availableRows);
             targetCell.rowSpan =safeRowSpan;
             targetCell.className = 'schedule-cell';
+            // Assign a stable random color per session
+            const sessionColor = getSessionColor(session.id);
+            targetCell.style.backgroundColor = sessionColor;
             targetCell.innerHTML = `
                 <div class="schedule-subject">
                     <strong>Subject:</strong>
