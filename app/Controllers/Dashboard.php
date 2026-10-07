@@ -22,22 +22,50 @@ class Dashboard extends BaseController
 // GENERAL FUNCTIONS
 public function show_faculty()
 {
-    $facultyModel = new UserModel();
-    $faculty = $facultyModel
+    $db = \Config\Database::connect();
+    $facultyLoad = $db->table('sessions')
+        ->select("
+            faculty_id,
+            SUM(
+                CASE
+                    WHEN ses_type = 'Lab'
+                    THEN TIME_TO_SEC(TIMEDIFF(ses_end, ses_start)) / 3600
+                    ELSE 0
+                END
+            ) AS assigned_lab_hours,
+            SUM(
+                CASE
+                    WHEN ses_type = 'Lecture'
+                    THEN TIME_TO_SEC(TIMEDIFF(ses_end, ses_start)) / 3600
+                    ELSE 0
+                END
+            ) AS assigned_lecture_hours
+        ", false)
+        ->groupBy('faculty_id')
+        ->getCompiledSelect();
+
+    $faculty = $db->table('users u')
         ->select('
-            id,
-            login_id,
-            username,
-            email,
-            academic_rank,
-            college,
-            department,
-            total_lab_units,
-            total_lec_units,
-            total_extra_units
-        ')
-        ->where('role', 'faculty')
-        ->findAll();
+            u.id,
+            u.login_id,
+            u.username,
+            u.email,
+            u.academic_rank,
+            u.college,
+            u.department,
+            COALESCE(faculty_load.assigned_lab_hours, 0) AS assigned_lab_hours,
+            COALESCE(faculty_load.assigned_lecture_hours, 0) AS assigned_lecture_hours,
+            u.total_extra_units
+        ', false)
+        ->join(
+            "({$facultyLoad}) faculty_load",
+            'faculty_load.faculty_id = u.id',
+            'left',
+            false
+        )
+        ->where('u.role', 'faculty')
+        ->get()
+        ->getResultArray();
 
     return $this->response->setJSON($faculty);
 }
@@ -64,6 +92,85 @@ public function show_subjects()
         $subjectsModel->findAll()
     );
 }
+
+public function get_subject_session_hours($subjectId = null, $sectionId = null)
+{
+    if (!$subjectId || !$sectionId) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Subject and section IDs are required.'
+            ]);
+    }
+
+    $excludeSessionId = $this->request->getGet('exclude_session_id');
+    if (
+        $excludeSessionId !== null &&
+        !ctype_digit((string) $excludeSessionId)
+    ) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Invalid excluded session ID.'
+            ]);
+    }
+
+    return $this->response->setJSON([
+        'success' => true,
+        'hours' => $this->getScheduledSubjectHours(
+            $subjectId,
+            $sectionId,
+            $excludeSessionId
+        )
+    ]);
+}
+
+private function getScheduledSubjectHours(
+    $subjectId,
+    $sectionId,
+    $excludeSessionId = null
+): array {
+    $builder = \Config\Database::connect()
+        ->table('sessions')
+        ->select("
+            COALESCE(
+                SUM(
+                    CASE
+                        WHEN ses_type = 'Lab'
+                        THEN TIME_TO_SEC(TIMEDIFF(ses_end, ses_start)) / 3600
+                        ELSE 0
+                    END
+                ),
+                0
+            ) AS lab,
+            COALESCE(
+                SUM(
+                    CASE
+                        WHEN ses_type = 'Lecture'
+                        THEN TIME_TO_SEC(TIMEDIFF(ses_end, ses_start)) / 3600
+                        ELSE 0
+                    END
+                ),
+                0
+            ) AS lecture
+        ", false)
+        ->where('subject_id', $subjectId)
+        ->where('section_id', $sectionId);
+
+    if ($excludeSessionId !== null && $excludeSessionId !== '') {
+        $builder->where('id !=', $excludeSessionId);
+    }
+
+    $hours = $builder->get()->getRowArray();
+
+    return [
+        'lab' => (float) ($hours['lab'] ?? 0),
+        'lecture' => (float) ($hours['lecture'] ?? 0)
+    ];
+}
+
 // SCHEDULE MANAGEMENT
 public function show_faculty_schedule($faculty_id = null)
 {
@@ -384,6 +491,15 @@ public function create_session()
         $endMinutes =
             ((int)date('H', $end) * 60) +
             (int)date('i', $end);
+        if ($startMinutes % 30 !== 0 || $endMinutes % 30 !== 0) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'success' => false,
+                    'message' =>
+                        'Start and end times must use 30-minute intervals.'
+                ]);
+        }
         if (
             $startMinutes < 420 ||
             $endMinutes > 1230
@@ -490,16 +606,26 @@ public function create_session()
                     $subject['sub_lec_hours'] ?? 0
                 );
         }
+        $scheduledHours = $this->getScheduledSubjectHours(
+            $data['subject_id'],
+            $data['section_id']
+        );
+        $sessionTypeKey =
+            $data['ses_type'] === 'Lab' ? 'lab' : 'lecture';
+        $remainingSubjectHours = max(
+            0,
+            $subjectHours - $scheduledHours[$sessionTypeKey]
+        );
         /*
-        * Validate session duration
+        * Validate session duration against previously scheduled hours
         */
-        if ($sessionHours > $subjectHours) {
+        if ($sessionHours > $remainingSubjectHours) {
             return $this->response
                 ->setStatusCode(400)
                 ->setJSON([
                     'success' => false,
                     'message' =>
-                        "Session requires {$sessionHours} hours, but only {$subjectHours} hours are available for this session type."
+                        "Session requires {$sessionHours} hours, but only {$remainingSubjectHours} hours remain for this subject and section."
                 ]);
         }
         /*
@@ -766,6 +892,15 @@ public function update_session($id = null)
     $endMinutes =
         ((int)date('H', $end) * 60) +
         (int)date('i', $end);
+    if ($startMinutes % 30 !== 0 || $endMinutes % 30 !== 0) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' =>
+                    'Start and end times must use 30-minute intervals.'
+            ]);
+    }
     if (
         $startMinutes < 420 ||
         $endMinutes > 1230
@@ -872,16 +1007,27 @@ public function update_session($id = null)
                 $subject['sub_lec_hours'] ?? 0
             );
     }
+    $scheduledHours = $this->getScheduledSubjectHours(
+        $data['subject_id'],
+        $data['section_id'],
+        $id
+    );
+    $sessionTypeKey =
+        $data['ses_type'] === 'Lab' ? 'lab' : 'lecture';
+    $remainingSubjectHours = max(
+        0,
+        $subjectHours - $scheduledHours[$sessionTypeKey]
+    );
     /*
-    * Validate session duration
+    * Validate session duration against previously scheduled hours
     */
-    if ($sessionHours > $subjectHours) {
+    if ($sessionHours > $remainingSubjectHours) {
         return $this->response
             ->setStatusCode(400)
             ->setJSON([
                 'success' => false,
                 'message' =>
-                    "Session requires {$sessionHours} hours, but only {$subjectHours} hours are available for this session type."
+                    "Session requires {$sessionHours} hours, but only {$remainingSubjectHours} hours remain for this subject and section."
             ]);
     }
     /*

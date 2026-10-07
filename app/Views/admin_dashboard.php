@@ -85,11 +85,6 @@
             <!-- Navigation Links -->
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="bi bi-house-door me-2"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="#" onclick="showSchedule();" class="nav-link">
                         <i class="bi bi-folder me-2"></i>
                         Schedule Management
@@ -246,7 +241,7 @@
                                             id="sessionSubject"
                                             class="form-select"
                                             required
-                                            onchange="updateSubjectInformation(); filterSectionsBySubject();">
+                                            onchange="filterSectionsBySubject(); updateSubjectInformation();">
                                             <option value="">
                                                 Select Subject
                                             </option>
@@ -265,7 +260,7 @@
                                             id="sessionSection"
                                             class="form-select"
                                             required
-                                            onchange="filterSubjectsBySection();">
+                                            onchange="filterSubjectsBySection(); updateSubjectInformation();">
                                             <option value="">
                                                 Select Section
                                             </option>
@@ -344,6 +339,7 @@
                                                 class="form-control"
                                                 min="07:00"
                                                 max="20:30"
+                                                step="1800"
                                                 required>
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -356,6 +352,7 @@
                                                 class="form-control"
                                                 min="07:00"
                                                 max="20:30"
+                                                step="1800"
                                                 required>
                                         </div>
                                     </div>
@@ -472,9 +469,9 @@
                                     <th>Department</th>
                                     <th>College</th>
                                     <th>Academic Rank</th>
-                                    <th>Lab</th>
-                                    <th>Lec</th>
-                                    <th>Extra</th>
+                                    <th>Lab Hours</th>
+                                    <th>Lec Hours</th>
+                                    <th>Extra (Manual)</th>
                                     <th>Total</th>
                                     <th style="width:180px;">Actions</th>
                                 </tr>
@@ -915,11 +912,14 @@
                                     <label for="subjectProgram" class="form-label">
                                         Program
                                     </label>
-                                    <input
-                                        type="text"
+                                    <select
                                         id="subjectProgram"
-                                        class="form-control"
+                                        class="form-select"
                                         required>
+                                        <option value="">Select Program</option>
+                                        <option value="BSIT">BSIT - Information Technology</option>
+                                        <option value="BSInT">BSInT - Industrial Technology</option>
+                                    </select>
                                 </div>
                                 <!-- YEAR AND SEMESTER -->
                                 <div class="row">
@@ -1118,11 +1118,14 @@
                                         class="form-label">
                                         Program
                                     </label>
-                                    <input
-                                        type="text"
+                                    <select
                                         id="sectionProgram"
-                                        class="form-control"
-                                        placeholder="Enter program">
+                                        class="form-select"
+                                        required>
+                                        <option value="">Select Program</option>
+                                        <option value="BSIT">BSIT - Information Technology</option>
+                                        <option value="BSInT">BSInT - Industrial Technology</option>
+                                    </select>
                                 </div>
                                 <!-- SECTION SIZE -->
                                 <div class="mb-3">
@@ -1188,6 +1191,9 @@
     let selectedSubject = null;
     let SessionModal = null;
     let editingSessionId = null;
+    let scheduledSubjectHours = { lab: 0, lecture: 0 };
+    let scheduledSubjectHoursLoaded = true;
+    let subjectHoursRequestId = 0;
 
     let searchResult = null;
     let searchFilter = null;
@@ -1651,6 +1657,12 @@
                 return;
             }
             faculty.forEach(user => {
+                const assignedLabHours =
+                    Number(user.assigned_lab_hours) || 0;
+                const assignedLectureHours =
+                    Number(user.assigned_lecture_hours) || 0;
+                const extraUnits =
+                    Number(user.total_extra_units) || 0;
                 tbody.innerHTML += `
                     <tr>
                         <td>${escapeHtml(user.login_id ?? '')}</td>
@@ -1659,13 +1671,15 @@
                         <td>${escapeHtml(user.department ?? '')}</td>
                         <td>${escapeHtml(user.college ?? '')}</td>
                         <td>${escapeHtml(user.academic_rank ?? '')}</td>
-                        <td>${escapeHtml(user.total_lab_units ?? '0')}</td>
-                        <td>${escapeHtml(user.total_lec_units ?? '0')}</td>
-                        <td>${escapeHtml(user.total_extra_units ?? '0')}</td>
+                        <td>${escapeHtml(assignedLabHours)}</td>
+                        <td>${escapeHtml(assignedLectureHours)}</td>
+                        <td>${escapeHtml(extraUnits)}</td>
                         <td>${escapeHtml(
-                            (Number(user.total_lab_units) || 0) +
-                            (Number(user.total_lec_units) || 0) +
-                            (Number(user.total_extra_units) || 0)
+                            Number((
+                                assignedLabHours +
+                                assignedLectureHours +
+                                extraUnits
+                            ).toFixed(2))
                         )}</td>
                         <td>
                             <button
@@ -2346,6 +2360,7 @@
             sectionSelect.value =
                 searchResult.id;
             sectionSelect.disabled = true;
+            filterSubjectsBySection();
         }
         selectedSubject = null;
         document.getElementById(
@@ -3235,7 +3250,10 @@
         });
     }
 
-    function populateSubjectSelect(subjects = subjectList) {
+    function populateSubjectSelect(
+        subjects = subjectList,
+        selectedSubjectId = ''
+    ) {
         const select = document.getElementById('sessionSubject');
         select.innerHTML =
             '<option value="">Select Subject</option>';
@@ -3251,9 +3269,17 @@
                 subject.sub_year;
             select.appendChild(option);
         });
+        if (subjects.some(subject =>
+            String(subject.id) === String(selectedSubjectId)
+        )) {
+            select.value = String(selectedSubjectId);
+        }
     }
 
-    function populateSectionSelect(sections = sectionList) {
+    function populateSectionSelect(
+        sections = sectionList,
+        selectedSectionId = ''
+    ) {
         const select =
             document.getElementById('sessionSection');
         select.innerHTML =
@@ -3272,6 +3298,11 @@
                 section.sec_year;
             select.appendChild(option);
         });
+        if (sections.some(section =>
+            String(section.id) === String(selectedSectionId)
+        )) {
+            select.value = String(selectedSectionId);
+        }
     }
 
     function filterSectionsBySubject() {
@@ -3279,9 +3310,10 @@
             document.getElementById('sessionSubject').value;
         const sectionSelect =
             document.getElementById('sessionSection');
+        const selectedSectionId = sectionSelect.value;
         // Nothing selected
         if (!subjectId) {
-            populateSectionSelect();
+            populateSectionSelect(sectionList, selectedSectionId);
             return;
         }
         const selectedSubject =
@@ -3290,7 +3322,7 @@
                 String(subjectId)
             );
         if (!selectedSubject) {
-            populateSectionSelect();
+            populateSectionSelect(sectionList, selectedSectionId);
             return;
         }
         const subjectProgram =
@@ -3314,14 +3346,16 @@
                     sectionYear === subjectYear
                 );
             });
-        populateSectionSelect(matchingSections);
+        populateSectionSelect(matchingSections, selectedSectionId);
     }
 
     function filterSubjectsBySection() {
         const sectionId =
             document.getElementById('sessionSection').value;
+        const selectedSubjectId =
+            document.getElementById('sessionSubject').value;
         if (!sectionId) {
-            populateSubjectSelect();
+            populateSubjectSelect(subjectList, selectedSubjectId);
             return;
         }
         const selectedSection =
@@ -3330,7 +3364,7 @@
                 String(sectionId)
             );
         if (!selectedSection) {
-            populateSubjectSelect();
+            populateSubjectSelect(subjectList, selectedSubjectId);
             return;
         }
         const sectionProgram =
@@ -3354,7 +3388,7 @@
                     subjectYear === sectionYear
                 );
             });
-        populateSubjectSelect(matchingSubjects);
+        populateSubjectSelect(matchingSubjects, selectedSubjectId);
     }
 
     function updateSubjectInformation() {
@@ -3379,6 +3413,7 @@
         document.getElementById(
             'remainingUnits'
         ).textContent = '0';
+        refreshScheduledSubjectHours();
         return;
     }
     information.textContent =
@@ -3386,6 +3421,7 @@
         `Laboratory: ${selectedSubject.sub_lab_hours ?? 0} hours | ` +
         `Total: ${selectedSubject.sub_total_hours ?? 0} hours`;
     updateSessionHours();
+    refreshScheduledSubjectHours();
 }
 
     function getSubjectHours(subject) {
@@ -3405,6 +3441,82 @@
         subject.sub_lec_hours ?? 0
     );
 }
+
+    async function refreshScheduledSubjectHours() {
+        const requestId = ++subjectHoursRequestId;
+        const subjectId =
+            document.getElementById('sessionSubject').value;
+        const sectionId =
+            document.getElementById('sessionSection').value;
+
+        if (!subjectId || !sectionId) {
+            scheduledSubjectHours = { lab: 0, lecture: 0 };
+            scheduledSubjectHoursLoaded = true;
+            updateSessionHours();
+            return;
+        }
+
+        scheduledSubjectHoursLoaded = false;
+        updateSessionHours();
+
+        const url =
+            '<?= base_url('get_subject_session_hours') ?>/' +
+            encodeURIComponent(subjectId) +
+            '/' +
+            encodeURIComponent(sectionId) +
+            (editingSessionId
+                ? '?exclude_session_id=' +
+                    encodeURIComponent(editingSessionId)
+                : '');
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            const result = await response.json();
+            if (!response.ok || !result.success) {
+                throw new Error(
+                    result.message ||
+                    'Unable to load previously scheduled subject hours.'
+                );
+            }
+
+            const labHours = Number(result.hours?.lab);
+            const lectureHours = Number(result.hours?.lecture);
+            if (!Number.isFinite(labHours) || !Number.isFinite(lectureHours)) {
+                throw new Error(
+                    'The server returned invalid scheduled subject hours.'
+                );
+            }
+            if (requestId !== subjectHoursRequestId) {
+                return;
+            }
+
+            scheduledSubjectHours = {
+                lab: labHours,
+                lecture: lectureHours
+            };
+            scheduledSubjectHoursLoaded = true;
+            updateSessionHours();
+        } catch (error) {
+            if (requestId !== subjectHoursRequestId) {
+                return;
+            }
+            scheduledSubjectHoursLoaded = false;
+            updateSessionHours();
+            console.error(
+                'Error loading scheduled subject hours:',
+                error
+            );
+            showSessionError(
+                error.message ||
+                'Unable to load previously scheduled subject hours.'
+            );
+        }
+    }
 
     function calculateSubjectTotalHours() {
         const lectureHours =
@@ -3451,16 +3563,31 @@
         subjectHoursElement.textContent = '0';
         sessionUnitsElement.textContent = '0';
         remainingUnitsElement.textContent = '0';
+        clearSessionError();
         return;
     }
     const subjectHours =
         getSubjectHours(selectedSubject);
     subjectHoursElement.textContent =
         subjectHours;
+    if (!scheduledSubjectHoursLoaded) {
+        sessionUnitsElement.textContent = '—';
+        remainingUnitsElement.textContent = 'Loading...';
+        return;
+    }
+    const sessionType =
+        document.getElementById('sessionType').value;
+    const previouslyScheduledHours =
+        sessionType === 'Lab'
+            ? scheduledSubjectHours.lab
+            : scheduledSubjectHours.lecture;
+    const availableHours =
+        Math.max(0, subjectHours - previouslyScheduledHours);
     if (!start || !end) {
         sessionUnitsElement.textContent = '0';
         remainingUnitsElement.textContent =
-            subjectHours;
+            Number(availableHours.toFixed(2));
+        clearSessionError();
         return;
     }
     const startMinutes =
@@ -3475,7 +3602,7 @@
         sessionUnitsElement.textContent =
             '0';
         remainingUnitsElement.textContent =
-            subjectHours;
+            Number(availableHours.toFixed(2));
         showSessionError(
             'End time must be later than start time.'
         );
@@ -3490,18 +3617,14 @@
             ? sessionHours
             : sessionHours.toFixed(2);
     const remaining =
-        subjectHours - sessionHours;
+        availableHours - sessionHours;
     remainingUnitsElement.textContent =
         remaining >= 0
-            ? (
-                Number.isInteger(remaining)
-                    ? remaining
-                    : remaining.toFixed(2)
-            )
+            ? Number(remaining.toFixed(2))
             : '0';
-    if (sessionHours > subjectHours) {
+    if (sessionHours > availableHours) {
         showSessionError(
-            `Session is ${sessionHours} hours, but this subject only has ${subjectHours} available hours for this session type.`
+            `This subject and section already have ${previouslyScheduledHours} hours scheduled; only ${availableHours} hours remain.`
         );
     } else {
         clearSessionError();
@@ -3512,6 +3635,12 @@
         if (!selectedSubject) {
             showSessionError(
                 'Please select a subject.'
+            );
+            return false;
+        }
+        if (!scheduledSubjectHoursLoaded) {
+            showSessionError(
+                'Previously scheduled subject hours are still loading or unavailable. Please try again.'
             );
             return false;
         }
@@ -3542,13 +3671,27 @@
             );
             return false;
         }
+        if (startMinutes % 30 !== 0 || endMinutes % 30 !== 0) {
+            showSessionError(
+                'Start and end times must use 30-minute intervals.'
+            );
+            return false;
+        }
         const sessionHours =
             (endMinutes - startMinutes) / 60;
         const subjectHours =
             getSubjectHours(selectedSubject);
-        if (sessionHours > subjectHours) {
+        const sessionType =
+            document.getElementById('sessionType').value;
+        const previouslyScheduledHours =
+            sessionType === 'Lab'
+                ? scheduledSubjectHours.lab
+                : scheduledSubjectHours.lecture;
+        const availableHours =
+            Math.max(0, subjectHours - previouslyScheduledHours);
+        if (sessionHours > availableHours) {
             showSessionError(
-                `Session requires ${sessionHours} hours, but only ${subjectHours} hours are available.`
+                `This subject and section already have ${previouslyScheduledHours} hours scheduled; only ${availableHours} hours remain.`
             );
             return false;
         }

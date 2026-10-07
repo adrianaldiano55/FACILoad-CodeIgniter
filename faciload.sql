@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `FACILoad`.`sections` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `sec_code` VARCHAR(45) NOT NULL,
   `sec_name` VARCHAR(45) NOT NULL,
-  `sec_prog` INT NOT NULL,
+  `sec_prog` VARCHAR(45) NOT NULL,
   `sec_size` INT NOT NULL,
   `sec_year` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))

@@ -29,6 +29,10 @@ $routes->group('', ['filter' => 'auth:admin'], static function ($routes): void {
     $routes->get('show_faculty', 'Dashboard::show_faculty');
     $routes->get('show_sections', 'Dashboard::show_sections');
     $routes->get('show_room', 'Dashboard::show_room');
+    $routes->get(
+        'get_subject_session_hours/(:num)/(:num)',
+        'Dashboard::get_subject_session_hours/$1/$2'
+    );
 
 // SESSION MANAGEMENT
 $routes->get(

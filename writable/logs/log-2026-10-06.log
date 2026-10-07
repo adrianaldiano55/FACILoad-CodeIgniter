@@ -1,0 +1,107 @@
+DEBUG - 2026-10-06 10:47:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-06 10:47:46 --> CSRF token verified.
+ERROR - 2026-10-06 10:47:46 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'faciload', 3306, '', 0)
+#1 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\ASUS\Desktop\Faciload\Faciload\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\Users\ASUS\Desktop\Faciload\Faciload\app\Controllers\Auth.php(29): CodeIgniter\BaseModel->first()
+#7 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(974): App\Controllers\Auth->attemptLogin()
+#8 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\Users\ASUS\Desktop\Faciload\Faciload\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\Users\ASUS\Desktop\Faciload\Faciload\system\rewrite.php(44): require_once('C:\\Users\\ASUS\\D...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: NO) in C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\Users\ASUS\Desktop\Faciload\Faciload\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\Users\ASUS\Desktop\Faciload\Faciload\app\Controllers\Auth.php(29): CodeIgniter\BaseModel->first()
+#6 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(974): App\Controllers\Auth->attemptLogin()
+#7 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\Users\ASUS\Desktop\Faciload\Faciload\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\Users\ASUS\Desktop\Faciload\Faciload\system\rewrite.php(44): require_once('C:\\Users\\ASUS\\D...')
+#13 {main}
+CRITICAL - 2026-10-06 10:47:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE   (
+`login_id` = :login_id:
+OR `username` = :username:
+ )
+AND `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\Auth.php(29): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->attemptLogin()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-10-06 10:48:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-06 10:48:10 --> CSRF token verified.
+DEBUG - 2026-10-06 10:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 10:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:18:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-10-06 11:18:13 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "unauthorized.php"
+[Method: GET, Route: unauthorized]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('unauthorized.php')
+ 2 SYSTEMPATH\Common.php(1268): CodeIgniter\View\View->render('unauthorized', [], true)
+ 3 APPPATH\Controllers\Home.php(14): view('unauthorized')
+ 4 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Home->unauthorized()
+ 5 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-10-06 11:18:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:18:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:18:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-06 11:18:40 --> CSRF token verified.
+DEBUG - 2026-10-06 11:18:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:18:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:23:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:24:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:24:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:24:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-06 11:24:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
