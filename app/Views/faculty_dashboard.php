@@ -191,8 +191,8 @@
             background: #f8f9fa;
         }
 
+        /* Base style for schedule items (color applied inline via JS) */
         .schedule-item {
-            background: #eee6f8;
             color: #3b185f;
             border-left: 4px solid #3b185f;
             border-radius: 6px;
@@ -203,7 +203,7 @@
         }
 
         .schedule-item:hover {
-            background: #e1d5ef;
+            filter: brightness(0.95);
         }
 
         .schedule-subject {
@@ -657,6 +657,38 @@
 <script>
     let facultySchedule = [];
 
+    /* =========================================================
+    RANDOM SESSION COLORS
+    ========================================================= */
+    const SESSION_COLORS = [
+        '#FFC0CB', // pink
+        '#FFD9A0', // peach
+        '#FFF3A0', // light yellow
+        '#C8F0C8', // light green
+        '#A0E7E5', // aqua
+        '#B4D4FF', // light blue
+        '#D6C6F0', // lavender
+        '#F5B7D0', // rose
+        '#F7C6A3', // apricot
+        '#B5EAD7', // mint
+        '#FFB3BA', // salmon pink
+        '#C7CEEA'  // periwinkle
+    ];
+
+    const sessionColorCache = new Map();
+
+    function getSessionColor(sessionId) {
+        const key = String(sessionId);
+        if (sessionColorCache.has(key)) {
+            return sessionColorCache.get(key);
+        }
+        const color =
+            SESSION_COLORS[
+                Math.floor(Math.random() * SESSION_COLORS.length)
+            ];
+        sessionColorCache.set(key, color);
+        return color;
+    }
 
     /* =========================================================
     PAGE NAVIGATION
@@ -795,6 +827,9 @@
 
             const item = document.createElement('div');
             item.className = 'schedule-item';
+            // Assign a stable random color per session
+            const sessionColor = getSessionColor(session.id);
+            item.style.backgroundColor = sessionColor;
             item.innerHTML = `
                 <div class="schedule-subject">
                     ${escapeHtml(session.sub_name || 'Subject')}
