@@ -200,7 +200,6 @@
             margin: 2px;
             font-size: 12px;
             cursor: pointer;
-            height: 100%;
         }
 
         .schedule-item:hover {
@@ -726,6 +725,14 @@
         const startMinutes = 7 * 60;
         const endMinutes = 20 * 60 + 30;
         const interval = 30;
+        const days = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday'
+        ];
         for (
             let minutes = startMinutes;
             minutes < endMinutes;
@@ -735,60 +742,107 @@
             const timeCell = document.createElement('td');
             timeCell.className = 'time-column';
             timeCell.innerText =
-                formatTime(minutes);
+                `${formatTime(minutes)} - ${formatTime(
+                    Math.min(minutes + interval, endMinutes)
+                )}`;
             row.appendChild(timeCell);
-            const days = [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
-            ];
             days.forEach(day => {
                 const cell = document.createElement('td');
-                const sessions = facultySchedule.filter(session => {
-                    return session.ses_day === day &&
-                        timeToMinutes(session.ses_start) === minutes;
-                });
-                sessions.forEach(session => {
-                    const item = document.createElement('div');
-                    item.className = 'schedule-item';
-                    item.innerHTML = `
-                        <div class="schedule-subject">
-                            ${escapeHtml(
-                                session.sub_name || 'Subject'
-                            )}
-                        </div>
-                        <div class="schedule-details">
-                            ${escapeHtml(
-                                session.sec_code || 'Section'
-                            )}
-                        </div>
-                        <div class="schedule-details">
-                            Room:
-                            ${escapeHtml(
-                                session.room_name || 'N/A'
-                            )}
-                        </div>
-                        <div class="schedule-details">
-                            ${escapeHtml(
-                                session.ses_type || ''
-                            )}
-                        </div>
-                    `;
-                    item.addEventListener(
-                        'click',
-                        function () {
-                            viewSession(session);
-                        }
-                    );
-                    cell.appendChild(item);
-                });
+                cell.dataset.day = day;
                 row.appendChild(cell);
             });
             body.appendChild(row);
         }
+
+        const rows = Array.from(body.rows);
+        const scheduleItems = [];
+        facultySchedule.forEach(session => {
+            const dayIndex = days.indexOf(session.ses_day);
+            const sessionStart = timeToMinutes(session.ses_start);
+            const sessionEnd = timeToMinutes(session.ses_end);
+            const startOffset = sessionStart - startMinutes;
+            if (
+                dayIndex === -1 ||
+                startOffset < 0 ||
+                startOffset % interval !== 0 ||
+                sessionEnd <= sessionStart
+            ) {
+                console.warn(
+                    'Skipping session that does not fit the timetable:',
+                    session
+                );
+                return;
+            }
+
+            const startRowIndex = startOffset / interval;
+            const startRow = rows[startRowIndex];
+            const targetCell = startRow?.querySelector(
+                `td[data-day="${session.ses_day}"]`
+            );
+            if (!targetCell) {
+                console.warn(
+                    'Could not find timetable cell for session:',
+                    session
+                );
+                return;
+            }
+
+            const rowSpan = Math.min(
+                Math.ceil((sessionEnd - sessionStart) / interval),
+                rows.length - startRowIndex
+            );
+            targetCell.rowSpan = rowSpan;
+
+            const item = document.createElement('div');
+            item.className = 'schedule-item';
+            item.innerHTML = `
+                <div class="schedule-subject">
+                    ${escapeHtml(session.sub_name || 'Subject')}
+                </div>
+                <div class="schedule-details">
+                    ${escapeHtml(session.sec_code || 'Section')}
+                </div>
+                <div class="schedule-details">
+                    Room: ${escapeHtml(session.room_name || 'N/A')}
+                </div>
+                <div class="schedule-details">
+                    ${escapeHtml(session.ses_type || '')}
+                </div>
+                <div class="schedule-details">
+                    ${escapeHtml(formatDisplayTime(session.ses_start))}
+                    -
+                    ${escapeHtml(formatDisplayTime(session.ses_end))}
+                </div>
+            `;
+            item.addEventListener('click', function () {
+                viewSession(session);
+            });
+            targetCell.appendChild(item);
+            scheduleItems.push({
+                cell: targetCell,
+                item: item
+            });
+
+            for (let offset = 1; offset < rowSpan; offset++) {
+                const coveredCell = rows[startRowIndex + offset]
+                    .querySelector(`td[data-day="${session.ses_day}"]`);
+                coveredCell?.remove();
+            }
+        });
+
+        scheduleItems.forEach(({ cell, item }) => {
+            const cellStyle = window.getComputedStyle(cell);
+            const itemStyle = window.getComputedStyle(item);
+            const cellSpacing =
+                parseFloat(cellStyle.paddingTop) +
+                parseFloat(cellStyle.paddingBottom);
+            const itemSpacing =
+                parseFloat(itemStyle.marginTop) +
+                parseFloat(itemStyle.marginBottom);
+            item.style.height = `${
+                Math.max(0, cell.clientHeight - cellSpacing - itemSpacing)
+            }px`;
+        });
     }
 
     /* =========================================================
