@@ -830,9 +830,17 @@
             // Assign a stable random color per session
             const sessionColor = getSessionColor(session.id);
             item.style.backgroundColor = sessionColor;
+            const sessionWarnings = getSessionWarnings(session);
+            const warningIcon = sessionWarnings.length
+                ? `<i class="bi bi-exclamation-triangle-fill text-danger ms-1"
+                    role="img"
+                    aria-label="Schedule warning"
+                    title="${escapeHtml(sessionWarnings.join(' '))}"></i>`
+                : '';
             item.innerHTML = `
                 <div class="schedule-subject">
                     ${escapeHtml(session.sub_name || 'Subject')}
+                    ${warningIcon}
                 </div>
                 <div class="schedule-details">
                     ${escapeHtml(session.sec_code || 'Section')}
@@ -1020,6 +1028,50 @@
     /* =========================================================
     HTML ESCAPE
     ========================================================= */
+    function getSessionWarnings(session) {
+        const warnings = [];
+        const roomType =
+            String(session.room_type ?? '').trim().toLowerCase();
+        const isLaboratoryRoom =
+            ['lab', 'laboratory'].includes(roomType);
+        const isLectureRoom =
+            ['lecture', 'lecture room'].includes(roomType);
+        const isUniversalRoom = roomType === 'universal';
+        if (
+            !isUniversalRoom &&
+            (
+                (session.ses_type === 'Lab' && !isLaboratoryRoom) ||
+                (session.ses_type === 'Lecture' && !isLectureRoom)
+            )
+        ) {
+            const requiredRoom =
+                session.ses_type === 'Lab'
+                    ? 'laboratory'
+                    : 'lecture';
+            warnings.push(
+                `${session.ses_type} sessions should be scheduled in a ${requiredRoom} room.`
+            );
+        }
+
+        const roomCapacity = Number(session.room_size);
+        const sectionSize = Number(session.sec_size);
+        if (
+            !Number.isInteger(roomCapacity) ||
+            roomCapacity < 1 ||
+            !Number.isInteger(sectionSize) ||
+            sectionSize < 1
+        ) {
+            warnings.push(
+                'Room capacity or section size is invalid; verify the room and section details.'
+            );
+        } else if (roomCapacity < sectionSize) {
+            warnings.push(
+                `The selected room holds ${roomCapacity} students, but this section has ${sectionSize}.`
+            );
+        }
+        return warnings;
+    }
+
     function escapeHtml(value) {
         if (value === null || value === undefined) {
             return '';

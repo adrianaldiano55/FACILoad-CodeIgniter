@@ -171,6 +171,176 @@ private function getScheduledSubjectHours(
     ];
 }
 
+private function getRoomSessionWarnings(
+    array $room,
+    array $section,
+    string $sessionType
+): array {
+    $warnings = [];
+    $roomType = strtolower(trim((string) ($room['room_type'] ?? '')));
+    $isLaboratoryRoom = in_array(
+        $roomType,
+        ['lab', 'laboratory'],
+        true
+    );
+    $isLectureRoom = in_array(
+        $roomType,
+        ['lecture', 'lecture room'],
+        true
+    );
+    $isUniversalRoom = $roomType === 'universal';
+
+    if (
+        !$isUniversalRoom &&
+        (
+            ($sessionType === 'Lab' && !$isLaboratoryRoom) ||
+            ($sessionType === 'Lecture' && !$isLectureRoom)
+        )
+    ) {
+        $requiredRoom = $sessionType === 'Lab'
+            ? 'laboratory'
+            : 'lecture';
+        $warnings[] =
+            "{$sessionType} sessions should be scheduled in a {$requiredRoom} room.";
+    }
+
+    $roomCapacity = filter_var(
+        trim((string) ($room['room_size'] ?? '')),
+        FILTER_VALIDATE_INT
+    );
+    $sectionSize = filter_var(
+        trim((string) ($section['sec_size'] ?? '')),
+        FILTER_VALIDATE_INT
+    );
+
+    if (
+        $roomCapacity === false ||
+        $roomCapacity < 1 ||
+        $sectionSize === false ||
+        $sectionSize < 1
+    ) {
+        $warnings[] =
+            'Room capacity or section size is invalid; verify the room and section details.';
+    } elseif ($roomCapacity < $sectionSize) {
+        $warnings[] =
+            "The selected room holds {$roomCapacity} students, but this section has {$sectionSize}.";
+    }
+
+    return $warnings;
+}
+
+private function normalizeRoomAvailability(
+    string $start,
+    string $end
+): ?string {
+    if (
+        !preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d$/', $start) ||
+        !preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d$/', $end)
+    ) {
+        return null;
+    }
+
+    [$startHour, $startMinute] = array_map('intval', explode(':', $start));
+    [$endHour, $endMinute] = array_map('intval', explode(':', $end));
+    $startMinutes = ($startHour * 60) + $startMinute;
+    $endMinutes = ($endHour * 60) + $endMinute;
+
+    if (
+        $startMinutes < 420 ||
+        $endMinutes > 1230 ||
+        $startMinutes % 30 !== 0 ||
+        $endMinutes % 30 !== 0 ||
+        $endMinutes <= $startMinutes
+    ) {
+        return null;
+    }
+
+    return "{$start} - {$end}";
+}
+
+private function getRoomAvailabilityMinutes(string $roomTime): ?array
+{
+    $match = [];
+    if (!preg_match(
+        '/^\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*$/i',
+        $roomTime,
+        $match
+    )) {
+        return null;
+    }
+
+    $toMinutes = static function (
+        string $hourValue,
+        string $minuteValue,
+        string $period
+    ): ?int {
+        $hour = (int) $hourValue;
+        $minute = (int) $minuteValue;
+        $period = strtoupper($period);
+
+        if ($minute > 59) {
+            return null;
+        }
+        if ($period !== '') {
+            if ($hour < 1 || $hour > 12) {
+                return null;
+            }
+            $hour %= 12;
+            if ($period === 'PM') {
+                $hour += 12;
+            }
+        } elseif ($hour > 23) {
+            return null;
+        }
+
+        return ($hour * 60) + $minute;
+    };
+
+    $startMinutes = $toMinutes($match[1], $match[2], $match[3] ?? '');
+    $endMinutes = $toMinutes($match[4], $match[5], $match[6] ?? '');
+    if (
+        $startMinutes === null ||
+        $endMinutes === null ||
+        $endMinutes <= $startMinutes
+    ) {
+        return null;
+    }
+
+    return [
+        'start' => $startMinutes,
+        'end' => $endMinutes
+    ];
+}
+
+private function getRoomAvailabilityError(
+    array $room,
+    int $sessionStartMinutes,
+    int $sessionEndMinutes
+): ?string {
+    $availability = $this->getRoomAvailabilityMinutes(
+        (string) ($room['room_time'] ?? '')
+    );
+    if ($availability === null) {
+        return 'The selected room has invalid availability hours. Please update its availability.';
+    }
+
+    if (
+        $sessionStartMinutes < $availability['start'] ||
+        $sessionEndMinutes > $availability['end']
+    ) {
+        $formatTime = static function (int $minutes): string {
+            return sprintf('%02d:%02d', intdiv($minutes, 60), $minutes % 60);
+        };
+
+        return 'The selected room is available from ' .
+            $formatTime($availability['start']) . ' to ' .
+            $formatTime($availability['end']) .
+            '; schedule the session entirely within that range.';
+    }
+
+    return null;
+}
+
 // SCHEDULE MANAGEMENT
 public function show_faculty_schedule($faculty_id = null)
 {
@@ -209,7 +379,10 @@ public function show_faculty_schedule($faculty_id = null)
         sections.sec_name,
 
         rooms.room_code,
-        rooms.room_name
+        rooms.room_name,
+        rooms.room_type,
+        rooms.room_size,
+        sections.sec_size
     ');
     $builder->join(
         'users',
@@ -283,7 +456,10 @@ public function show_room_schedule($room_id = null)
         sections.sec_name,
 
         rooms.room_code,
-        rooms.room_name
+        rooms.room_name,
+        rooms.room_type,
+        rooms.room_size,
+        sections.sec_size
     ');
     $builder->join(
         'users',
@@ -356,7 +532,10 @@ public function show_section_schedule($section_id = null)
         sections.sec_name,
 
         rooms.room_code,
-        rooms.room_name
+        rooms.room_name,
+        rooms.room_type,
+        rooms.room_size,
+        sections.sec_size
     ');
     $builder->join(
         'users',
@@ -592,6 +771,26 @@ public function create_session()
                         'Room not found.'
                 ]);
         }
+        $roomAvailabilityError =
+            $this->getRoomAvailabilityError(
+                $room,
+                $startMinutes,
+                $endMinutes
+            );
+        if ($roomAvailabilityError !== null) {
+            return $this->response
+                ->setStatusCode(409)
+                ->setJSON([
+                    'success' => false,
+                    'message' => $roomAvailabilityError
+                ]);
+        }
+        $roomWarnings =
+            $this->getRoomSessionWarnings(
+                $room,
+                $section,
+                $data['ses_type']
+            );
         /*
         * Determine available subject hours
         */
@@ -765,7 +964,8 @@ public function create_session()
             ->setJSON([
                 'success' => true,
                 'message' =>
-                    'Session created successfully.'
+                    'Session created successfully.',
+                'warnings' => $roomWarnings
             ]);
     }
 
@@ -993,6 +1193,26 @@ public function update_session($id = null)
                     'Room not found.'
             ]);
     }
+    $roomAvailabilityError =
+        $this->getRoomAvailabilityError(
+            $room,
+            $startMinutes,
+            $endMinutes
+        );
+    if ($roomAvailabilityError !== null) {
+        return $this->response
+            ->setStatusCode(409)
+            ->setJSON([
+                'success' => false,
+                'message' => $roomAvailabilityError
+            ]);
+    }
+    $roomWarnings =
+        $this->getRoomSessionWarnings(
+            $room,
+            $section,
+            $data['ses_type']
+        );
     /*
     * Determine available subject hours
     */
@@ -1152,7 +1372,8 @@ public function update_session($id = null)
     }
     return $this->response->setJSON([
         'success' => true,
-        'message' => 'Session updated successfully.'
+        'message' => 'Session updated successfully.',
+        'warnings' => $roomWarnings
     ]);
 }
 
@@ -1652,14 +1873,27 @@ public function get_room($id = null)
 public function create_room()
 {
     $roomModel = new RoomsModel();
+    $roomTime = $this->normalizeRoomAvailability(
+        trim((string) $this->request->getPost('room_time_start')),
+        trim((string) $this->request->getPost('room_time_end'))
+    );
 
     $data = [
         'room_code'   => trim($this->request->getPost('room_code')),
         'room_name'   => trim($this->request->getPost('room_name')),
         'room_type'   => trim($this->request->getPost('room_type')),
-        'room_time'   => trim($this->request->getPost('room_time')),
+        'room_time'   => $roomTime ?? '',
         'room_size'   => $this->request->getPost('room_size')
     ];
+
+    if ($roomTime === null) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Enter room availability start and end times in 30-minute intervals between 7:00 AM and 8:30 PM, with the end after the start.'
+            ]);
+    }
 
     if (
         $data['room_code'] === '' ||
@@ -1720,13 +1954,27 @@ public function update_room($id = null)
             ]);
     }
 
+    $roomTime = $this->normalizeRoomAvailability(
+        trim((string) $this->request->getPost('room_time_start')),
+        trim((string) $this->request->getPost('room_time_end'))
+    );
+
     $data = [
         'room_code'   => trim($this->request->getPost('room_code')),
         'room_name'   => trim($this->request->getPost('room_name')),
         'room_type'   => trim($this->request->getPost('room_type')),
-        'room_time'   => trim($this->request->getPost('room_time')),
+        'room_time'   => $roomTime ?? '',
         'room_size'   => $this->request->getPost('room_size')
     ];
+
+    if ($roomTime === null) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON([
+                'success' => false,
+                'message' => 'Enter room availability start and end times in 30-minute intervals between 7:00 AM and 8:30 PM, with the end after the start.'
+            ]);
+    }
 
     if (
         $data['room_code'] === '' ||
@@ -1826,7 +2074,11 @@ public function get_my_schedule()
         subjects.sub_name,
         sections.sec_code,
         sections.sec_name,
-        rooms.room_name
+        sections.sec_size,
+
+        rooms.room_name,
+        rooms.room_type,
+        rooms.room_size
     ');
     $builder->join(
         'subjects',

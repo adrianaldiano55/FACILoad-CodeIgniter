@@ -945,23 +945,42 @@
                                             <option value="Laboratory">
                                                 Laboratory
                                             </option>
+                                            <option value="Universal">
+                                                Universal (Lecture and Laboratory)
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <!-- Room Availability -->
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <label
-                                            for="roomTime"
+                                            for="roomTimeStart"
                                             class="form-label">
-                                            Room Availability
+                                            Available From
                                         </label>
                                         <input
-                                            type="text"
-                                            id="roomTime"
+                                            type="time"
+                                            id="roomTimeStart"
                                             class="form-control"
-                                            placeholder="e.g. 7:00 AM - 8:30 PM"
-                                            maxlength="45"
+                                            min="07:00"
+                                            max="20:30"
+                                            step="1800"
+                                            required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label
+                                            for="roomTimeEnd"
+                                            class="form-label">
+                                            Available Until
+                                        </label>
+                                        <input
+                                            type="time"
+                                            id="roomTimeEnd"
+                                            class="form-control"
+                                            min="07:00"
+                                            max="20:30"
+                                            step="1800"
                                             required>
                                     </div>
                                     <!-- Room Size -->
@@ -2219,9 +2238,16 @@
             // Assign a stable random color per session
             const sessionColor = getSessionColor(session.id);
             targetCell.style.backgroundColor = sessionColor;
+            const sessionWarnings = getSessionWarnings(session);
+            const warningIcon = sessionWarnings.length
+                ? `<i class="bi bi-exclamation-triangle-fill text-danger ms-1"
+                    role="img"
+                    aria-label="Schedule warning"
+                    title="${escapeHtml(sessionWarnings.join(' '))}"></i>`
+                : '';
             targetCell.innerHTML = `
                 <div class="schedule-subject">
-                    <strong>Subject:</strong>
+                    <strong>Subject:${warningIcon}</strong>
                     ${escapeHtml(session.sub_name)}
                 </div>
                 <div class="schedule-section">
@@ -3137,6 +3163,44 @@
         ).show();
     }
 
+    function parseRoomAvailability(value) {
+        const match = String(value).match(
+            /^\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*$/i
+        );
+        if (!match) {
+            return null;
+        }
+
+        const toInputTime = (hourValue, minuteValue, period) => {
+            let hour = Number(hourValue);
+            const minute = Number(minuteValue);
+            if (
+                !Number.isInteger(hour) ||
+                !Number.isInteger(minute) ||
+                minute < 0 ||
+                minute > 59
+            ) {
+                return null;
+            }
+            if (period) {
+                if (hour < 1 || hour > 12) {
+                    return null;
+                }
+                hour = hour % 12;
+                if (period.toUpperCase() === 'PM') {
+                    hour += 12;
+                }
+            } else if (hour < 0 || hour > 23) {
+                return null;
+            }
+            return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+        };
+
+        const start = toInputTime(match[1], match[2], match[3]);
+        const end = toInputTime(match[4], match[5], match[6]);
+        return start && end ? { start, end } : null;
+    }
+
     function clearRoomForm() {
 
         document.getElementById('roomId').value = '';
@@ -3147,7 +3211,9 @@
 
         document.getElementById('roomType').value = '';
 
-        document.getElementById('roomTime').value = '';
+        document.getElementById('roomTimeStart').value = '';
+
+        document.getElementById('roomTimeEnd').value = '';
 
         document.getElementById('roomSize').value = '';
     }
@@ -3166,8 +3232,11 @@
         const roomType =
             document.getElementById('roomType').value;
 
-        const roomTime =
-            document.getElementById('roomTime').value.trim();
+        const roomTimeStart =
+            document.getElementById('roomTimeStart').value;
+
+        const roomTimeEnd =
+            document.getElementById('roomTimeEnd').value;
 
         const roomSize =
             document.getElementById('roomSize').value;
@@ -3180,12 +3249,18 @@
             roomCode === '' ||
             roomName === '' ||
             roomType === '' ||
-            roomTime === '' ||
+            roomTimeStart === '' ||
+            roomTimeEnd === '' ||
             roomSize === ''
         ) {
 
             alert('Please complete all required room fields.');
 
+            return;
+        }
+
+        if (timeToMinutes(roomTimeEnd) <= timeToMinutes(roomTimeStart)) {
+            alert('Room availability end time must be later than start time.');
             return;
         }
 
@@ -3197,7 +3272,9 @@
 
         formData.append('room_type', roomType);
 
-        formData.append('room_time', roomTime);
+        formData.append('room_time_start', roomTimeStart);
+
+        formData.append('room_time_end', roomTimeEnd);
 
         formData.append('room_size', roomSize);
 
@@ -3324,8 +3401,13 @@
             document.getElementById('roomType').value =
                 room.room_type ?? '';
 
-            document.getElementById('roomTime').value =
-                room.room_time ?? '';
+            const roomAvailability =
+                parseRoomAvailability(room.room_time ?? '');
+            document.getElementById('roomTimeStart').value =
+                roomAvailability?.start ?? '';
+
+            document.getElementById('roomTimeEnd').value =
+                roomAvailability?.end ?? '';
 
             document.getElementById('roomSize').value =
                 room.room_size ?? '';
@@ -3982,11 +4064,15 @@
                     );
                     return;
                 }
-                alert(
-                    editingSessionId
-                        ? 'Session successfully updated.'
-                        : 'Session successfully created.'
-                );
+                const successMessage = editingSessionId
+                    ? 'Session successfully updated.'
+                    : 'Session successfully created.';
+                const warnings = Array.isArray(result.warnings)
+                    ? result.warnings
+                    : [];
+                alert(warnings.length
+                    ? `${successMessage}\n\nWarning:\n- ${warnings.join('\n- ')}`
+                    : successMessage);
                 document
                     .getElementById(
                         'addSessionForm'
@@ -4028,6 +4114,50 @@
     );
 
 // General Helpers
+    function getSessionWarnings(session) {
+        const warnings = [];
+        const roomType =
+            String(session.room_type ?? '').trim().toLowerCase();
+        const isLaboratoryRoom =
+            ['lab', 'laboratory'].includes(roomType);
+        const isLectureRoom =
+            ['lecture', 'lecture room'].includes(roomType);
+        const isUniversalRoom = roomType === 'universal';
+        if (
+            !isUniversalRoom &&
+            (
+                (session.ses_type === 'Lab' && !isLaboratoryRoom) ||
+                (session.ses_type === 'Lecture' && !isLectureRoom)
+            )
+        ) {
+            const requiredRoom =
+                session.ses_type === 'Lab'
+                    ? 'laboratory'
+                    : 'lecture';
+            warnings.push(
+                `${session.ses_type} sessions should be scheduled in a ${requiredRoom} room.`
+            );
+        }
+
+        const roomCapacity = Number(session.room_size);
+        const sectionSize = Number(session.sec_size);
+        if (
+            !Number.isInteger(roomCapacity) ||
+            roomCapacity < 1 ||
+            !Number.isInteger(sectionSize) ||
+            sectionSize < 1
+        ) {
+            warnings.push(
+                'Room capacity or section size is invalid; verify the room and section details.'
+            );
+        } else if (roomCapacity < sectionSize) {
+            warnings.push(
+                `The selected room holds ${roomCapacity} students, but this section has ${sectionSize}.`
+            );
+        }
+        return warnings;
+    }
+
     function escapeHtml(value) {
         if (
             value === null ||
