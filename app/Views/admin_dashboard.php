@@ -162,19 +162,26 @@
             border-top-right-radius: 12px;
         }
 
-        #scheduleTable { min-width: 1000px; } 
-        #scheduleTable th { vertical-align: middle; padding: 12px; } 
-        #scheduleTable td { height: 55px; min-width: 140px; vertical-align: middle; } 
+        #scheduleTable { width: 100%; min-width: 0; }
+        #scheduleTable table { width: 100%; table-layout: fixed; }
+        #scheduleTable th { vertical-align: middle; padding: 6px; font-size: 12px; }
+        #scheduleTable td { height: 42px; min-width: 0; padding: 3px; vertical-align: middle; overflow-wrap: anywhere; }
+        #scheduleTable th:first-child,
+        #scheduleTable td:first-child {
+            width: 140px;
+            white-space: nowrap;
+            font-size: 10px;
+        }
         /* Schedule session card — base style (color is set inline via JS) */
         .schedule-cell { 
             border-left: 4px solid #3b185f; 
             border-radius: 6px; 
             padding: 6px; 
-            font-size: 12px; 
+            font-size: 11px;
         } 
-        .schedule-subject { font-weight: bold; font-size: 14px; } 
-        .schedule-section { font-size: 12px; } 
-        .schedule-room { font-size: 12px; color: #777; }
+        .schedule-subject { font-weight: bold; font-size: 12px; }
+        .schedule-section { font-size: 10px; }
+        .schedule-room { font-size: 10px; color: #777; }
         .dashboard-card {
             border: none;
             border-radius: 12px;
@@ -220,6 +227,15 @@
         }
         .schedule-item:hover {
             background: #e1d5ef;
+        }
+        @media (max-width: 768px) {
+            #scheduleTable th { padding: 3px; font-size: 10px; }
+            #scheduleTable td { height: 36px; padding: 2px; }
+            #scheduleTable th:first-child,
+            #scheduleTable td:first-child { width: 115px; font-size: 9px; }
+            .schedule-cell { padding: 3px; font-size: 9px; }
+            .schedule-subject { font-size: 10px; }
+            .schedule-section, .schedule-room { font-size: 9px; }
         }
         .profile-label {
             color: #777;
@@ -594,7 +610,7 @@
                                 <table class="table table-bordered text-center align-middle">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th style="width: 120px;">Time</th>
+                                            <th style="width: 140px;">Time</th>
                                             <th>Monday</th>
                                             <th>Tuesday</th>
                                             <th>Wednesday</th>
@@ -742,10 +758,10 @@
                                             <option value="">
                                                 Select Department
                                             </option>
-                                            <option value="IT">
+                                            <option value="BSIT">
                                                 IT
                                             </option>
-                                            <option value="InT">
+                                            <option value="BSInT">
                                                 InT
                                             </option>
                                         </select>
@@ -1096,8 +1112,18 @@
                                         class="form-select"
                                         required>
                                         <option value="">Select Program</option>
-                                        <option value="BSIT">BSIT - Information Technology</option>
-                                        <option value="BSInT">BSInT - Industrial Technology</option>
+                                        <option value="BSIT">BSIT</option>
+                                        <option value="BSInTApp">BSInT - Apparel & Fashion Technology  </option>
+                                        <option value="BSInTArc">BSInT - Architectural Drafting Technology  </option>
+                                        <option value="BSInTAut">BSInT - Automotive Technology  </option>
+                                        <option value="BSInTCul">BSInT - Culinary Technology  </option>
+                                        <option value="BSInTElc">BSInT - Electrical Technology  </option>
+                                        <option value="BSInTElt">BSInT - Electronics Technology  </option>
+                                        <option value="BSInTRef">BSInT - Heating, Ventilation, Airconditioning & Refrigeration Technology  </option>
+                                        <option value="BSInTMec">BSInT - Mechanical Technology  </option>
+                                        <option value="BSInTPow">BSInT - Powerplant Technology  </option>
+                                        <option value="BSInTWel">BSInT - Welding & Fabrication Technology  </option>
+                                        <option value="General">General</option>
                                     </select>
                                 </div>
                                 <!-- YEAR AND SEMESTER -->
@@ -1302,8 +1328,17 @@
                                         class="form-select"
                                         required>
                                         <option value="">Select Program</option>
-                                        <option value="BSIT">BSIT - Information Technology</option>
-                                        <option value="BSInT">BSInT - Industrial Technology</option>
+                                        <option value="BSIT">BSIT</option>
+                                        <option value="BSInTApp">BSInT - Apparel & Fashion Technology  </option>
+                                        <option value="BSInTArc">BSInT - Architectural Drafting Technology  </option>
+                                        <option value="BSInTAut">BSInT - Automotive Technology  </option>
+                                        <option value="BSInTCul">BSInT - Culinary Technology  </option>
+                                        <option value="BSInTElc">BSInT - Electrical Technology  </option>
+                                        <option value="BSInTElt">BSInT - Electronics Technology  </option>
+                                        <option value="BSInTRef">BSInT - Heating, Ventilation, Airconditioning & Refrigeration Technology  </option>
+                                        <option value="BSInTMec">BSInT - Mechanical Technology  </option>
+                                        <option value="BSInTPow">BSInT - Powerplant Technology  </option>
+                                        <option value="BSInTWel">BSInT - Welding & Fabrication Technology  </option>
                                     </select>
                                 </div>
                                 <!-- SECTION SIZE -->
@@ -1376,6 +1411,29 @@
 
     let searchResult = null;
     let searchFilter = null;
+
+    const PROGRAM_TITLES = {
+        BSIT: 'BSIT - Information Technology',
+        BSInT: 'BSInT - Industrial Technology',
+        BSInTApp: 'BSInT - Apparel & Fashion Technology',
+        BSInTArc: 'BSInT - Architectural Drafting Technology',
+        BSInTAut: 'BSInT - Automotive Technology',
+        BSInTCul: 'BSInT - Culinary Technology',
+        BSInTElc: 'BSInT - Electrical Technology',
+        BSInTElt: 'BSInT - Electronics Technology',
+        BSInTRef: 'BSInT - Heating, Ventilation, Airconditioning & Refrigeration Technology',
+        BSInTMec: 'BSInT - Mechanical Technology',
+        BSInTPow: 'BSInT - Powerplant Technology',
+        BSInTWel: 'BSInT - Welding & Fabrication Technology',
+        IT: 'Information Technology',
+        InT: 'Industrial Technology',
+        General: 'General'
+    };
+
+    function getProgramTitle(programValue) {
+        const value = String(programValue || '').trim();
+        return PROGRAM_TITLES[value] || value;
+    }
 
     // Palette of soft colors for schedule sessions
     const SESSION_COLORS = [
@@ -1718,7 +1776,7 @@
                                 ${escapeHtml(subject.sub_name)}
                             </td>
                             <td>
-                                ${escapeHtml(subject.sub_program)}
+                                ${escapeHtml(getProgramTitle(subject.sub_program))}
                             </td>
                             <td>
                                 ${escapeHtml(subject.sub_year)}
@@ -1803,7 +1861,7 @@
                             ${escapeHtml(section.sec_name)}
                         </td>
                         <td>
-                            ${escapeHtml(section.sec_prog)}
+                            ${escapeHtml(getProgramTitle(section.sec_prog))}
                         </td>
                         <td>
                             ${escapeHtml(section.sec_size)}
@@ -2199,6 +2257,10 @@
             const sessionStart = timeToMinutes(session.ses_start)
             const sessionEnd = timeToMinutes(session.ses_end)
             const dayIndex = days.indexOf(sessionDay);
+            if (dayIndex === -1) {
+                console.warn('Skipping session with an invalid day:', session);
+                return;
+            }
             const rows = tbody.querySelectorAll('tr');
             let targetCell = null;
             let targetRow = null;
@@ -2206,14 +2268,8 @@
                 if (targetCell) {
                     return;
                 }
-                const cells =
-                    row.querySelectorAll(
-                        'td'
-                    );
-                if (cells.length <days.length + 1) {
-                    return;
-                }
-                const cell = cells[dayIndex + 1];
+                const cell = Array.from(row.querySelectorAll('td'))
+                    .find(candidate => candidate.dataset.day === sessionDay);
                 if (!cell) {
                     return;
                 }
@@ -2253,6 +2309,10 @@
                 <div class="schedule-section">
                     <strong>Section:</strong>
                     ${escapeHtml(session.sec_name)}
+                </div>
+                <div class="schedule-section">
+                    <strong>Faculty:</strong>
+                    ${escapeHtml(session.faculty_name || 'N/A')}
                 </div>
                 <div class="schedule-room">
                     <strong>Room:</strong>
@@ -3609,6 +3669,10 @@
         const subjectYear =
             String(selectedSubject.sub_year)
                 .trim();
+        if (subjectProgram === 'general') {
+            populateSectionSelect(sectionList, selectedSectionId);
+            return;
+        }
         const matchingSections =
             sectionList.filter(section => {
                 const sectionProgram =
@@ -3661,8 +3725,11 @@
                     String(subject.sub_year)
                         .trim();
                 return (
-                    subjectProgram === sectionProgram &&
-                    subjectYear === sectionYear
+                    subjectProgram === 'general' ||
+                    (
+                        subjectProgram === sectionProgram &&
+                        subjectYear === sectionYear
+                    )
                 );
             });
         populateSubjectSelect(matchingSubjects, selectedSubjectId);

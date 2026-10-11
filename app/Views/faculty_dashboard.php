@@ -164,8 +164,10 @@
         }
 
         #scheduleTable {
-            min-width: 1000px;
+            width: 100%;
+            min-width: 0;
             border-collapse: collapse;
+            table-layout: fixed;
         }
 
         #scheduleTable th {
@@ -173,22 +175,26 @@
             color: white;
             text-align: center;
             vertical-align: middle;
-            padding: 12px;
+            padding: 6px;
+            font-size: 12px;
         }
 
         #scheduleTable td {
-            height: 55px;
+            height: 42px;
             border: 1px solid #ddd;
             text-align: center;
             vertical-align: middle;
             background: white;
-            padding: 4px;
+            padding: 3px;
+            overflow-wrap: anywhere;
         }
 
         #scheduleTable .time-column {
-            width: 100px;
+            width: 120px;
             font-weight: 600;
             background: #f8f9fa;
+            white-space: nowrap;
+            font-size: 10px;
         }
 
         /* Base style for schedule items (color applied inline via JS) */
@@ -196,9 +202,9 @@
             color: #3b185f;
             border-left: 4px solid #3b185f;
             border-radius: 6px;
-            padding: 6px;
+            padding: 4px;
             margin: 2px;
-            font-size: 12px;
+            font-size: 10px;
             cursor: pointer;
         }
 
@@ -211,8 +217,16 @@
         }
 
         .schedule-details {
-            font-size: 11px;
+            font-size: 10px;
             margin-top: 3px;
+        }
+
+        @media (max-width: 768px) {
+            #scheduleTable th { padding: 3px; font-size: 10px; }
+            #scheduleTable td { height: 36px; padding: 2px; }
+            #scheduleTable .time-column { width: 100px; font-size: 9px; }
+            .schedule-item { padding: 3px; font-size: 9px; }
+            .schedule-details { font-size: 9px; }
         }
 
         /* =========================
@@ -844,6 +858,9 @@
                 </div>
                 <div class="schedule-details">
                     ${escapeHtml(session.sec_code || 'Section')}
+                </div>
+                <div class="schedule-details">
+                    Faculty: ${escapeHtml(session.faculty_name || 'N/A')}
                 </div>
                 <div class="schedule-details">
                     Room: ${escapeHtml(session.room_name || 'N/A')}

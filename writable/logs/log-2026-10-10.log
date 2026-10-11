@@ -1,0 +1,273 @@
+DEBUG - 2026-10-10 03:29:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 03:29:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 03:29:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 03:29:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 03:29:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 03:29:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:46:47 --> CSRF token verified.
+ERROR - 2026-10-10 07:46:47 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'faciload', 3306, '', 0)
+#1 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\ASUS\Desktop\Faciload\Faciload\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\Users\ASUS\Desktop\Faciload\Faciload\app\Controllers\Auth.php(29): CodeIgniter\BaseModel->first()
+#7 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(974): App\Controllers\Auth->attemptLogin()
+#8 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\Users\ASUS\Desktop\Faciload\Faciload\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\Users\ASUS\Desktop\Faciload\Faciload\system\rewrite.php(44): require_once('C:\\Users\\ASUS\\D...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\Users\ASUS\Desktop\Faciload\Faciload\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\Users\ASUS\Desktop\Faciload\Faciload\app\Controllers\Auth.php(29): CodeIgniter\BaseModel->first()
+#6 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(974): App\Controllers\Auth->attemptLogin()
+#7 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\Users\ASUS\Desktop\Faciload\Faciload\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\ASUS\Desktop\Faciload\Faciload\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\Users\ASUS\Desktop\Faciload\Faciload\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\Users\ASUS\Desktop\Faciload\Faciload\system\rewrite.php(44): require_once('C:\\Users\\ASUS\\D...')
+#13 {main}
+CRITICAL - 2026-10-10 07:46:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE   (
+`login_id` = :login_id:
+OR `username` = :username:
+ )
+AND `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\Auth.php(29): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->attemptLogin()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-10-10 07:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:47:41 --> CSRF token verified.
+DEBUG - 2026-10-10 07:47:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:47:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:49:25 --> CSRF token verified.
+DEBUG - 2026-10-10 07:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:49:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:49:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:00 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-10-10 07:52:00 --> Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('DELETE FROM `users`
+WHERE `id` IN (\'2\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 5 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 6 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 7 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-10-10 07:52:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+[Method: POST, Route: delete_faculty/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 2 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 3 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 4 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-10-10 07:52:00 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 4 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 5 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 6 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-10-10 07:52:00 --> [Caused by] mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('DELETE FROM `users`
+WHERE `id` IN (\'2\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 5 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 6 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 7 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-10-10 07:52:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:17 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:22 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-10-10 07:52:22 --> Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('DELETE FROM `users`
+WHERE `id` IN (\'2\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 5 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 6 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 7 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-10-10 07:52:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+[Method: POST, Route: delete_faculty/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 2 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 3 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 4 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-10-10 07:52:22 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 4 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 5 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 6 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+CRITICAL - 2026-10-10 07:52:22 --> [Caused by] mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`faciload`.`sessions`, CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('DELETE FROM `users`
+WHERE `id` IN (\'2\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `users`
+WHERE `id` IN (\'2\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query('DELETE FROM `users`
+WHERE `id` IN :id:', [...], false)
+ 5 SYSTEMPATH\Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 6 SYSTEMPATH\BaseModel.php(1207): CodeIgniter\Model->doDelete([...], false)
+ 7 APPPATH\Controllers\Dashboard.php(1830): CodeIgniter\BaseModel->delete([...])
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Dashboard->delete_faculty('2')
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\ASUS\\Desktop\\Faciload\\Faciload\\public\\index.php')
+DEBUG - 2026-10-10 07:52:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:32 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:37 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:43 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:52:49 --> CSRF token verified.
+DEBUG - 2026-10-10 07:52:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:52:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-10-10 07:53:19 --> CSRF token verified.
+DEBUG - 2026-10-10 07:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-10-10 07:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

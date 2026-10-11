@@ -367,6 +367,7 @@ public function show_faculty_schedule($faculty_id = null)
         sessions.ses_end,
 
         users.username,
+        users.username AS faculty_name,
         users.login_id,
         users.academic_rank,
         users.college,
@@ -447,6 +448,7 @@ public function show_room_schedule($room_id = null)
         sessions.ses_end,
 
         users.username,
+        users.username AS faculty_name,
         users.login_id,
 
         subjects.sub_code,
@@ -523,6 +525,7 @@ public function show_section_schedule($section_id = null)
         sessions.ses_end,
 
         users.username,
+        users.username AS faculty_name,
         users.login_id,
 
         subjects.sub_code,
@@ -2070,6 +2073,8 @@ public function get_my_schedule()
         sessions.ses_day,
         sessions.ses_start,
         sessions.ses_end,
+        users.username,
+        users.username AS faculty_name,
         subjects.sub_code,
         subjects.sub_name,
         sections.sec_code,
@@ -2083,6 +2088,11 @@ public function get_my_schedule()
     $builder->join(
         'subjects',
         'subjects.id = sessions.subject_id',
+        'left'
+    );
+    $builder->join(
+        'users',
+        'users.id = sessions.faculty_id',
         'left'
     );
     $builder->join(
