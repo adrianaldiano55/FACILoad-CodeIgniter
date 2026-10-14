@@ -246,6 +246,12 @@
             font-weight: 600;
             margin-bottom: 18px;
         }
+        tr.overloaded-row {
+            background-color: #ffe0e0 !important;
+        }
+        tr.overloaded-row td {
+            background-color: #ffe0e0 !important;
+        }
     </style>
 </head>
 <body>
@@ -329,7 +335,7 @@
                     <div class="card-body">
                         <div class="row g-3 align-items-end">
                             <!-- FILTER -->
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="managementFilter" class="form-label">
                                     <i class="bi bi-funnel me-1"></i>
                                     Filter By
@@ -346,7 +352,7 @@
                             </div>
                             <!-- SEARCH -->
                             <div
-                                class="col-md-7"
+                                class="col-md-4"
                                 id="searchArea"
                                 style="display: none;">
                                 <label for="searchInput" class="form-label" id="searchLabel">
@@ -369,13 +375,25 @@
                                 </button>
                             </div>
                             <!-- SESSION BUTTON -->
-                            <div class="col-md-2" id="sessionButton" style="display: none;">
-                                <button
-                                    type="button"
-                                    class="btn btn-primary w-100"
-                                    onclick="openSessionModal()">
-                                    Add Session
-                                </button>
+                            <div class="col-md-4" id="sessionButton" style="display: none;">
+                                <div class="d-flex gap-2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary flex-fill"
+                                        onclick="openSessionModal()">
+                                        <i class="bi bi-plus-lg me-1"></i>
+                                        Add Session
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id="printScheduleReportButton"
+                                        class="btn btn-outline-success flex-fill"
+                                        onclick="downloadScheduleReport()"
+                                        disabled>
+                                        <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+                                        Print Report
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1932,8 +1950,35 @@
                     Number(user.assigned_lecture_hours) || 0;
                 const extraUnits =
                     Number(user.total_extra_units) || 0;
+                const totalHours = Number((
+                    assignedLabHours +
+                    assignedLectureHours +
+                    extraUnits
+                ).toFixed(2));
+                const rank = String(user.academic_rank ?? '')
+                    .trim()
+                    .toLowerCase();
+                let overloadLimit = null;
+                if (rank === 'fulltime') {
+                    overloadLimit = 15;
+                } else if (rank === 'parttime') {
+                    overloadLimit = 30;
+                }
+                const isOverloaded =
+                    overloadLimit !== null && totalHours > overloadLimit;
+                const rowStyle = isOverloaded
+                    ? ' style="background-color: #ffe0e0;"'
+                    : '';
+                    const totalCell = isOverloaded
+                        ? `<span class="text-danger fw-bold">${escapeHtml(totalHours)}</span>
+                        <span class="badge bg-danger ms-1"
+                                title="Overloaded: ${totalHours} hours exceeds the ${overloadLimit}-hour limit for ${escapeHtml(user.academic_rank)}">
+                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                            Overloaded
+                        </span>`
+                        : escapeHtml(totalHours);
                 tbody.innerHTML += `
-                    <tr>
+                    <tr${rowStyle}>
                         <td>${escapeHtml(user.login_id ?? '')}</td>
                         <td>${escapeHtml(user.username ?? '')}</td>
                         <td>${escapeHtml(user.email ?? '')}</td>
@@ -1943,13 +1988,7 @@
                         <td>${escapeHtml(assignedLabHours)}</td>
                         <td>${escapeHtml(assignedLectureHours)}</td>
                         <td>${escapeHtml(extraUnits)}</td>
-                        <td>${escapeHtml(
-                            Number((
-                                assignedLabHours +
-                                assignedLectureHours +
-                                extraUnits
-                            ).toFixed(2))
-                        )}</td>
+                        <td>${totalCell}</td>
                         <td>
                             <button
                                 type="button"
@@ -1990,117 +2029,70 @@
                 'Accept': 'application/json'
             }
         })
-
         .then(response => {
-
             if (!response.ok) {
                 throw new Error('Failed to load rooms.');
             }
-
             return response.json();
-
         })
-
         .then(rooms => {
-
             const tbody =
                 document.getElementById('roomTableBody');
-
             tbody.innerHTML = '';
-
             if (!Array.isArray(rooms) || rooms.length === 0) {
-
                 tbody.innerHTML = `
                     <tr>
                         <td
                             colspan="6"
                             class="text-center text-muted py-4">
-
                             No rooms found.
-
                         </td>
                     </tr>
                 `;
-
                 return;
             }
-
             rooms.forEach(room => {
-
                 tbody.innerHTML += `
-
                     <tr>
-
+                        <td>${escapeHtml(room.room_code ?? '')}</td>
+                        <td>${escapeHtml(room.room_name ?? '')}</td>
+                        <td>${escapeHtml(room.room_type ?? '')}</td>
+                        <td>${escapeHtml(room.room_time ?? '')}</td>
+                        <td>${escapeHtml(room.room_size ?? '')}</td>
                         <td>
-                            ${escapeHtml(room.room_code ?? '')}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(room.room_name ?? '')}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(room.room_type ?? '')}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(room.room_time ?? '')}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(room.room_size ?? '')}
-                        </td>
-
-                        <td>
-
                             <button
                                 type="button"
                                 class="btn btn-warning btn-sm me-1"
                                 onclick="editRoom(${room.id})">
-
                                 <i class="bi bi-pencil"></i>
                                 Edit
-
                             </button>
-
                             <button
                                 type="button"
                                 class="btn btn-danger btn-sm"
                                 onclick="deleteRoom(${room.id})">
-
                                 <i class="bi bi-trash"></i>
                                 Delete
-
                             </button>
-
                         </td>
-
                     </tr>
-
                 `;
             });
-
         })
-
         .catch(error => {
-
             console.error('Error loading rooms:', error);
-
             document.getElementById('roomTableBody').innerHTML = `
-
                 <tr>
                     <td
                         colspan="6"
                         class="text-center text-danger py-4">
-
                         Unable to load rooms.
-
                     </td>
                 </tr>
-
             `;
         });
     }
+    
     // Search Functions
     function searchSchedule() {
         hideSessionButton();
@@ -2180,6 +2172,11 @@
 
 // Schedule Functions
     function loadSchedule(id) {
+        const reportButton =
+            document.getElementById('printScheduleReportButton');
+        if (reportButton) {
+            reportButton.disabled = true;
+        }
         const filter = document.getElementById('managementFilter').value;
         let url = '';
         if (filter === 'faculty') {
@@ -2204,7 +2201,12 @@
                 generateTimetable([]);
                 alert('The server returned an invalid schedule.');
                 return;
-            } else {generateTimetable(schedule);}
+            } else {
+                generateTimetable(schedule);
+                if (reportButton) {
+                    reportButton.disabled = false;
+                }
+            }
         })
         .catch(error => {
             console.error('Error loading schedule:',error);
@@ -2213,6 +2215,169 @@
         });
     }
 
+    function downloadScheduleReport() {
+        const scheduleTable =
+            document.querySelector('#scheduleTable table');
+        if (!scheduleTable || !searchResult || !searchFilter) {
+            alert('Search for a schedule before printing the report.');
+            return;
+        }
+        const table = scheduleTable.cloneNode(true);
+        table.querySelectorAll('i').forEach(icon => icon.remove());
+        table.querySelectorAll('div').forEach(element => {
+            if (element.textContent.includes('Click to edit')) {
+                element.remove();
+            }
+        });
+        // Remove the "Click to edit" cursor styling
+        table.querySelectorAll('td').forEach(cell => {
+            cell.style.cursor = 'default';
+        });
+        // ---------------------------------------------------------
+        // Build a new table where every logical field merges 2 columns.
+        // No colgroup, no fixed widths, no table-layout: fixed.
+        // Excel keeps its native cell size for each of the merged cells.
+        // ---------------------------------------------------------
+        const originalRows = Array.from(table.querySelectorAll('tr'));
+        const newTable = document.createElement('table');
+        newTable.style.borderCollapse = 'collapse';
+        newTable.style.marginLeft = 'auto';
+        newTable.style.marginRight = 'auto';
+        // Track how many logical columns exist so we can detect
+        // the first and last cell of each row (for outer border).
+        const totalRows = originalRows.length;
+        originalRows.forEach((row, rowIndex) => {
+            const newRow = document.createElement('tr');
+            const cells = Array.from(row.querySelectorAll('th, td'));
+            const totalCols = cells.length;
+            cells.forEach((cell, colIndex) => {
+                const isHeader = cell.tagName === 'TH';
+                const newCell = document.createElement(isHeader ? 'th' : 'td');
+                // Merge 2 Excel columns per logical field
+                newCell.colSpan = 2;
+                newCell.rowSpan = cell.rowSpan || 1;
+                newCell.innerHTML = cell.innerHTML;
+                // --- Per-cell borders (day + time columns) ---
+                newCell.style.border = '1px solid #000';
+                newCell.style.padding = '2px';
+                newCell.style.textAlign = 'center';
+                newCell.style.verticalAlign = 'middle';
+                newCell.style.wordWrap = 'break-word';
+                // --- Thick outer border around the whole schedule ---
+                const isTopRow = rowIndex === 0;
+                const isBottomRow = rowIndex === totalRows - 1;
+                const isFirstCol = colIndex === 0;
+                const isLastCol = colIndex === totalCols - 1;
+                newCell.style.borderTop = isTopRow
+                    ? '3px solid #000'
+                    : '1px solid #000';
+                newCell.style.borderBottom = isBottomRow
+                    ? '3px solid #000'
+                    : '1px solid #000';
+                newCell.style.borderLeft = isFirstCol
+                    ? '3px solid #000'
+                    : '1px solid #000';
+                newCell.style.borderRight = isLastCol
+                    ? '3px solid #000'
+                    : '1px solid #000';
+                if (isHeader) {
+                    newCell.style.backgroundColor = '#212529';
+                    newCell.style.color = '#fff';
+                } else if (cell.classList.contains('bg-light')) {
+                    newCell.style.backgroundColor = '#f8f9fa';
+                } else if (cell.style.backgroundColor) {
+                    newCell.style.backgroundColor = cell.style.backgroundColor;
+                }
+                newRow.appendChild(newCell);
+            });
+            newTable.appendChild(newRow);
+        });
+        // ---------------------------------------------------------
+        // Build the Excel workbook.
+        // Font reduced so a 1-hour (2-row) cell fits the session text.
+        // Outer border is thicker than inner borders.
+        // ---------------------------------------------------------
+        const itemName = searchResult.username ||
+            searchResult.room_name ||
+            searchResult.sec_name ||
+            searchResult.login_id ||
+            searchResult.room_code ||
+            searchResult.sec_code ||
+            'schedule';
+        const reportTitle = `${searchFilter} schedule - ${itemName}`;
+        const workbook = `<!DOCTYPE html>
+            <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                xmlns:x="urn:schemas-microsoft-com:office:excel"
+                xmlns="http://www.w3.org/TR/REC-html40">
+            <head>
+                <meta charset="UTF-8">
+                <title>${escapeHtml(reportTitle)}</title>
+                <style>
+                    table {
+                        border-collapse: collapse;
+                        margin-left: auto;
+                        margin-right: auto;
+                        border: 3px solid #000;
+                    }
+                    th, td {
+                        border: 1px solid #000 !important;
+                        mso-number-format:"\\@";
+                        word-wrap: break-word;
+                        white-space: normal;
+                        text-align: center;
+                        vertical-align: middle;
+                        font-family: 'Times New Roman', Times, serif;
+                        font-size: 10pt;
+                        line-height: 1.1;
+                    }
+                    /* Thick outer frame: first & last column, first & last row */
+                    tr:first-child th,
+                    tr:first-child td {
+                        border-top: 3px solid #000 !important;
+                    }
+                    tr:last-child td,
+                    tr:last-child th {
+                        border-bottom: 3px solid #000 !important;
+                    }
+                    tr > *:first-child {
+                        border-left: 3px solid #000 !important;
+                    }
+                    tr > *:last-child {
+                        border-right: 3px solid #000 !important;
+                    }
+                    /* Header row keeps its dark fill but with black borders */
+                    thead th {
+                        background-color: #212529;
+                        color: #fff;
+                    }
+                    h2 {
+                        text-align: center;
+                        font-family: 'Times New Roman', Times, serif;
+                        font-size: 14pt;
+                    }
+                </style>
+            </head>
+            <body>
+                <h2>${escapeHtml(reportTitle)}</h2>
+                ${newTable.outerHTML}
+            </body>
+            </html>`;
+        const blob = new Blob(['\ufeff', workbook], {
+            type: 'application/vnd.ms-excel;charset=utf-8'
+        });
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        const safeName = String(itemName)
+            .replace(/[^a-z0-9_-]+/gi, '-')
+            .replace(/^-+|-+$/g, '') || 'schedule';
+        const date = new Date().toISOString().slice(0, 10);
+        link.href = downloadUrl;
+        link.download = `schedule-report-${searchFilter}-${safeName}-${date}.xls`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(downloadUrl);
+    }
     function generateTimetable(schedule) {
         const filter = document.getElementById('managementFilter').value;
         const tbody = document.getElementById('scheduleBody');

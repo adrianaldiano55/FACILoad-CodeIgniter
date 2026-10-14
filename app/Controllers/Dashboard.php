@@ -2054,6 +2054,7 @@ public function delete_room($id = null)
     ]);
 }
 
+// FACULTY DASHBOARD FUNCTIONS
 public function get_my_schedule()
 {
     $facultyId = session()->get('id');
@@ -2145,6 +2146,5 @@ public function get_my_profile()
         'data' => $faculty
     ]);
 }
-
 
 }
